@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>首页</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
+	<script src="js/flexible.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script src="js/vue-i18n.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="http://at.alicdn.com/t/font_1127175_9cfnw8b045j.js"></script>
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<div id="index" v-cloak>
+		<div class="header">
+			<img class="logo" src="images/logo.png">
+			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
+			    <use xlink:href="#icon-caidan"></use>
+			</svg>
+			<transition name="fade" mode="out-in">
+			  	<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
+			</transition>
+			<transition name="slide-fade">
+				<div v-if="show">
+					<div class="mask" v-on:click="show = !show">
+					</div>
+					<div class="nav-menu">
+						<ul>
+							<li>
+								<a href="#">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-xiazai45"></use>
+									</svg>
+									<span>{{ $t("header.home") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-car"></use>
+									</svg>
+									<span>{{ $t("header.buy") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-maiche"></use>
+									</svg>
+									<span>{{ $t("header.sale") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-cart"></use>
+									</svg>
+									<span>{{ $t("header.bargain") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-huankuanri"></use>
+									</svg>
+									<span>{{ $t("header.hire") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-chehangBmen"></use>
+									</svg>
+									<span>{{ $t("header.about") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-gerenzhongxin"></use>
+									</svg>
+									<span>{{ $t("header.center") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</transition>
+		</div>              
+	  <!-- <p>{{ $t("message.hello") }}</p> -->
+	  <div class="swiper-container">
+	    <div class="swiper-wrapper">
+	      <div class="swiper-slide" v-for="item in slideArr"><img :src="'images/' + item"></div>
+	    </div>
+	    <div class="swiper-pagination"></div>
+	  </div>
+		<div id="search">
+			<input type="text" value="" :placeholder="$t('search.place')"/>
+		</div>
+		<div class="nav-menu home-nav">
+			<ul>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-car"></use>
+						</svg>
+						<span>{{ $t("header.buy") }}</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-maiche"></use>
+						</svg>
+						<span>{{ $t("header.sale") }}</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cart"></use>
+						</svg>
+						<span>{{ $t("header.bargain") }}</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-huankuanri"></use>
+						</svg>
+						<span>{{ $t("header.hire") }}</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div id="tips">
+			<svg class="icon" aria-hidden="true">
+					<use xlink:href="#icon-ling"></use>
+			</svg>
+			<div class="text text-container">
+				<!-- <div class="swiper-wrapper">
+					<div class="swiper-slide" v-for="item in slideArr"><img :src="'images/' + item"></div>
+				</div> -->
+				<ul class="swiper-wrapper">
+					<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
+				</ul>
+			</div>
+		</div>
+		<div class="price-btns">
+			<button type="button" v-for="item in $t('price')">{{item}}</button>
+		</div>
+		<div class="cartype-btns">
+			<button type="button" v-for="item in $t('cartype')">
+				<div class="img-c">
+					<img :src="'images/'+item.logo" > 
+				</div>
+				<span class="cartype-name">{{item.name}}</span>
+			</button>
+			<button type="button" class="moretype">
+				<div class="img-c">
+					...
+				</div>
+				<div>{{ $t("more") }}</div>
+			</button>
+		</div>
+		<div class="recommoned">
+			<span class="re-title">{{ $t("recom") }}</span>
+			<div class="sel-type">
+				<ul>
+					<li v-for="item in $t('seltype')" v-on:click="selected($event)">{{item}}</li>
+				</ul>
+			</div>
+			<div class="car-detail">
+				<div class="car-item" v-for="item in $t('explain')">
+					<img class="bg" src="images/car-1.jpg">
+					<img class="favorite" src="images/favorite.png">
+					<div class="car-explain">
+						<div class="explain-t">
+							<div class="car-name">
+								{{item.name}}
+							</div>
+							<div class="car-price">
+								{{item.price}}
+							</div>
+						</div>
+						<div class="distance">
+							{{item.distance}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	// 准备翻译的语言环境信息
+	const messages = {
+	  en: {
+	    header: {
+	      home: 'HOME',
+	      buy: 'BUY',
+	      sale: 'SALE',
+	      bargain: 'CAR OUTLET',
+	      hire: 'LOAN',
+	      about: 'ABOUT',
+	      center: 'PERSONAL CENTER'
+	    },
+			search: {
+				place: "What's in your mind?"
+			},
+			price: ['Under $10000','$10000-$15000','$15000-$20000','$20000-$30000','$30000-$40000','$40000 Over'],
+			cartype:[{'logo':'make0.png','name':'Audi'},
+			{'logo':'make1.png','name':'BMW'},
+			{'logo':'make2.png','name':'Ford'},
+			{'logo':'make3.png','name':'Honda'},
+			{'logo':'make4.png','name':'Merced...'}],
+			more: 'More',
+			recom: 'CAR Recommoned',
+			seltype: ['Hot Deal','ECO-Car','Like new'],
+			explain: [{'name':'2017 Audi A4 2.0L','price':'22,599','distance':'33,213Miles·0Dr·front wheel drive·4-Cyl·2.0L Turbocharger·Automatic'},
+			{'name':'2017 Audi A4 2.0L','price':'22,599','distance':'33,213Miles·0Dr·front wheel drive·4-Cyl·2.0L Turbocharger·Automatic'}],
+		},
+	  'zh-cn': {
+	    header: {
+	      home: '首页',
+	      buy: '我要买车',
+	      sale: '我要卖车',
+	      bargain: '车行值购',
+	      hire: '分期购车',
+	      about: '关于车行',
+	      center: '个人中心'
+	    },
+			search: {
+				place: "此处搜索车型！！！"
+			},
+			price: ['$1万以下','$1万-$1.5万','$1.5万-$2万','$2万-$3万','$3万-$4万','$4万以上'],
+			cartype: [{'logo':'make0.png','name':'奥迪'},
+			{'logo':'make1.png','name':'宝马'},
+			{'logo':'make2.png','name':'福特'},
+			{'logo':'make3.png','name':'本田'},
+			{'logo':'make4.png','name':'奔驰'}],
+			more: '更多',
+			recom: '车行推荐',
+			seltype: ['热门车型','经济车型','最新车型'],
+			explain: [{'name':'2017 奥迪 A4 2.0L','price':'22,599','distance':'33,213英里·0门·前轮驱动·4缸·2.0L涡轮增压·自动'},
+			{'name':'2017 奥迪 A4 2.0L','price':'22,599','distance':'33,213英里·0门·前轮驱动·4缸·2.0L涡轮增压·自动'}],
+	  }
+	}
+	// 通过选项创建 VueI18n 实例
+	const i18n = new VueI18n({
+	  locale: 'zh-cn', // 设置地区
+	  messages, // 设置地区信息
+	})
+
+	// 通过 `i18n` 选项创建 Vue 实例
+	new Vue({ 
+		i18n,
+		data: { 
+			show: false,
+			enshow: "english",
+			slideArr: ['index_masthead0cn.jpg','index_masthead1.jpg','index_masthead0cn.jpg','index_masthead1.jpg'],
+			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
+		},
+		mounted() {
+			$('.sel-type').find('li').eq(0).addClass('sel').css('border-bottom','1px solid #C21B36');
+		},
+		methods: {
+			change :function() {
+          this.enshow = this.enshow == 'english' ? "中文" : "english";
+          if(this.enshow == '中文'){
+          	i18n.locale = 'en';
+          }else if(this.enshow == 'english'){
+          	i18n.locale = 'zh-cn';
+          }
+      },
+			selected:function(e) {
+				var len = e.target.parentNode.children.length;
+				var node = e.target.parentNode.children;
+				for(i=0; i < len; i++){
+					node[i].classList.remove('sel');
+					node[i].style.borderBottom = '1px solid #EAEAEA';
+				}
+				e.target.classList.add('sel');
+				e.target.style.borderBottom = '1px solid #C21B36';
+			}
+		}
+	}).$mount('#index')
+	new Swiper('.swiper-container', {
+      autoHeight: true, //enable auto height
+      spaceBetween: 20,
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      },
+      loop:true,
+      autoplay: {
+      	delay: 2500,
+      	disableOnInteraction:false
+      }
+    });
+		new Swiper('.text-container', {
+				direction:'vertical',
+				loop:true,
+				autoplay: {
+					delay: 2500,
+					disableOnInteraction:false
+				}
+			});
+	// 现在应用程序已经准备好了！
+</script>
+</html>

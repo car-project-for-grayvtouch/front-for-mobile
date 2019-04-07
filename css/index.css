@@ -7,7 +7,6 @@ body {
 	color:#000;
 	margin: 0;
 	padding: 0;
-	font-size: 0.4rem;
 }
 .swiper-container {
 	width: 100%;
@@ -153,6 +152,9 @@ body {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	}
+.cartype-btns a{
+	font-size: 0.35rem;
 }
 .cartype-btns button{
 	padding: 0.15rem 0;
@@ -209,15 +211,15 @@ body {
 	color: #C21B36;
 	border-bottom: 1px solid #C21B36;
 }
-.car-detail{
-	/* margin: 0.4rem 0.4rem 0 0.4rem; */
+.car-detail a{
+	color: white;
+/* margin: 0.4rem 0.4rem 0 0.4rem; */
 }
-.car-item{
+	.car-item{
 	width: 100%;
 	height: 6rem;
 	position: relative;
 	margin-top: 0.3rem;
-	color: white;
 }
 .car-item .bg{
 	width: 100%;
@@ -252,4 +254,98 @@ body {
 }
 .distance{
 	font-size: 0.4rem;
+}
+.media-item{
+	padding: 0.2rem 0;
+	border-top: 1px solid #EAEAEA;
+	border-bottom: 1px solid #EAEAEA;
+}
+.media-item .bg{
+	width: 100%;
+}						
+.media-title{
+	font-size: 0.4rem;
+}
+.media-art{
+	font-size: 0.35rem;
+	word-break: break-all;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	color: #969696;
+	line-height: 0.5rem;
+}
+.contact{
+	margin: 0.4rem 0.4rem 0 0.4rem;
+	}
+.contact a{
+	color: #969696;
+}
+.contact .top{
+	width: 100%;
+	height: 2rem;
+	display: flex;
+	padding: 0.2rem 0;
+	box-sizing: border-box;
+	justify-content: space-between;
+}
+.contact .top .logo{
+	width: 1.5rem;
+	border-right: 1px solid #EAEAEA;
+}
+.contact .top .logo,.contact .top .wx,.contact .top .phone{
+	width: 100%;
+	height: 100%;
+	font-size: 0.4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+.contact .top .logo img,.contact .top .wx img,.contact .top .phone img{
+	width: 0.8rem;
+}
+.adress{
+	background-color: #F6F6F6;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.4rem 0.4rem 0 0.4rem;
+	text-align: center;
+}
+.adress li{
+	padding-bottom: 0.15rem;
+	line-height: 0.8rem;
+	}
+.adress a{
+	text-decoration: none;
+}
+.adress li span{
+	color: #C21B36;
+	font-size: 0.4rem;
+}
+.adress li p{
+	color: #969696;
+	font-size: 0.35rem;
+}
+.misc{
+	background: #ededed;
+}
+.misc ul{
+	padding:0.5rem 0.4rem;
+	display: flex;
+	font-size: 0.4rem;
+	justify-content: space-between;
+	}
+.misc ul a{
+	text-decoration: none;
+	color: #969696;
+}
+.copy{
+	background-color: #DA2515;
+	color: white;
+	font-size: 0.4rem;
+	text-align: center;
+	padding: 0.2rem 0;
 }

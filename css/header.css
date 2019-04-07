@@ -2,6 +2,10 @@
 	margin: 0;
 	padding: 0;
 }
+a{
+	text-decoration: none;
+	color: black;
+}
 ul{
 	list-style: none;
 }
@@ -39,18 +43,17 @@ ul{
 	margin: auto;
 }
 .header .language-switch{
-	width: 1.5rem;
-  height: 1rem;
-	position: absolute;
+	width: 1.3rem;
+	height: 1.3rem;
+	position: fixed;
 	right: 0.2rem;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-	border-radius: 0.5rem;
+	bottom: 2rem;
+	border-radius: 50%;
 	outline: none;
 	color: white;
 	background: #C21B36;
-	font-size: 0.35rem;
+	font-size: 0.3rem;
+	opacity: 0.8;
 }
 .header .mask{
 	position: fixed;

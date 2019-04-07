@@ -42,18 +42,28 @@ ul{
 	bottom: 0;
 	margin: auto;
 }
-.header .language-switch{
+.header .language-switch,.header .back-to-top,.header .online-consultation{
 	width: 1.3rem;
 	height: 1.3rem;
 	position: fixed;
 	right: 0.2rem;
-	bottom: 2rem;
 	border-radius: 50%;
 	outline: none;
 	color: white;
 	background: #C21B36;
 	font-size: 0.3rem;
 	opacity: 0.8;
+}
+.header .language-switch{
+	bottom: 4rem;
+}
+.header .back-to-top{
+	bottom: 6rem;
+	background-color: white;
+	color: #C21B36;
+}
+.header .online-consultation{
+	bottom: 2rem;
 }
 .header .mask{
 	position: fixed;
@@ -126,6 +136,26 @@ ul{
 	transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .fade-enter, .fade-leave-to {
+	transform: translateX(-10px);
+	opacity: 0;
+}
+.fadel-enter-active {
+	transition: all .3s ease;
+}
+.fadel-leave-active {
+	transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.fadel-enter, .fadel-leave-to {
+	transform: translateX(-10px);
+	opacity: 0;
+}
+.fadeo-enter-active {
+	transition: all .3s ease;
+}
+.fadeo-leave-active {
+	transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.fadeo-enter, .fadeo-leave-to {
 	transform: translateX(-10px);
 	opacity: 0;
 }

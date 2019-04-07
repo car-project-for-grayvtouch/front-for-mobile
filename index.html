@@ -21,7 +21,13 @@
 			    <use xlink:href="#icon-caidan"></use>
 			</svg>
 			<transition name="fade" mode="out-in">
-			  	<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
+					<button class="back-to-top" :key="$t('header.top')" v-on:click='top()'>{{$t("header.top")}}</button>
+			</transition>
+			<transition name="fadel" mode="out-in">
+			<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
+			</transition>
+			<transition name="fadeo" mode="out-in">
+					<button class="online-consultation" :key="$t('header.online')" v-on:click='consult()'>{{$t("header.online")}}</button>
 			</transition>
 			<transition name="slide-fade">
 				<div v-if="show">
@@ -94,10 +100,9 @@
 				</div>
 			</transition>
 		</div>              
-	  <!-- <p>{{ $t("message.hello") }}</p> -->
 	  <div class="swiper-container">
 	    <div class="swiper-wrapper">
-	      <div class="swiper-slide" v-for="item in slideArr"><img :src="'images/' + item"></div>
+	      <div class="swiper-slide" v-for="item in slideArr"><a href="xx.html"><img :src="'images/' + item"></a></div>
 	    </div>
 	    <div class="swiper-pagination"></div>
 	  </div>
@@ -145,9 +150,6 @@
 					<use xlink:href="#icon-ling"></use>
 			</svg>
 			<div class="text text-container">
-				<!-- <div class="swiper-wrapper">
-					<div class="swiper-slide" v-for="item in slideArr"><img :src="'images/' + item"></div>
-				</div> -->
 				<ul class="swiper-wrapper">
 					<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
 				</ul>
@@ -221,21 +223,19 @@
 		</div>
 		<div class="contact">
 			<div class="top">
-				<a href="#">
 					<div class="logo"><img src="images/logo.png" ></div>
-				</a>
-				<a href="#">
-					<div class="wx">
+				<div class="wx">
+					<a href="#">
 						<img src="images/humacar.png" >
 						<span>HUMACAR</span>
-					</div>
-				</a>
-				<a href="#">
-					<div class="phone">
+					</a>
+				</div>
+				<div class="phone">
+					<a href="#">
 						<img src="images/phone.png" >
 						<span>+1(888)-888-6518</span>
-					</div>
-				</a>
+					</a>
+				</div>
 			</div>
 			</div>
 		<div class="adress">
@@ -283,7 +283,9 @@
 	      bargain: 'CAR OUTLET',
 	      hire: 'LOAN',
 	      about: 'ABOUT',
-	      center: 'PERSONAL CENTER'
+	      center: 'PERSONAL CENTER',
+				top: 'top',
+				online: 'online consultation',
 	    },
 			search: {
 				place: "What's in your mind?"
@@ -318,7 +320,9 @@
 	      bargain: '车行值购',
 	      hire: '分期购车',
 	      about: '关于车行',
-	      center: '个人中心'
+	      center: '个人中心',
+				top: '返回顶部',
+				online: '在线咨询',
 	    },
 			search: {
 				place: "此处搜索车型！！！"
@@ -381,6 +385,12 @@
 				}
 				e.target.classList.add('sel');
 				e.target.style.borderBottom = '1px solid #C21B36';
+			},
+			top:function(){
+				$('html,body').animate({scrollTop: '0'}, 400);
+			},
+			consult:function(){
+				alert("功能完善中！")
 			}
 		}
 	}).$mount('#index')

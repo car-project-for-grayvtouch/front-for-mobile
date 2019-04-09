@@ -1,0 +1,28 @@
+.buy{
+	box-sizing: border-box;
+}
+.buy-sel{
+	width: 100%;
+}
+.buy-sel ul{
+	display: flex;
+	justify-content: space-around;
+}
+.buy-sel ul li{
+	width: 100%;
+	height: 100%;
+	font-size: 0.35rem;
+	text-align: center;
+	border-top: 1px solid #DEDEDE;
+	border-bottom: 1px solid #DEDEDE;
+	padding: 0.25rem;
+	color: #969696;
+}
+.buy-sel ul li span{
+	width: 100%;
+	display: block;
+	border-right: 1px solid #DEDEDE;
+}
+.buy-sel ul li:nth-last-child(1) span{
+	border-right: none;
+}

@@ -8,18 +8,19 @@
 	<script src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/swiper.min.js"></script>
 	<script src="http://at.alicdn.com/t/font_1127175_9cfnw8b045j.js"></script>
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/buy.css">
 </head>
 <body>
-	<div id="index" v-cloak>
+	<div id="buy" v-cloak>
 		<div class="header">
 			<img class="logo" src="images/logo.png">
 			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
@@ -97,97 +98,23 @@
 								</a>
 							</li>
 							<li>
-								<a href="">
+								<a href="#">
 								</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</transition>
-		</div>              
-	  <div class="swiper-container">
-	    <div class="swiper-wrapper">
-	      <div class="swiper-slide" v-for="item in slideArr"><a href="xx.html"><img :src="'images/' + item"></a></div>
-	    </div>
-	    <div class="swiper-pagination"></div>
-	  </div>
-		<div id="search">
-			<input type="text" value="" :placeholder="$t('search.place')"/>
 		</div>
-		<div class="nav-menu home-nav">
+		<div class="buy-sel">
 			<ul>
-				<li>
-					<a href="buy.html">
-						<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-car"></use>
-						</svg>
-						<span>{{ $t("header.buy") }}</span>
-					</a>
-				</li>
-				<li>
-					<a href="sale.html">
-						<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-maiche"></use>
-						</svg>
-						<span>{{ $t("header.sale") }}</span>
-					</a>
-				</li>
-				<li>
-					<a href="bargain.html">
-						<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-cart"></use>
-						</svg>
-						<span>{{ $t("header.bargain") }}</span>
-					</a>
-				</li>
-				<li>
-					<a href="installment.html">
-						<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-huankuanri"></use>
-						</svg>
-						<span>{{ $t("header.hire") }}</span>
-					</a>
-				</li>
+				<li><span>品牌</span></li>
+				<li><span>价格</span></li>
+				<li><span>车龄</span></li>
+				<li><span>清除筛选</span></li>
 			</ul>
 		</div>
-		<div id="tips">
-			<svg class="icon" aria-hidden="true">
-					<use xlink:href="#icon-ling"></use>
-			</svg>
-			<div class="text text-container">
-				<ul class="swiper-wrapper">
-					<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
-				</ul>
-			</div>
-		</div>
-		<div class="price-btns">
-			<button type="button" v-for="item in $t('price')">{{item}}</button>
-		</div>
-		<div class="cartype-btns">
-			<button type="button" v-for="item in $t('cartype')">
-				<a href="#">
-					<div class="img-c">
-						<img :src="'images/'+item.logo" > 
-					</div>
-					<span class="cartype-name">{{item.name}}</span>
-				</a>
-			</button>
-			<button type="button" class="moretype">
-				<a href="#">
-					<div class="img-c">
-						...
-					</div>
-					<div>{{ $t("more") }}</div>
-				</a>
-			</button>
-		</div>
 		<div class="recommoned">
-			<span class="re-title">{{ $t("recom") }}</span>
-			<div class="sel-type">
-				<ul>
-					<li v-for="item in $t('seltype')" v-on:click="selected($event)">{{item}}</li>
-				</ul>
-			</div>
 			<div class="car-detail">
 				<div class="car-item" v-for="item in $t('explain')">
 					<a href="#">
@@ -209,22 +136,6 @@
 					</a>
 				</div>
 			</div>
-		</div>
-		<div class="recommoned">
-			<span class="re-title">{{ $t("mediaVoice") }}</span>
-			<a href="#">
-				<div class="media-detail">
-					<div class="media-item" v-for="item in $t('media')">
-						<img class="bg" src="images/car-1.jpg">
-						<div class="media-title">
-							{{item.title}}
-						</div>
-						<div class="media-art">
-							{{item.art}}
-						</div>
-					</div>
-				</div>
-			</a>
 		</div>
 		<div class="contact">
 			<div class="top">
@@ -286,11 +197,8 @@
 			topshow: false,
 			botshow: false,
 			enshow: "english",
-			slideArr: ['index_masthead0cn.jpg','index_masthead1.jpg','index_masthead0cn.jpg','index_masthead1.jpg'],
-			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
 		},
 		mounted() {
-			$('.sel-type').find('li').eq(0).addClass('sel').css('border-bottom','1px solid #C21B36');
 			if(locale){
 				i18n.locale = locale;
 				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
@@ -300,28 +208,16 @@
 		},
 		methods: {
 			change :function() {
-				this.enshow = this.enshow == 'english' ? "中文" : "english";
-				var that = this;
-				setTimeout(function(){
+			    this.enshow = this.enshow == 'english' ? "中文" : "english";
+			    var that = this;
+			    setTimeout(function(){
 					if(i18n.locale == 'en'){
 						i18n.locale = 'zh-cn';
 					}else if(i18n.locale == 'zh-cn'){
 						i18n.locale = 'en';
 					}
 					localStorage.locale = i18n.locale;
-				},1100)
-			  console.log(localStorage.locale)
-			 
-			},
-			selected:function(e) {
-				var len = e.target.parentNode.children.length;
-				var node = e.target.parentNode.children;
-				for(i=0; i < len; i++){
-					node[i].classList.remove('sel');
-					node[i].style.borderBottom = '1px solid #EAEAEA';
-				}
-				e.target.classList.add('sel');
-				e.target.style.borderBottom = '1px solid #C21B36';
+			    },1100)
 			},
 			top:function(){
 				this.topshow = !this.topshow;
@@ -334,28 +230,7 @@
 				},1100)
 			}
 		}
-	}).$mount('#index')
-	new Swiper('.swiper-container', {
-        autoHeight: true,
-        pagination: {
-			el: '.swiper-pagination',
-			dynamicBullets: true,
-			clickable: true,
-        },
-        loop:true,
-        autoplay: {
-			delay: 2500,
-			disableOnInteraction:false
-        }
-    });
-	new Swiper('.text-container', {
-		direction:'vertical',
-		loop:true,
-		autoplay: {
-			delay: 2500,
-			disableOnInteraction:false
-		}
-	});
+	}).$mount('#buy')
 	// 现在应用程序已经准备好了！
 </script>
 </html>

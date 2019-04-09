@@ -1,0 +1,76 @@
+.contact{
+	margin: 0.4rem 0.4rem 0 0.4rem;
+	}
+.contact a{
+	color: #969696;
+}
+.contact .top{
+	width: 100%;
+	height: 2rem;
+	display: flex;
+	padding: 0.2rem 0;
+	box-sizing: border-box;
+	justify-content: space-between;
+}
+.contact .top .logo{
+	width: 1.5rem;
+	border-right: 1px solid #EAEAEA;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+.contact .top .wx a,.contact .top .phone a{
+	width: 100%;
+	height: 100%;
+	font-size: 0.4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+.contact .top .logo img,.contact .top .wx img,.contact .top .phone img{
+	width: 0.8rem;
+}
+.adress{
+	background-color: #F6F6F6;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.4rem 0.4rem 0 0.4rem;
+	text-align: center;
+}
+.adress li{
+	padding-bottom: 0.15rem;
+	line-height: 0.8rem;
+	}
+.adress a{
+	text-decoration: none;
+}
+.adress li span{
+	color: #C21B36;
+	font-size: 0.4rem;
+}
+.adress li p{
+	color: #969696;
+	font-size: 0.35rem;
+}
+.misc{
+	background: #ededed;
+}
+.misc ul{
+	padding:0.5rem 0.4rem;
+	display: flex;
+	font-size: 0.4rem;
+	justify-content: space-between;
+	}
+.misc ul a{
+	text-decoration: none;
+	color: #969696;
+}
+.copy{
+	background-color: #DA2515;
+	color: white;
+	font-size: 0.4rem;
+	text-align: center;
+	padding: 0.2rem 0;
+}

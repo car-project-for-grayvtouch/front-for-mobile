@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>首页</title>
+	<title>购买</title>
 	<script src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -111,7 +111,15 @@
 				<li><span>品牌</span></li>
 				<li><span>价格</span></li>
 				<li><span>车龄</span></li>
-				<li><span>清除筛选</span></li>
+				<li><span>清除<br>筛选</span></li>
+			</ul>
+		</div>
+		<div class="order">
+			<ul>
+				<li>默认排序</li>
+				<li>按价格排序</li>
+				<li>按车龄排序</li>
+				<li>按里程排序</li>
 			</ul>
 		</div>
 		<div class="recommoned">
@@ -205,6 +213,9 @@
 			}else{
 				(locale = i18n.locale);
 			}
+			$('.order').find('li').click(function(){
+				$(this).css({'background-color':'#DA2515','color':'white'}).siblings().css({'background-color':'white','color':'black'});
+			});
 		},
 		methods: {
 			change :function() {

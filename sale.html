@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/sale.css">
 </head>
 <body>
 	<div id="sale" v-cloak>
@@ -105,28 +106,26 @@
 				</div>
 			</transition>
 		</div>
-		<div class="recommoned">
-			<div class="car-detail">
-				<div class="car-item" v-for="item in $t('explain')">
-					<a href="#">
-						<img class="bg" src="images/car-1.jpg">
-						<img class="favorite" src="images/favorite.png">
-						<div class="car-explain">
-							<div class="explain-t">
-								<div class="car-name">
-									{{item.name}}
-								</div>
-								<div class="car-price">
-									{{item.price}}
-								</div>
-							</div>
-							<div class="distance">
-								{{item.distance}}
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
+		<img class="sale-carimg" src="images/index_masthead0cn.jpg" alt="car">
+		<div class="sale-info">
+			<ul>
+				<li>
+					<label for="vin">vin*</label>
+					<input type="text" name="vin" id="vin" placeholder="请输入17位的vin码"/>
+				</li>
+				<li>
+					<label for="vin">行驶里程*</label>
+					<input type="text" name="vin" id="vin" placeholder="请输入当前英里数"/>
+				</li>
+				<li>
+					<label for="vin">预期价格*</label>
+					<input type="text" name="vin" id="vin" placeholder="多少美元"/>
+				</li>
+				<li>
+					<label for="vin">请输入您的所在地*</label>
+					<input type="text" name="vin" id="vin" placeholder="所在地"/>
+				</li>
+			</ul>
 		</div>
 		<div class="contact">
 			<div class="top">

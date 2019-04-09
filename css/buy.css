@@ -1,4 +1,4 @@
-.buy{
+#buy{
 	box-sizing: border-box;
 }
 .buy-sel{
@@ -7,16 +7,22 @@
 .buy-sel ul{
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 }
 .buy-sel ul li{
 	width: 100%;
-	height: 100%;
+	height: 0.9rem;
 	font-size: 0.35rem;
 	text-align: center;
 	border-top: 1px solid #DEDEDE;
 	border-bottom: 1px solid #DEDEDE;
-	padding: 0.25rem;
+	padding: 0.1rem;
 	color: #969696;
+	display: flex;
+	align-items: center;
+}
+.buy-sel ul li:active{
+	background-color: skyblue;
 }
 .buy-sel ul li span{
 	width: 100%;
@@ -25,4 +31,27 @@
 }
 .buy-sel ul li:nth-last-child(1) span{
 	border-right: none;
+}
+#buy .order{
+	/* height: 1rem; */
+	background-color: #F4F4F4;
+}
+#buy .order ul{
+	width: 100%;
+	height: 100%;
+	padding: 0.2rem 0 0 0;
+	display: flex;
+	font-size: 0.3rem;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+#buy .order ul li{
+	background-color: white;
+	padding: 0.15rem;
+	box-sizing: border-box;
+	margin-bottom: 0.2rem;
+}
+#buy .order ul li:nth-child(1){
+	background-color: #DA2515;
+	color: white;
 }

@@ -12,7 +12,7 @@
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_9cfnw8b045j.js"></script>
+	<script src="http://at.alicdn.com/t/font_1127175_pkeq5y1i9q.js"></script>
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
@@ -22,7 +22,9 @@
 <body>
 	<div id="sale" v-cloak>
 		<div class="header">
-			<img class="logo" src="images/logo.png">
+			<div class="logos">
+				<img class="logor" src="images/logor.png">
+			</div>
 			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
 			    <use xlink:href="#icon-caidan"></use>
 			</svg>
@@ -120,6 +122,10 @@
 				<li>
 					<label for="vin">预期价格*</label>
 					<input type="text" name="vin" id="vin" placeholder="多少美元"/>
+				</li>
+				<li>
+					<label for="vin">请输入您的所在地*</label>
+					<input type="text" name="vin" id="vin" placeholder="所在地"/>
 				</li>
 				<li>
 					<label for="vin">请输入您的所在地*</label>

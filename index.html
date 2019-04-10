@@ -22,7 +22,6 @@
 	<div id="index" v-cloak>
 		<div class="header">
 			<div class="logos">
-				<img class="logo" src="images/logoslim.png">
 				<img class="logor" src="images/logor.png">
 			</div>
 			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
@@ -107,13 +106,7 @@
 					</div>
 				</div>
 			</transition>
-		</div>              
-	  <div class="swiper-container">
-	    <div class="swiper-wrapper">
-	      <div class="swiper-slide" v-for="item in slideArr"><a href="xx.html"><img :src="'images/' + item"></a></div>
-	    </div>
-	    <div class="swiper-pagination"></div>
-	  </div>
+		</div>
 		<div id="search">
 			<input type="text" value="" :placeholder="$t('search.place')"/>
 		</div>
@@ -122,7 +115,7 @@
 				<li>
 					<a href="buy.html">
 						<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-car"></use>
+						    <use xlink:href="#icon-car"></use>
 						</svg>
 						<span>{{ $t("header.buy") }}</span>
 					</a>
@@ -130,7 +123,7 @@
 				<li>
 					<a href="sale.html">
 						<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-maiche"></use>
+						    <use xlink:href="#icon-maiche"></use>
 						</svg>
 						<span>{{ $t("header.sale") }}</span>
 					</a>
@@ -138,7 +131,7 @@
 				<li>
 					<a href="bargain.html">
 						<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-cart"></use>
+						    <use xlink:href="#icon-cart"></use>
 						</svg>
 						<span>{{ $t("header.bargain") }}</span>
 					</a>
@@ -146,16 +139,22 @@
 				<li>
 					<a href="installment.html">
 						<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-huankuanri"></use>
+						    <use xlink:href="#icon-huankuanri"></use>
 						</svg>
 						<span>{{ $t("header.hire") }}</span>
 					</a>
 				</li>
 			</ul>
 		</div>
+	  <div class="swiper-container">
+	    <div class="swiper-wrapper">
+	      <div class="swiper-slide" v-for="item in slideArr"><a href="xx.html"><img :src="'images/' + item"></a></div>
+	    </div>
+	    <div class="swiper-pagination"></div>
+	  </div>
 		<div id="tips">
 			<svg class="icon" aria-hidden="true">
-					<use xlink:href="#icon-ling"></use>
+				<use xlink:href="#icon-ling"></use>
 			</svg>
 			<div class="text text-container">
 				<ul class="swiper-wrapper">
@@ -163,14 +162,16 @@
 				</ul>
 			</div>
 		</div>
+		<span class="price-title">CAR Price <a href="#">查看更多&nbsp;></a></span>
 		<div class="price-btns">
-			<button type="button" v-for="item in $t('price')">{{item}}</button>
+			<button class="btn" type="button" v-for="item in $t('price')" style="border: none;">{{item}}</button>
 		</div>
+		<span class="price-title">CAR brand</span>
 		<div class="cartype-btns">
 			<button type="button" v-for="item in $t('cartype')">
 				<a href="#">
 					<div class="img-c">
-						<img :src="'images/'+item.logo" > 
+						<img :src="'images/'+item.logo" >
 					</div>
 					<span class="cartype-name">{{item.name}}</span>
 				</a>
@@ -231,11 +232,11 @@
 		</div>
 		<div class="contact">
 			<div class="top">
-					<div class="logo"><img src="images/logo.png" ></div>
+					<div class="logo"><img src="images/logor.png" ></div>
 				<div class="wx">
 					<a href="#">
 						<img src="images/humacar.png" >
-						<span>CAR</span>
+						<span>CHAMPION</span>
 					</a>
 				</div>
 				<div class="phone">

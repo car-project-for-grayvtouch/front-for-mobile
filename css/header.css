@@ -18,7 +18,8 @@ ul{
 	margin-bottom: 0.03rem;
 }
 .header .logos{
-	height: 1.2rem;
+	width: 2.4rem;
+	height: 1.5rem;
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -26,13 +27,16 @@ ul{
 	bottom: 0;
 	margin: auto;
 }
-.header .logo{
-	width: 1.3rem;
-	height: 1.2rem;
+.header .logor{
+	position: absolute;
+	height: 0.8rem;
 }
 .header .logor{
-	/* width: 1.2rem; */
-	height: 1.2rem;
+	/* position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto; */
+	height: 100%;
 }
 .header .icon {
    width: 1rem;
@@ -57,12 +61,12 @@ ul{
 	right: 0.2rem;
 	border-radius: 50%;
 	outline: none;
-	color: white;
-	background: #C21B36;
+	color: #C21B36;
 	font-size: 0.3rem;
 	opacity: 0.8;
 }
 .header .language-switch{
+	background-color: white;
 	bottom: 4rem;
 }
 .header .back-to-top{
@@ -72,6 +76,8 @@ ul{
 }
 .header .online-consultation{
 	bottom: 2rem;
+	background-color: #C21B36;
+	color: white;
 }
 .header .mask{
 	position: fixed;
@@ -111,14 +117,12 @@ ul{
 	align-items: center;
 }
 .nav-menu .icon{
-	width: 1.5rem;
-	height: 1.5rem;
+	width: 1.2rem;
+	height: 1.2rem;
 	background: #C21B36;
 	border-radius: 0.25rem;
-	padding: 0.3rem;
+	padding: 0.2rem;
 	box-sizing: border-box;
-	/*position: absolute;
-	left: 2rem;*/
 	margin-bottom: 0.2rem;
 }
 .nav-menu span{

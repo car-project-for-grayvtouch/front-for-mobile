@@ -13,7 +13,7 @@
 	justify-content: space-between;
 }
 .contact .top .logo{
-	width: 1.5rem;
+	width: 2.5rem;
 	border-right: 1px solid #EAEAEA;
 	display: flex;
 	flex-direction: column;
@@ -29,7 +29,11 @@
 	align-items: center;
 	justify-content: space-around;
 }
-.contact .top .logo img,.contact .top .wx img,.contact .top .phone img{
+.contact .top .logo img{
+	width: 1.6rem;
+	border-radius: 0.2rem;
+}
+.contact .top .wx img,.contact .top .phone img{
 	width: 0.8rem;
 }
 .adress{
@@ -55,12 +59,12 @@
 	font-size: 0.35rem;
 }
 .misc{
-	background: #ededed;
+	background: #F6F6F6;
 }
 .misc ul{
 	padding:0.5rem 0.4rem;
 	display: flex;
-	font-size: 0.4rem;
+	font-size: 0.35rem;
 	justify-content: space-between;
 	}
 .misc ul a{

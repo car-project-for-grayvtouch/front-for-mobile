@@ -4,6 +4,7 @@
 .sale-info{
 	width: 90%;
 	margin: 0 auto;
+	position: relative;
 }
 .sale-info li{
 	margin-bottom: 0.4rem;
@@ -19,8 +20,57 @@
 	border: 1px solid #E4E4E4;
 	width: 100%;
 	height: 0.9rem;
-	color: #E0E0E0;
 	border-radius: 0.3rem;
 	padding: 0.2rem;
 	box-sizing: border-box;
+	outline: none;
+}
+.sale-info .facecolor,.sale-info .insidecolor{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 0.8rem;
+	border-bottom: 1px solid #F3F3F3;
+}
+.sale-info .face-right{
+	float: right;
+}
+.sale-info .face-right img{
+	width: 0.3rem;
+}
+.sale-info .remark{
+	width: 100%;
+	height: 2.5rem;
+	padding: 0.2rem;
+	box-sizing: border-box;
+	outline: none;
+	border: none;
+	background-color: #F3F3F3;
+	border-radius: 0.3rem;
+}
+#phoneNum,#wxnum{
+	margin-bottom: 0.3rem;
+}
+.sale-info .checkcode{
+	display: flex;
+	justify-content: space-between;
+}
+#check{
+	width: 50%;
+}
+.sale-info .checkcode img{
+	width: 4rem;
+	height: 1.5rem;
+}
+.sale-info .submit{
+	color: #fff;
+	background: #da2515;
+	width: 95%;
+	height: 1rem;
+	border-radius: 0.5rem;
+	border: none;
+	outline: none;
+	position: relative;
+	left: 2.5%;
+	
 }

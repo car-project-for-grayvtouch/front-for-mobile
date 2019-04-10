@@ -116,26 +116,58 @@
 					<input type="text" name="vin" id="vin" placeholder="请输入17位的vin码"/>
 				</li>
 				<li>
-					<label for="vin">行驶里程*</label>
-					<input type="text" name="vin" id="vin" placeholder="请输入当前英里数"/>
+					<label for="mileage">行驶里程*</label>
+					<input type="text" name="mileage" id="mileage" placeholder="请输入当前英里数"/>
 				</li>
 				<li>
-					<label for="vin">预期价格*</label>
-					<input type="text" name="vin" id="vin" placeholder="多少美元"/>
+					<label for="preprice">预期价格*</label>
+					<input type="text" name="preprice" id="preprice" placeholder="多少美元"/>
 				</li>
 				<li>
-					<label for="vin">请输入您的所在地*</label>
-					<input type="text" name="vin" id="vin" placeholder="所在地"/>
+					<label for="address">请输入您的所在地*</label>
+					<input type="text" name="address" id="address" placeholder="所在地"/>
 				</li>
 				<li>
-					<label for="vin">请输入您的所在地*</label>
-					<input type="text" name="vin" id="vin" placeholder="所在地"/>
+					<label class="facecolor">车身颜色* 
+						<div class="face-right">
+							<img src="images/arrows.png" >
+						</div>
+					</label>
+					<select v-model="selected">
+					  <option v-for="option in options" v-bind:value="option.value">
+						{{ option.text }}
+					  </option>
+					</select>
+					<span>Selected: {{ selected }}</span>
+				</li>
+				<li>
+					<label class="insidecolor">内饰颜色*
+						<div class="face-right">
+							<img src="images/arrows.png" >
+						</div>
+					</label>
+				</li>
+				<li>
+					<label class="remarkcolor">备注*</label>
+					<textarea class="remark" placeholder="请输入您爱车的配置,以、号隔开,以便我们对您的车辆有更多的了解">
+						
+					</textarea>
+				</li>
+				<li>
+					<label>车主信息*</label>
+					<input type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
+					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的微信号"/>
+					<div class="checkcode">
+						<input type="text" name="check" id="check" placeholder="请输入您的验证码"/>
+						<img src="images/logotopr.png" >
+					</div>
 				</li>
 			</ul>
+			<button class="submit" type="button">确认提交</button>
 		</div>
 		<div class="contact">
 			<div class="top">
-					<div class="logo"><img src="images/logo.png" ></div>
+					<div class="logo"><img src="images/logor.png" ></div>
 				<div class="wx">
 					<a href="#">
 						<img src="images/humacar.png" >
@@ -193,6 +225,12 @@
 			topshow: false,
 			botshow: false,
 			enshow: "english",
+			selected: 'A',
+			options: [
+			  { text: 'One', value: 'A' },
+			  { text: 'Two', value: 'B' },
+			  { text: 'Three', value: 'C' }
+			]
 		},
 		mounted() {
 			if(locale){

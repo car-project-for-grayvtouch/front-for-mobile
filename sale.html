@@ -128,24 +128,24 @@
 					<input type="text" name="address" id="address" placeholder="所在地"/>
 				</li>
 				<li>
-					<label class="facecolor">车身颜色* 
-						<div class="face-right">
-							<img src="images/arrows.png" >
-						</div>
-					</label>
-					<select v-model="selected">
-					  <option v-for="option in options" v-bind:value="option.value">
-						{{ option.text }}
-					  </option>
-					</select>
-					<span>Selected: {{ selected }}</span>
+					<div class="facecolor">
+						<label class="">车身颜色*</label>
+						<select v-model="selected">
+						  <option v-for="option in facecolor" v-bind:value="option.value">
+							{{ option.text }}
+						  </option>
+						</select>
+					</div>
 				</li>
 				<li>
-					<label class="insidecolor">内饰颜色*
-						<div class="face-right">
-							<img src="images/arrows.png" >
-						</div>
-					</label>
+					<div class="facecolor">
+						<label>内饰颜色*</label>
+						<select v-model="selected">
+						  <option v-for="option in insidecolor" v-bind:value="option.value">
+							{{ option.text }}
+						  </option>
+						</select>
+					</div>
 				</li>
 				<li>
 					<label class="remarkcolor">备注*</label>
@@ -211,7 +211,7 @@
 		</div>
 		<div class="copy">
 			<span>
-        Copyright@2016 HUMACAR Inc. Privacy Terms
+        Copyright@2016 CHAMPION Inc. Privacy Terms
     </span>
 		</div>
 	</div>
@@ -225,11 +225,17 @@
 			topshow: false,
 			botshow: false,
 			enshow: "english",
-			selected: 'A',
-			options: [
-			  { text: 'One', value: 'A' },
-			  { text: 'Two', value: 'B' },
-			  { text: 'Three', value: 'C' }
+			faceselected: 'A',
+			insideselected: 'A',
+			facecolor: [
+			  { text: '白', value: 'A' },
+			  { text: '黑', value: 'B' },
+			  { text: '灰', value: 'C' }
+			],
+			insidecolor: [
+			  { text: '白', value: 'A' },
+			  { text: '黑', value: 'B' },
+			  { text: '银', value: 'C' }
 			]
 		},
 		mounted() {
@@ -239,6 +245,10 @@
 			}else{
 				(locale = i18n.locale);
 			}
+			$('.facecolor').click(function(){
+				console.log('ss')
+				$('.select').click();
+			});
 		},
 		methods: {
 			change :function() {

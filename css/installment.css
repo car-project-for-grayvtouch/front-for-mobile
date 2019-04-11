@@ -1,0 +1,52 @@
+.ins-carimg{
+	width: 100%;
+}
+#installment .service{
+	font-size: 0.35rem;
+	margin: 0.5rem 0 0.3rem 0;
+}
+.ins-info{
+	width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+.ins-info li{
+	margin-bottom: 0.4rem;
+}
+.ins-info li label{
+	font-size: 0.2rem;
+	color: #969696;
+}
+.ins-info input {
+    font-size: 0.35rem;
+    background-color: #F3F3F3;
+    border: 1px solid #E4E4E4;
+    width: 100%;
+    height: 0.9rem;
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    outline: none;
+}
+.ins-info .checkcode {
+    display: flex;
+    justify-content: space-between;
+}
+#check {
+    width: 50%;
+}
+.ins-info .checkcode img {
+    width: 4rem;
+    height: 1.5rem;
+}
+.ins-info .submit {
+    color: #fff;
+    background: #da2515;
+    width: 95%;
+    height: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 2.5%;
+}

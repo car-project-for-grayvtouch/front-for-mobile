@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/about.css">
 </head>
 <body>
 	<div id="about" v-cloak>
@@ -107,29 +108,8 @@
 				</div>
 			</transition>
 		</div>
-		<div class="recommoned">
-			<div class="car-detail">
-				<div class="car-item" v-for="item in $t('explain')">
-					<a href="#">
-						<img class="bg" src="images/car-1.jpg">
-						<img class="favorite" src="images/favorite.png">
-						<div class="car-explain">
-							<div class="explain-t">
-								<div class="car-name">
-									{{item.name}}
-								</div>
-								<div class="car-price">
-									{{item.price}}
-								</div>
-							</div>
-							<div class="distance">
-								{{item.distance}}
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
+		<img class="about-carimg" src="images/index_masthead0cn.jpg" alt="car">
+		
 		<div class="contact">
 			<div class="top">
 					<div class="logo"><img src="images/logor.png" ></div>
@@ -176,7 +156,7 @@
 		</div>
 		<div class="copy">
 			<span>
-        Copyright@2016 HUMACAR Inc. Privacy Terms
+        Copyright@2016 CHAMPION Inc. Privacy Terms
     </span>
 		</div>
 	</div>

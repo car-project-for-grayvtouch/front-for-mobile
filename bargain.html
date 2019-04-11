@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>首页</title>
+	<title>CHAMPION值购</title>
 	<script src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/bargin.css">
 </head>
 <body>
 	<div id="bargain" v-cloak>
@@ -107,28 +108,61 @@
 				</div>
 			</transition>
 		</div>
-		<div class="recommoned">
-			<div class="car-detail">
-				<div class="car-item" v-for="item in $t('explain')">
-					<a href="#">
-						<img class="bg" src="images/car-1.jpg">
-						<img class="favorite" src="images/favorite.png">
-						<div class="car-explain">
-							<div class="explain-t">
-								<div class="car-name">
-									{{item.name}}
-								</div>
-								<div class="car-price">
-									{{item.price}}
-								</div>
-							</div>
-							<div class="distance">
-								{{item.distance}}
-							</div>
+		<img class="bargin-carimg" src="images/index_masthead0cn.jpg" alt="car">
+		<p class="bargain-total"> 已有&nbsp;<span>225</span>&nbsp;人提交了车辆需求</p>
+		<div class="bargin-info">
+			<p class="service">CHAMPION 为您服务</p>
+			<p class="service">请确保您的手机号可用，支持中国，美国手机号</p>
+			<ul>
+				<li>
+					<input type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
+				</li>
+				<li>
+					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的微信号"/>
+				</li>
+				<li>
+					<div class="checkcode">
+						<input type="text" name="check" id="check" placeholder="请输入您的验证码"/>
+						<img src="images/logotopr.png" >
+					</div>
+				</li>
+				<li>
+					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您心仪的品牌和车型"/>
+					<label>例:2016年BMW428i</label>
+				</li>
+				<li>
+					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的预期价格"/>
+					<label>例:3w-4.5w</label>
+				</li>
+				<li>
+					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的预期里程"/>
+					<label>例:10000-30000(英里)</label>
+				</li>
+				<li>
+					<label class="remarkcolor">备注*</label>
+					<textarea class="remark" placeholder="请输入您爱车的配置,以、号隔开,以便我们对您的车辆有更多的了解">
+						
+					</textarea>
+				</li>
+				<li>
+					<label class="remarkcolor">CHAMPION值购车特点</label>
+					<div class="imgs">
+						<div class="img-item">
+							
 						</div>
-					</a>
-				</div>
-			</div>
+						<div class="img-item">
+							
+						</div>
+						<div class="img-item">
+							
+						</div>
+						<div class="img-item">
+							
+						</div>
+					</div>
+				</li>
+			</ul>
+			<button class="submit" type="button">确认提交</button>
 		</div>
 		<div class="contact">
 			<div class="top">
@@ -176,7 +210,7 @@
 		</div>
 		<div class="copy">
 			<span>
-        Copyright@2016 HUMACAR Inc. Privacy Terms
+        Copyright@2016 CHAMPION Inc. Privacy Terms
     </span>
 		</div>
 	</div>

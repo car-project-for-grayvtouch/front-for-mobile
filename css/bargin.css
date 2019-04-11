@@ -1,0 +1,77 @@
+.bargin-carimg{
+	width: 100%;
+}
+.bargain-total{
+	width: 100%;
+	height: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.35rem;
+	margin-top: -0.2rem;
+	margin-bottom: 0.4rem;
+	background-color: #DFECF5;
+}
+#bargain .service{
+	font-size: 0.35rem;
+	margin-bottom: 0.1rem;
+}
+.bargain-total span{
+	color: red;
+	font-size: 0.45rem;
+}
+.bargin-info{
+	width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+.bargin-info li{
+	margin-bottom: 0.4rem;
+}
+.bargin-info li label{
+	font-size: 0.2rem;
+	color: #969696;
+}
+.bargin-info input {
+    font-size: 0.35rem;
+    background-color: #F3F3F3;
+    border: 1px solid #E4E4E4;
+    width: 100%;
+    height: 0.9rem;
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    outline: none;
+}
+.bargin-info .checkcode {
+    display: flex;
+    justify-content: space-between;
+}
+#check {
+    width: 50%;
+}
+.bargin-info .checkcode img {
+    width: 4rem;
+    height: 1.5rem;
+}
+.bargin-info .submit {
+    color: #fff;
+    background: #da2515;
+    width: 95%;
+    height: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 2.5%;
+}
+.bargin-info .remark {
+    width: 100%;
+    height: 2.5rem;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    background-color: #F3F3F3;
+    border-radius: 0.3rem;
+}

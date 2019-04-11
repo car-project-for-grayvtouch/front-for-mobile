@@ -4,19 +4,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>首页</title>
+	<title>个人中心</title>
 	<script src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_pkeq5y1i9q.js"></script>
-    <link rel="stylesheet" href="css/swiper.min.css">
+	<script src="http://at.alicdn.com/t/font_1127175_dhxw3er7jb.js"></script>
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/personalCenter.css">
 </head>
 <body>
 	<div id="personalCenter" v-cloak>
@@ -107,28 +106,64 @@
 				</div>
 			</transition>
 		</div>
-		<div class="recommoned">
-			<div class="car-detail">
-				<div class="car-item" v-for="item in $t('explain')">
-					<a href="#">
-						<img class="bg" src="images/car-1.jpg">
-						<img class="favorite" src="images/favorite.png">
-						<div class="car-explain">
-							<div class="explain-t">
-								<div class="car-name">
-									{{item.name}}
-								</div>
-								<div class="car-price">
-									{{item.price}}
-								</div>
-							</div>
-							<div class="distance">
-								{{item.distance}}
-							</div>
-						</div>
-					</a>
-				</div>
+		<div class="user-info">
+			<div class="head-img">
+				<img src="images/user01.jpg">
 			</div>
+			<div class="user-num">17759500581</div>
+			<button>切换账号</button>
+		</div>
+		<div class="record-type">
+			<ul>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-icon_goumaijilunor"></use>
+						</svg>
+						<span>直购记录</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-tubiaolunkuo_huaban"></use>
+						</svg>
+						<span>卖车申请</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-yigouxiangmu"></use>
+						</svg>
+						<span>已购车辆</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-wodeshoucang"></use>
+						</svg>
+						<span>我的收藏</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-liulanjilu"></use>
+						</svg>
+						<span>浏览记录</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-yijianfankui"></use>
+						</svg>
+						<span>意见反馈</span>
+					</a>
+				</li>
+			</ul>
 		</div>
 		<div class="contact">
 			<div class="top">

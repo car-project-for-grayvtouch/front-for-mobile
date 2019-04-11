@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>首页</title>
+	<title>登录</title>
 	<script src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/sale.css">
+	<link rel="stylesheet" href="css/personalCenter.css">
 </head>
 <body>
-	<div id="sale" v-cloak>
+	<div id="personalCenter" v-cloak>
 		<div class="header">
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
@@ -106,62 +106,64 @@
 				</div>
 			</transition>
 		</div>
-		<img class="sale-carimg" src="images/index_masthead0cn.jpg" alt="car">
-		<div class="sale-info">
+		<div class="user-info">
+			<div class="head-img">
+				<img src="images/user01.jpg">
+			</div>
+			<div class="user-num">17759500581</div>
+			<button>切换账号</button>
+		</div>
+		<div class="record-type">
 			<ul>
 				<li>
-					<label for="vin">vin*</label>
-					<input type="text" name="vin" id="vin" placeholder="请输入17位的vin码"/>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-icon_goumaijilunor"></use>
+						</svg>
+						<span>直购记录</span>
+					</a>
 				</li>
 				<li>
-					<label for="mileage">行驶里程*</label>
-					<input type="text" name="mileage" id="mileage" placeholder="请输入当前英里数"/>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-tubiaolunkuo_huaban"></use>
+						</svg>
+						<span>卖车申请</span>
+					</a>
 				</li>
 				<li>
-					<label for="preprice">预期价格*</label>
-					<input type="text" name="preprice" id="preprice" placeholder="多少美元"/>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-yigouxiangmu"></use>
+						</svg>
+						<span>已购车辆</span>
+					</a>
 				</li>
 				<li>
-					<label for="address">请输入您的所在地*</label>
-					<input type="text" name="address" id="address" placeholder="所在地"/>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-wodeshoucang"></use>
+						</svg>
+						<span>我的收藏</span>
+					</a>
 				</li>
 				<li>
-					<div class="facecolor">
-						<label class="">车身颜色*</label>
-						<select v-model="selected">
-						  <option v-for="option in facecolor" v-bind:value="option.value">
-							{{ option.text }}
-						  </option>
-						</select>
-					</div>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-liulanjilu"></use>
+						</svg>
+						<span>浏览记录</span>
+					</a>
 				</li>
 				<li>
-					<div class="facecolor">
-						<label>内饰颜色*</label>
-						<select v-model="selected">
-						  <option v-for="option in insidecolor" v-bind:value="option.value">
-							{{ option.text }}
-						  </option>
-						</select>
-					</div>
-				</li>
-				<li>
-					<label class="remarkcolor">备注*</label>
-					<textarea class="remark" placeholder="请输入您爱车的配置,以、号隔开,以便我们对您的车辆有更多的了解">
-						
-					</textarea>
-				</li>
-				<li>
-					<label>车主信息*</label>
-					<input type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
-					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的微信号"/>
-					<div class="checkcode">
-						<input type="text" name="check" id="check" placeholder="请输入您的验证码"/>
-						<img src="images/logotopr.png" >
-					</div>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-yijianfankui"></use>
+						</svg>
+						<span>意见反馈</span>
+					</a>
 				</li>
 			</ul>
-			<button class="submit" type="button">确认提交</button>
 		</div>
 		<div class="contact">
 			<div class="top">
@@ -223,18 +225,6 @@
 			topshow: false,
 			botshow: false,
 			enshow: "english",
-			faceselected: 'A',
-			insideselected: 'A',
-			facecolor: [
-			  { text: '白', value: 'A' },
-			  { text: '黑', value: 'B' },
-			  { text: '灰', value: 'C' }
-			],
-			insidecolor: [
-			  { text: '白', value: 'A' },
-			  { text: '黑', value: 'B' },
-			  { text: '银', value: 'C' }
-			]
 		},
 		mounted() {
 			if(locale){
@@ -243,10 +233,6 @@
 			}else{
 				(locale = i18n.locale);
 			}
-			$('.facecolor').click(function(){
-				console.log('ss')
-				$('.select').click();
-			});
 		},
 		methods: {
 			change :function() {
@@ -272,7 +258,7 @@
 				},1100)
 			}
 		}
-	}).$mount('#sale')
+	}).$mount('#personalCenter')
 	// 现在应用程序已经准备好了！
 </script>
 </html>

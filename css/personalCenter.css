@@ -1,0 +1,85 @@
+#personalCenter{
+}
+.user-info{
+	box-sizing: border-box;
+	width: 100%;
+	height: 3rem;
+	padding: 0.4rem;
+	position: relative;
+}
+.head-img{
+	float: left;
+}
+.head-img img{
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+}
+.user-num{
+	float: left;
+	color: lightgrey;
+	font-size: 0.4rem;
+	margin-top: 1.5rem;
+	margin-left: 0.2rem;
+}
+.user-info button{
+	float: right;
+	background-color: white;
+    display: block;
+    height: 0.7rem;
+    line-height: 0.7rem;
+    border: 1px solid #dde4ea;
+    border-radius: .4rem;
+    text-align: center;
+    width: 2rem;
+    color: #9ea2a6;
+    font-size: 0.3rem;
+	margin-top: 0.8rem;
+	outline: none;
+}
+.record-type li{
+    height: 1.2rem;
+}
+.record-type a{
+	display: block;
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid #dde4ea;
+    color: #495056;
+    font-size: .4rem;
+    position: relative;
+}
+.record-type a svg{
+	width: 0.5rem;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0.4rem;
+	margin: auto;
+}
+.record-type li:nth-child(1) svg{
+	width: 0.7rem;
+	margin-left: -0.1rem;
+}
+.record-type a span{
+	width: 2rem;
+	height: 0.5rem;
+	position: absolute;
+	left: 1.4rem;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.record-type a:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 8px;
+    height: 8px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin-top: -4px;
+    border-top: 1px solid #9ea2a6;
+    border-right: 1px solid #9ea2a6;
+}

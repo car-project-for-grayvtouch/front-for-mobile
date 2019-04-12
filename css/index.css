@@ -46,6 +46,7 @@ body {
 	top: 1.8rem;
 	border-radius: 0.8rem;
 	border: 1px solid #F6F6F6;
+	/* background-color: white; */
 	box-shadow: -2px 0 3px -1px #EAEBEC, 0 -2px 3px -1px #EAEBEC, 0 2px 3px -1px #EAEBEC, 2px 0 3px -1px #EAEBEC;
 }
 #search:before{
@@ -78,12 +79,13 @@ body {
 	color: #BFBFBF;
 	border-left: 1px solid #F6F6F6;
 	outline: none;
+	border-radius: 0.5rem;
 }
 #search input::-webkit-input-placeholder {
 	color: #aab2bd;
 }
 .home-nav{
-	margin-top: 5rem;
+	margin-top: 6rem;
 }
 .home-nav .icon{
 	border-radius: 50%;

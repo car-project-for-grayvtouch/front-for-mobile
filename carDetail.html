@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>CHAMPION值购</title>
+	<title>车辆详情</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 	<script src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
@@ -12,14 +12,16 @@
 	<script type="text/javascript" src="js/global.js"></script>
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper.min.js"></script>
 	<script src="http://at.alicdn.com/t/font_1127175_dhxw3er7jb.js"></script>
+    <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/bargin.css">
+	<link rel="stylesheet" href="css/carDetail.css">
 </head>
 <body>
-	<div id="bargain" v-cloak>
+	<div id="about" v-cloak>
 		<div class="header">
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
@@ -107,61 +109,182 @@
 				</div>
 			</transition>
 		</div>
-		<img class="bargin-carimg" src="images/index_masthead0cn.jpg" alt="car">
-		<p class="bargain-total"> 已有&nbsp;<span>225</span>&nbsp;人提交了车辆需求</p>
-		<div class="bargin-info">
-			<p class="service">CHAMPION 为您服务</p>
-			<p class="service">请确保您的手机号可用，支持中国，美国手机号</p>
-			<ul>
-				<li>
-					<input type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
-				</li>
-				<li>
-					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的微信号"/>
-				</li>
-				<li>
-					<div class="checkcode">
-						<input type="text" name="check" id="check" placeholder="请输入您的验证码"/>
-						<img src="images/check.jpg" >
-					</div>
-				</li>
-				<li>
-					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您心仪的品牌和车型"/>
-					<label>例:2016年BMW428i</label>
-				</li>
-				<li>
-					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的预期价格"/>
-					<label>例:3w-4.5w</label>
-				</li>
-				<li>
-					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的预期里程"/>
-					<label>例:10000-30000(英里)</label>
-				</li>
-				<li>
-					<label class="remarkcolor">备注*</label>
-					<textarea class="remark" placeholder="请输入您爱车的配置,以、号隔开,以便我们对您的车辆有更多的了解">
-						
-					</textarea>
-				</li>
-				<li>
-					<label class="remarkcolor">CHAMPION值购车特点</label>
-					<div class="imgs">
-						<div class="img-item">
-							
+		<div class="swiper-container">
+		  <div class="swiper-wrapper">
+		    <div class="swiper-slide" v-for="item in slideArr">
+				<!-- <a href="xx.html"> -->
+					<img :src="'images/' + item">
+				<!-- </a> -->
+			</div>
+		  </div>
+		  <div class="swiper-pagination"></div>
+		  <!-- Add Arrows -->
+		  <div class="swiper-button-next"></div>
+		  <div class="swiper-button-prev"></div>
+		</div>
+		<div class="car-info">
+			<div class="default">
+				<div class="default-left">
+					<div class="default-top">
+						<div class="name">
+							哈弗H6
 						</div>
-						<div class="img-item">
-							
-						</div>
-						<div class="img-item">
-							
-						</div>
-						<div class="img-item">
-							
+						<div class="coll">
+							<img src="images/favorite.png" >
 						</div>
 					</div>
-				</li>
-			</ul>
-			<button class="submit" type="button">确认提交</button>
+					<div class="price">
+						CHAMPION价格：
+						<span>$12451.2</span>
+					</div>
+				</div>
+				<button type="button">预约看车</button>
+			</div>
+			<div class="config">
+				<ul>
+					<li>
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-xiazai45"></use>
+						</svg>
+						<div class="config-r">
+							<span>排量：</span>
+							<span>1.5L 2.0L</span>
+						</div>
+					</li>
+					<li>
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-xiazai45"></use>
+						</svg>
+						<div class="config-r">
+							<span>变速箱：</span>
+							<span>手动 双离合</span>
+						</div>
+					</li>
+					<li>
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-xiazai45"></use>
+						</svg>
+						<div class="config-r">
+							<span>油耗：</span>
+							<span>7-8.3L/百公里</span>
+						</div>
+					</li>
+					<li>
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-xiazai45"></use>
+						</svg>
+						<div class="config-r">
+							<span>级别：</span>
+							<span>SUV</span>
+						</div>
+					</li>
+					<li>
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-xiazai45"></use>
+						</svg>
+						<div class="config-r">
+							<span>尺寸：</span>
+							<span>4600*1860*1720</span>
+						</div>
+					</li>
+					<li>
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-xiazai45"></use>
+						</svg>
+						<div class="config-r">
+							<span>排量</span>
+							<span>1.5L 2.0L</span>
+						</div>
+					</li>
+					<li>
+						<span class="more"><a href="param.html">更多详细参数配置&nbsp;&nbsp;<img class="arrow-r" src="images/jiantou.png"></a></span>
+					</li>
+				</ul>
+			</div>
+			<div class="level">
+				<div class="level-item">
+					<span>行驶里程</span>
+					<span>33213英里</span>
+				</div>
+				<div class="level-item">
+					<span>复查等级</span>
+					<span>A</span>
+				</div>
+				<div class="level-item">
+					<span>过户记录</span>
+					<span>1次</span>
+				</div>
+			</div>
+			<div class="point">
+				<div class="title">亮点配置</div>
+				<ul>
+					<li>倒车影像</li>
+					<li>蓝牙链接</li>
+					<li>电动天窗</li>
+					<li>碰撞预警</li>
+					<li>胎压监测</li>
+					<li>防抱死系统</li>
+					<li>定速巡航</li>
+					<li>启动前自检</li>
+					<li>免提电话</li>
+					<li>铝合金轮毂</li>
+				</ul>
+			</div>
+			<div class="report">
+				<div class="title">检测报告</div>
+				<ul>
+					<li>
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-xiazai45"></use>
+						</svg>
+						<span>事故排查</span>
+					</li>
+					<li>
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-xiazai45"></use>
+						</svg>
+						<span>设备检测</span>
+					</li>
+					<li>
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-xiazai45"></use>
+						</svg>
+						<span>外观内饰检测</span>
+					</li>
+					<li>
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-xiazai45"></use>
+						</svg>
+						<span>驾驶系统检测</span>
+					</li>
+				</ul>
+				<a class="report-detail" href="#">
+					查看详细检测报告
+				</a>
+			</div>
+		</div>
+		<div class="recommoned">
+			<div class="title">猜你想看</div>
+			<div class="car-detail">
+				<div class="car-item" v-for="item in $t('explain')">
+					<a href="#">
+						<img class="bg" src="images/car-1.jpg">
+						<div class="car-explain">
+							<div class="explain-t">
+								<div class="car-name">
+									{{item.name}}
+								</div>
+								<div class="car-price">
+									{{item.price}}
+								</div>
+							</div>
+							<div class="distance">
+								{{item.distance}}
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
 		</div>
 		<div class="contact">
 			<div class="top">
@@ -223,6 +346,7 @@
 			topshow: false,
 			botshow: false,
 			enshow: "english",
+			slideArr: ['face.jpg','control.jpg','other.jpg','seat.jpg'],
 		},
 		mounted() {
 			if(locale){
@@ -256,7 +380,22 @@
 				},1100)
 			}
 		}
-	}).$mount('#bargain')
-	// 现在应用程序已经准备好了！
+	}).$mount('#about')
+	new Swiper('.swiper-container', {
+	    autoHeight: true,
+	    pagination: {
+			el: '.swiper-pagination',
+			type: 'fraction',
+	    },
+		navigation: {
+		  nextEl: '.swiper-button-next',
+		  prevEl: '.swiper-button-prev',
+		},
+	    loop:true,
+// 	    autoplay: {
+// 			delay: 2500,
+// 			disableOnInteraction:false
+// 	    }
+	});
 </script>
 </html>

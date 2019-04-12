@@ -14,10 +14,10 @@
 	margin-bottom: 0.4rem;
 }
 .ins-info li label{
-	font-size: 0.2rem;
+	font-size: 0.35rem;
 	color: #969696;
 }
-.ins-info input {
+.ins-info .input {
     font-size: 0.35rem;
     background-color: #F3F3F3;
     border: 1px solid #E4E4E4;
@@ -39,6 +39,72 @@
     width: 4rem;
     height: 1.5rem;
 }
+
+.ins-info .choose-radio{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 0.2rem;
+}
+.ins-info .choose-radio .mr{
+	margin-right: 0.4rem;
+}
+.ins-info .choose-radio input{
+	margin-right: 0.2rem;
+}
+.ins-info .trait{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	font-size: 0.35rem;
+	text-align: center;
+	margin-top: 0.8rem;
+}
+.ins-info .trait .img-item{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+.ins-info .trait .icon{
+	width: 1.5rem;
+	height: 1.5rem;
+	background-color: #f3f3f3;
+	margin-bottom: 0.2rem;
+}
+.ins-info .loan-process .title{
+	font-size: 0.4rem;
+    height: 0.8rem;
+    border-bottom: 1px solid #f3f3f3;
+    margin-bottom: 0.4rem;
+}
+.ins-info .loan-process .img-item span{
+	font-size: 0.4rem;
+	color: #495056;
+	padding-left: 0.5rem;
+	position: relative;
+}
+.ins-info .loan-process .img-item .step-num{
+	width: 0.5rem;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	text-align: center;
+    display: inline;
+	position: absolute;
+	border: 1px solid #f4f4f4;
+	border-radius: 50%;
+	background-color: #f1f3f6;
+	left: -0.25rem;
+	top: 0;
+}
+.ins-info .loan-process .img-item p{
+	font-size: 0.35rem;
+	padding-top: 0.2rem;
+	padding-left: 0.5rem;
+	border-left: 1px solid #f3f3f3;
+	color: #757F89;
+	box-sizing: border-box;
+}
 .ins-info .submit {
     color: #fff;
     background: #da2515;
@@ -49,4 +115,5 @@
     outline: none;
     position: relative;
     left: 2.5%;
+	margin: 0.2rem 0;
 }

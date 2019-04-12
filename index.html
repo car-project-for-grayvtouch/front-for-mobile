@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>首页</title>
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 	<script src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -148,7 +149,7 @@
 		</div>
 	  <div class="swiper-container">
 	    <div class="swiper-wrapper">
-	      <div class="swiper-slide" v-for="item in slideArr"><a href="xx.html"><img :src="'images/' + item"></a></div>
+	      <div class="swiper-slide" v-for="item in slideArr"><a href="carDetail.html"><img :src="'images/' + item"></a></div>
 	    </div>
 	    <div class="swiper-pagination"></div>
 	  </div>
@@ -194,7 +195,7 @@
 			</div>
 			<div class="car-detail">
 				<div class="car-item" v-for="item in $t('explain')">
-					<a href="#">
+					<a href="carDetail.html">
 						<img class="bg" src="images/car-1.jpg">
 						<img class="favorite" src="images/favorite.png">
 						<div class="car-explain">

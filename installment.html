@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>分期购车</title>
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 	<script src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -111,55 +112,81 @@
 			<p class="service">请确保您的手机号可用，支持中国，美国手机号</p>
 			<ul>
 				<li>
-					<input type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
+					<input class="input" type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
 				</li>
 				<li>
 					<div class="checkcode">
-						<input type="text" name="check" id="check" placeholder="请输入您的验证码"/>
-						<img src="images/logotopr.png" >
+						<input class="input" type="text" name="check" id="check" placeholder="请输入您的验证码"/>
+						<img src="images/check.jpg" >
 					</div>
 				</li>
 				<li>
 					<label>选择你的身份</label>
+					<div class="choose-radio">
+						<input type="radio" id="one" value="One" v-model="picked">
+						<label class="mr" for="one">平民</label>
+						<input type="radio" id="two" value="Two" v-model="picked">
+						<label class="mr" for="two">国王</label>
+						<input type="radio" id="three" value="Three" v-model="picked">
+						<label class="mr" for="three">工作</label>
+						<input type="radio" id="four" value="Four" v-model="picked">
+						<label class="mr" for="four">流浪</label>
+					</div>
 				</li>
 				<li>
 					<label>是否有SSN</label>
-					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的预期里程"/>
+					<div class="choose-radio">
+						<input type="radio" id="one" value="One" v-model="ssnpicked">
+						<label class="mr" for="one">是</label>
+						<input type="radio" id="two" value="Two" v-model="ssnpicked">
+						<label class="mr" for="two">否</label>
+					</div>
 				</li>
+				<button class="submit" type="button">立即申请</button>
 				<li>
 					<div class="trait">
 						<div class="img-item">
-							
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-huankuanri"></use>
+							</svg>
+							<span>低首付</span>
 						</div>
 						<div class="img-item">
-							
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-huankuanri"></use>
+							</svg>
+							<span>低月供</span>
 						</div>
 						<div class="img-item">
-							
-						</div>
-						<div class="img-item">
-							
+							<svg class="icon" aria-hidden="true">
+							    <use xlink:href="#icon-huankuanri"></use>
+							</svg>
+							<span>一对一服务</span>
 						</div>
 					</div>
 				</li>
 				<li>
-					<div class="Loan-process">
+					<div class="loan-process">
+						<div class="title">贷款流程</div>
 						<div class="img-item">
-							
+							<span><div class="step-num">1</div>30秒申请</span>
+							<p>在线填写4项基本信息（姓名、身份证号、储蓄卡号、手机号)，秒出结果</p>
 						</div>
 						<div class="img-item">
-							
+							<span><div class="step-num">2</div>预约看车</span>
+							<p>在线挑选爱车，线下售车顾问一对一全程陪同讲解</p>
 						</div>
 						<div class="img-item">
-							
+							<span><div class="step-num">3</div>线上审批</span>
+							<p>资料提交后立即审批，免流水、免家访，最快30分钟出结果</p>
 						</div>
 						<div class="img-item">
-							
+							<span><div class="step-num">4</div>放款提车</span>
+							<p>瓜子助您完成车辆过户、抵押等手续后，当天放款</p>
 						</div>
 					</div>
 				</li>
 			</ul>
-			<button class="submit" type="button">确认提交</button>
 		</div>
 		<div class="contact">
 			<div class="top">
@@ -221,6 +248,8 @@
 			topshow: false,
 			botshow: false,
 			enshow: "english",
+			picked: '',
+			ssnpicked: '',
 		},
 		mounted() {
 			if(locale){

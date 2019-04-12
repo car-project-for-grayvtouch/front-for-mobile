@@ -1,0 +1,198 @@
+.swiper-container {
+	width: 100%;
+	position: relative;
+	left: 0;
+	right: 0;
+	z-index: 0;
+}
+.swiper-slide {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-slide img{
+	width: 100%;
+	height: 100%;
+}
+.swiper-pagination{
+	color: white;
+	font-size: 0.4rem;
+}
+.swiper-button-prev{
+	/* width: 1rem; */
+	height: 0.8rem;
+	outline: none;
+}
+.swiper-button-next{
+	outline: none;
+	height: 0.8rem;
+	/* width: 1rem; */
+}
+.car-info{
+	margin: 0.4rem;
+}
+.car-info .default{
+	height: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.car-info .default-top{
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.car-info .name{
+	font-size: 0.5rem;
+}
+.car-info .coll img{
+	width: 1rem;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.car-info .price{
+	font-size: 0.35rem;
+	margin-top: 0.2rem;
+}
+.car-info .price span{
+	color: red;
+	font-size: 0.45rem;
+}
+.car-info button{
+	color: #fff;
+    background: #da2515;
+    width: 30%;
+    height: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    position: relative;
+	right: 0;
+}
+.car-info .config{
+	margin-top: 0.2rem;
+	border-top: 1px solid #f2f2f2;
+	border-bottom: 1px solid #f2f2f2;
+	padding: 0.2rem 0;
+}
+.car-info .config ul{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.car-info .config li{
+	width: 45%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.2rem;
+}
+.car-info .config li:nth-last-child(1){
+	margin-top: 0.4rem;
+}
+.car-info .config .icon{
+	width: 1rem;
+	height: 1rem;
+	color: black;
+	background-color: #F3F3F3;
+}
+.car-info .config{
+	font-size: 0.35rem;
+}
+.car-info .config .config-r{
+	width: 65%;
+}
+.car-info .config .more a{
+	display: flex;
+	align-items: center;
+	color: #7B8389;
+}
+.car-info .config .arrow-r{
+	width: 0.15rem;
+}
+.car-info .level{
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.35rem;
+}
+.car-info .level-item{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-right: 1px solid #dddddd;
+	background-color: #F3F3F3;
+    color: #818181;
+    width: 33%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0.2rem;
+}
+.car-info .level-item span:nth-child(2){
+	margin-top: 0.15rem;
+	color: #da2515;
+}
+.car-info .point{
+	margin: 0.6rem 0;
+}
+.car-info .point .title,.car-info .report .title,.recommoned .title{
+	font-size: 0.4rem;
+	height: 0.8rem;
+	border-bottom: 1px solid #f3f3f3;
+	margin-bottom: 0.4rem;
+}
+.car-info .point ul{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	font-size: 0.35rem;
+	color: #969696;
+    margin-bottom: 5px;
+}
+.car-info .point ul li{
+	margin-right: 0.4rem;
+	padding-bottom: 0.2rem;
+}
+.car-info .report{
+	position: relative;
+}
+.car-info .report ul{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	font-size: 0.35rem;
+	text-align: center;
+	margin-bottom: 0.5rem;
+}
+.car-info .report ul li{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+.car-info .report ul li .icon{
+	width: 1.5rem;
+	height: 1.5rem;
+	background-color: #f3f3f3;
+	margin-bottom: 0.2rem;
+}
+.car-info .report .report-detail{
+	width: 4rem;
+	padding: 0.1rem;
+	border: 1px solid #abafb3;
+	display: inline;
+	left: 50%;
+	margin-left: -2rem;
+	font-size: 0.35rem;
+	position: relative;
+	
+}
+.recommoned .car-item{
+	box-shadow: none;
+	border: 1px solid #f3f3f3;
+}

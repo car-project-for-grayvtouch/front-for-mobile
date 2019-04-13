@@ -13,7 +13,7 @@
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dhxw3er7jb.js"></script>
+	<script src="http://at.alicdn.com/t/font_1127175_ip7cwqvecwm.js"></script>
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
@@ -26,9 +26,11 @@
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
 			</div>
-			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
-			    <use xlink:href="#icon-caidan"></use>
-			</svg>
+			<a href="javascript:history.back()">
+				<svg class="icon back" aria-hidden="true">
+					<use xlink:href="#icon-fanhui"></use>
+				</svg>
+			</a>
 			<transition name="fade" mode="out-in">
 					<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
 			</transition>
@@ -37,76 +39,6 @@
 			</transition>
 			<transition name="fadeo" mode="out-in">
 					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
-			</transition>
-			<transition name="slide-fade">
-				<div v-if="show">
-					<div class="mask" v-on:click="show = !show">
-					</div>
-					<div class="nav-menu">
-						<ul>
-							<li>
-								<a href="index.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-xiazai45"></use>
-									</svg>
-									<span>{{ $t("header.home") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="buy.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-car"></use>
-									</svg>
-									<span>{{ $t("header.buy") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="sale.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-maiche"></use>
-									</svg>
-									<span>{{ $t("header.sale") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="bargain.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-cart"></use>
-									</svg>
-									<span>{{ $t("header.bargain") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="installment.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-huankuanri"></use>
-									</svg>
-									<span>{{ $t("header.hire") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="about.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-chehangBmen"></use>
-									</svg>
-									<span>{{ $t("header.about") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="personalCenter.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-gerenzhongxin"></use>
-									</svg>
-									<span>{{ $t("header.center") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
 			</transition>
 		</div>
 		<div class="param">
@@ -215,7 +147,7 @@
 		</div>
 		<div class="misc">
 			<ul>
-				<a href="#" v-for="item in $t('misc')"><li>{{item}}</li></a>
+				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
 			</ul>
 		</div>
 		<div class="copy">
@@ -275,7 +207,7 @@
 			},
 			top:function(){
 				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 1100);
+				$('html,body').animate({scrollTop: '0'}, 700);
 			},
 			consult:function(){
 				this.botshow = !this.botshow;

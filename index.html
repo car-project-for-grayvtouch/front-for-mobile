@@ -12,7 +12,7 @@
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dhxw3er7jb.js"></script>
+	<script src="http://at.alicdn.com/t/font_1127175_td98ajum9oj.js"></script>
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/index.css">
@@ -28,6 +28,12 @@
 			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
 			    <use xlink:href="#icon-caidan"></use>
 			</svg>
+			<a class="person" href="personalCenter.html">
+				<!-- <span>登录</span> -->
+				<svg class="icon" aria-hidden="true">
+				    <use xlink:href="#icon-yidenglu"></use>
+				</svg>
+			</a>
 			<transition name="fade" mode="out-in">
 					<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
 			</transition>
@@ -92,12 +98,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="personalCenter.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-gerenzhongxin"></use>
-									</svg>
-									<span>{{ $t("header.center") }}</span>
-								</a>
+								
 							</li>
 							<li>
 								<a href="">
@@ -109,8 +110,49 @@
 			</transition>
 		</div>
 		<div id="search">
-			<input type="text" value="" :placeholder="$t('search.place')"/>
+			<input type="text" value="" :placeholder="$t('search.place')" v-on:focus="searchshow = !searchshow"/>
 		</div>
+		<transition name="searchfade">
+			<div class="search-page" v-if="searchshow">
+				<div class="sear-top">
+					<div class="close" v-on:click="searchshow = !searchshow">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-close"></use>
+						</svg>
+					</div>
+					<div class="content">
+						<input type="text">
+					</div>
+					<div class="search">
+						<a href="buy.html">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-search1187938easyiconnet"></use>
+							</svg>
+						</a>
+					</div>
+				</div>
+				<div class="search-record">
+					<ul>
+						<a href="buy.html"><li class="record-item">大众</li></a>
+						<a href="buy.html"><li class="record-item">福特</li></a>
+						<a href=""><li class="clear">清除历史搜索记录</li></a>
+					</ul>
+				</div>
+				<div class="hot-search">
+					<div class="title">
+						热门搜索
+					</div>
+					<ul>
+						<a href="buy.html"><li>大众</li></a>
+						<a href="buy.html"><li>福特</li></a>
+						<a href="buy.html"><li>兰博基尼</li></a>
+						<a href="buy.html"><li>兰博基尼</li></a>
+						<a href="buy.html"><li>兰博基尼</li></a>
+						<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
+					</ul>
+				</div>
+			</div>
+		</transition>
 		<div class="nav-menu home-nav">
 			<ul>
 				<li>
@@ -163,14 +205,14 @@
 				</ul>
 			</div>
 		</div>
-		<span class="price-title">CAR Price <a href="#">查看更多&nbsp;></a></span>
+		<span class="price-title">CAR Price <a href="buy.html">查看更多&nbsp;></a></span>
 		<div class="price-btns">
-			<button class="btn" type="button" v-for="item in $t('price')" style="border: none;">{{item}}</button>
+			<button class="btn" type="button" v-for="item in $t('price')" style="border: none;"><a href="buy.html">{{item}}</a></button>
 		</div>
 		<span class="price-title">CAR brand</span>
 		<div class="cartype-btns">
 			<button type="button" v-for="item in $t('cartype')">
-				<a href="#">
+				<a href="buy.html">
 					<div class="img-c">
 						<img :src="'images/'+item.logo" >
 					</div>
@@ -178,7 +220,7 @@
 				</a>
 			</button>
 			<button type="button" class="moretype">
-				<a href="#">
+				<a href="buy.html">
 					<div class="img-c">
 						...
 					</div>
@@ -235,13 +277,13 @@
 			<div class="top">
 					<div class="logo"><img src="images/logor.png" ></div>
 				<div class="wx">
-					<a href="#">
+					<a>
 						<img src="images/humacar.png" >
 						<span>CHAMPION</span>
 					</a>
 				</div>
 				<div class="phone">
-					<a href="#">
+					<a>
 						<img src="images/phone.png" >
 						<span>+1(888)-888-6518</span>
 					</a>
@@ -272,7 +314,7 @@
 		</div>
 		<div class="misc">
 			<ul>
-				<a href="#" v-for="item in $t('misc')"><li>{{item}}</li></a>
+				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
 			</ul>
 		</div>
 		<div class="copy">
@@ -291,6 +333,7 @@
 			topshow: false,
 			botshow: false,
 			enshow: "english",
+			searchshow: false,
 			slideArr: ['index_masthead0cn.jpg','index_masthead1.jpg','index_masthead0cn.jpg','index_masthead1.jpg'],
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
 		},
@@ -315,7 +358,7 @@
 					}
 					localStorage.locale = i18n.locale;
 				},1100)
-			  console.log(localStorage.locale)
+			  // console.log(localStorage.locale)
 			 
 			},
 			selected:function(e) {
@@ -330,7 +373,7 @@
 			},
 			top:function(){
 				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 1100);
+				$('html,body').animate({scrollTop: '0'}, 700);
 			},
 			consult:function(){
 				this.botshow = !this.botshow;

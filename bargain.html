@@ -204,7 +204,7 @@
 		</div>
 		<div class="misc">
 			<ul>
-				<a href="#" v-for="item in $t('misc')"><li>{{item}}</li></a>
+				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
 			</ul>
 		</div>
 		<div class="copy">
@@ -247,7 +247,7 @@
 			},
 			top:function(){
 				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 1100);
+				$('html,body').animate({scrollTop: '0'}, 700);
 			},
 			consult:function(){
 				this.botshow = !this.botshow;

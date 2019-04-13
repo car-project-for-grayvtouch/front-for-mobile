@@ -36,10 +36,6 @@ ul{
 	height: 0.8rem;
 }
 .header .logor{
-	/* position: absolute;
-	left: 0;
-	right: 0;
-	margin: auto; */
 	height: 100%;
 }
 .header .icon {
@@ -48,6 +44,22 @@ ul{
    vertical-align: -0.15rem;
    fill: currentColor;
    overflow: hidden;
+}
+.header .person{
+    position: absolute;
+    right: 0.2rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+	width: 0.8rem;
+	height: 0.7rem;
+	line-height: 0.7rem;
+	font-size: 0.4rem;
+	color: white;
+}
+.header .person .icon{
+	width: 0.7rem;
+    height: 0.7rem;
 }
 .header .nav-menu-switch{
 	width: 1rem;

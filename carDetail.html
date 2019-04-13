@@ -13,7 +13,7 @@
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dhxw3er7jb.js"></script>
+	<script src="//at.alicdn.com/t/font_1127175_px7dmnx4qff.js"></script>
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
@@ -26,9 +26,11 @@
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
 			</div>
-			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
-			    <use xlink:href="#icon-caidan"></use>
-			</svg>
+			<a href="javascript:history.back()">
+				<svg class="icon back" aria-hidden="true">
+					<use xlink:href="#icon-fanhui"></use>
+				</svg>
+			</a>
 			<transition name="fade" mode="out-in">
 					<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
 			</transition>
@@ -37,76 +39,6 @@
 			</transition>
 			<transition name="fadeo" mode="out-in">
 					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
-			</transition>
-			<transition name="slide-fade">
-				<div v-if="show">
-					<div class="mask" v-on:click="show = !show">
-					</div>
-					<div class="nav-menu">
-						<ul>
-							<li>
-								<a href="index.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-xiazai45"></use>
-									</svg>
-									<span>{{ $t("header.home") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="buy.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-car"></use>
-									</svg>
-									<span>{{ $t("header.buy") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="sale.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-maiche"></use>
-									</svg>
-									<span>{{ $t("header.sale") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="bargain.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-cart"></use>
-									</svg>
-									<span>{{ $t("header.bargain") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="installment.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-huankuanri"></use>
-									</svg>
-									<span>{{ $t("header.hire") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="about.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-chehangBmen"></use>
-									</svg>
-									<span>{{ $t("header.about") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="personalCenter.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-gerenzhongxin"></use>
-									</svg>
-									<span>{{ $t("header.center") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
 			</transition>
 		</div>
 		<div class="swiper-container">
@@ -144,7 +76,7 @@
 				<ul>
 					<li>
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-xiazai45"></use>
+						    <use xlink:href="#icon-socar_displacement_icon"></use>
 						</svg>
 						<div class="config-r">
 							<span>排量：</span>
@@ -153,7 +85,7 @@
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-xiazai45"></use>
+						    <use xlink:href="#icon-item-gear-box"></use>
 						</svg>
 						<div class="config-r">
 							<span>变速箱：</span>
@@ -162,7 +94,7 @@
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-xiazai45"></use>
+						    <use xlink:href="#icon-youhao"></use>
 						</svg>
 						<div class="config-r">
 							<span>油耗：</span>
@@ -171,7 +103,7 @@
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-xiazai45"></use>
+						    <use xlink:href="#icon-cf-c64"></use>
 						</svg>
 						<div class="config-r">
 							<span>级别：</span>
@@ -180,7 +112,7 @@
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-xiazai45"></use>
+						    <use xlink:href="#icon-chicun"></use>
 						</svg>
 						<div class="config-r">
 							<span>尺寸：</span>
@@ -189,11 +121,11 @@
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-xiazai45"></use>
+						    <use xlink:href="#icon-zuoweishu-shi"></use>
 						</svg>
 						<div class="config-r">
-							<span>排量</span>
-							<span>1.5L 2.0L</span>
+							<span>承载数量</span>
+							<span>5座</span>
 						</div>
 					</li>
 					<li>
@@ -235,30 +167,30 @@
 				<ul>
 					<li>
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-xiazai45"></use>
+						    <use xlink:href="#icon-shigupaicha1"></use>
 						</svg>
 						<span>事故排查</span>
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-xiazai45"></use>
+						    <use xlink:href="#icon-shebeijiance"></use>
 						</svg>
 						<span>设备检测</span>
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-xiazai45"></use>
+						    <use xlink:href="#icon-waiguanneishijiancex"></use>
 						</svg>
 						<span>外观内饰检测</span>
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-xiazai45"></use>
+						    <use xlink:href="#icon-jiance-copy"></use>
 						</svg>
 						<span>驾驶系统检测</span>
 					</li>
 				</ul>
-				<a class="report-detail" href="#">
+				<a class="report-detail" href="report.html">
 					查看详细检测报告
 				</a>
 			</div>
@@ -327,7 +259,7 @@
 		</div>
 		<div class="misc">
 			<ul>
-				<a href="#" v-for="item in $t('misc')"><li>{{item}}</li></a>
+				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
 			</ul>
 		</div>
 		<div class="copy">
@@ -371,7 +303,7 @@
 			},
 			top:function(){
 				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 1100);
+				$('html,body').animate({scrollTop: '0'}, 700);
 			},
 			consult:function(){
 				this.botshow = !this.botshow;

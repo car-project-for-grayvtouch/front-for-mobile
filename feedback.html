@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/about.css">
+	<link rel="stylesheet" href="css/feedback.css">
 </head>
 <body>
-	<div id="about" v-cloak>
+	<div id="feedback" v-cloak>
 		<div class="header">
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
@@ -109,26 +109,25 @@
 				</div>
 			</transition>
 		</div>
-		<img class="about-carimg" src="images/index_masthead0cn.jpg" alt="car">
-		<ul class="article">
-			<li>
-				<p>Q：CHAMPION是一家怎样的公司呢？</p>
-				<p>A：CHIMPON是北美第一家整合线下优质资源的O2O汽车服务平台，我们为用户提供租车、学车、购车、贷款、维修保养等本地化服务的一站式中文汽车平台，让每一个用户，省钱安心购好车。
-            </p>
-			</li>
-			<li>
-				<p>Q：购车流程是怎样的？</p>
-				<p>A：1. 拨打看车电话/在线预约<br>
-				2. 顾问电话确认并接你看车<br>
-				3. 严选车辆，经过 300 项检测<br>
-				4. 选定爱车，帮你代办一切手续<br>
-				</p>
-			</li>
-			<li>
-				<p>Q：卖车需要准备什么材料？</p>
-				<p>A：您只需在线上卖车处填写完整的信息，我们的工作人员会联系您并安排线下给您的爱车做全面的检测</p>
-			</li>
-		</ul>
+		<!-- <img class="feedback-carimg" src="images/index_masthead0cn.jpg" alt="car"> -->
+		<div class="all_content">
+			<textarea id="inval" placeholder="如果您对于我们的功能、内容、商品方面有任何建议或者意见,请您再次填写被采纳的意见,我们对您抱以诚挚的感谢!"></textarea>
+			<ul class="img_content">
+				<li>
+					<div class="add_border" v-on:click='bindChange()'>
+						<img src="images/feed_back_add.png">
+					</div>
+				</li>
+			</ul>
+		<div class="service">
+			<img src="images/icon_customer_service@2x.png">
+			<div class="service_r">
+				<span>400-8080-788</span>
+				<span>客服中心电话</span>
+			</div>
+		</div>
+		</div>
+		<button id="btn_edit" type="button" v-on:click="sub">提交</button>
 		<div class="contact">
 			<div class="top">
 					<div class="logo"><img src="images/logor.png" ></div>
@@ -189,6 +188,8 @@
 			topshow: false,
 			botshow: false,
 			enshow: "english",
+			index: 0,
+			imgarr: [],
 		},
 		mounted() {
 			if(locale){
@@ -220,9 +221,87 @@
 				setTimeout(function(){
 					alert("功能完善中！")
 				},1100)
+			},
+			tags:function(url){
+				var median = "<li>"+
+					"<div class='img_border' >"+
+						"<img src=" +url+">"+
+						"<div class='img_progress'>"+
+						"</div>"+
+						"<div class='img_status'>"+
+							"<div class='img_status_c'>"+
+								"<p class='status'>等待上传中</p>"+
+								"<p class='percent'>0%</p>"+
+							"</div>"+
+						"</div>"+
+					"</div>"+
+				"</li>";
+				return median;
+			},
+			chooseImg:function(e){
+				<!-- 使用filereader即时显示图片 -->
+				var len;
+				console.log("已保存图片张数：" + imgarr.length);
+				<!-- 如果选中的加上已保存的大于4，如3+5大于4 ，则循环的次数为4-3次 -->
+				if(e.target.files.length + imgarr.length > 4){
+					len = 4 - imgarr.length;
+					alert('最多只能选择四张图片！');
+				}else{
+					<!-- 如果选中的加上已保存的小于等于4，如2+1小于4，则循环的次数为1次 -->
+					len = e.target.files.length;
+				}
+				console.log("选择图片张数：" + len);
+				
+				for(i = 0;i < len;i++){
+					var reader = new FileReader();
+					reader.readAsDataURL(e.target.files[i]);
+					reader.onload = function(es){
+						imgarr.push(es.target.result);
+						$('.add_border').parent().before(tags(es.target.result));
+					}
+				}
+			},
+			bindChange:function(){
+				// 动态创建input=file 元素,并监听change 事件以获取图片
+				var file = document.createElement('input');
+				file.type = "file";
+				file.className = "file";
+				file.multiple = "multiple";
+				file.maxlength="1";
+				file.click();
+				$(this).before(file);
+				
+				var that = this;
+				$('.file').eq(that.index).on('change',function(e){
+					that.chooseImg(e);
+					that.index++;
+				})
+			},
+			sub:function(){
+				var textVal = $('#inval').val();
+				console.log(textVal);
+				if(textVal.length <= 5){
+					alert("请输入至少5个字数！");
+					return;
+				}
+				//整合需要提交的数据
+				var postData = {
+					"textVal":textVal,
+					"imgarr":imgarr
+				}
+				
+				var status = "正在上传中";//上传状态
+				var percent = '40%';//上传百分比
+				var tagResult = uploadStatus(status,percent);
+				
+				//根据XMLHttpRequest返回的上传进度更新状态
+				$(".img_content li").eq(1).find(".status").html(status);
+				$(".img_content li").eq(1).find(".percent").html(percent);
+				console.log($(".img_content li").eq(1).find(".img_progress"))
+				$(".img_content li").eq(1).find(".img_progress").css("height",percent);
 			}
 		}
-	}).$mount('#about')
+	}).$mount('#feedback')
 	// 现在应用程序已经准备好了！
 </script>
 </html>

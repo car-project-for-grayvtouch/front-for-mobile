@@ -29,6 +29,7 @@
 .car-detail{
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 }
 .car-detail a{
 	color: white;
@@ -84,4 +85,11 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 5;
 	overflow: hidden;
+}
+.back{
+	height: 0.6rem !important;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
 }

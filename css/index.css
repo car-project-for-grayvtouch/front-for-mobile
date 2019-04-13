@@ -254,3 +254,113 @@ body {
 	padding: 0 0.2rem;
 	box-sizing: border-box;
 }
+.search-page{
+	position: fixed;
+	background-color: #f5f7fa;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	z-index: 222;
+}
+.sear-top{
+	width: 100%;
+	height: 1.2rem;
+	padding: 0.2rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+	background-color: white;
+}
+.search-page .icon{
+	width: 0.8rem;
+	height: 0.8rem;
+	fill: currentColor;
+	overflow: hidden;
+	padding: 0.1rem;
+	box-sizing: border-box;
+}
+.search-page .close,.search-page .search{
+	width: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.search-page .content{
+	width: 75%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.search-page input{
+	width: 100%;
+	height: 0.8rem;
+	outline: none;
+	background-color: transparent;
+	color: #252825;
+	border: 1px solid #f2f2f2;
+    box-sizing: border-box;
+    -webkit-appearance: textfield;
+	border-radius: 0.1rem;
+	padding-left: 0.2rem;
+}
+.search-record{
+	width: 100%;
+	background-color: white;
+}
+.search-record ul{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 0.35rem;
+	color: #303741;
+}
+.search-record a{
+	width: 100%;
+}
+.search-record li{
+	width: 100%;
+	padding: 0.3rem;
+	box-sizing: border-box;
+}
+.search-record .clear{
+	border-top: 1px solid #e6e6e6;
+	text-align: center;
+}
+.record-item{
+	border-top: 1px solid #e6e6e6;
+	text-align: left;
+}
+.hot-search{
+	width: 100%;
+	background-color: white;
+	margin-top: 0.2rem;
+}
+.hot-search .title{
+	font-size: 0.4rem;
+	padding: 0.3rem;
+}
+.hot-search ul{
+	display: flex;
+	align-items: center;
+	font-size: 0.35rem;
+	color: #303741;
+	padding: 0.2rem;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.hot-search a{
+	text-align: center;
+	border: 1px solid #e6e6e6;
+	margin-bottom: 0.4rem;
+}
+.hot-search li{
+	padding: 0.2rem;
+}
+.searchfade-enter-active, .searchfade-leave-active {
+  transition: opacity .5s;
+}
+.searchfade-enter, .searchfade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}

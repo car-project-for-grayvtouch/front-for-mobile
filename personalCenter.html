@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="js/global.js"></script>
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dhxw3er7jb.js"></script>
+	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
@@ -207,7 +207,7 @@
 		</div>
 		<div class="misc">
 			<ul>
-				<a href="#" v-for="item in $t('misc')"><li>{{item}}</li></a>
+				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
 			</ul>
 		</div>
 		<div class="copy">
@@ -250,7 +250,7 @@
 			},
 			top:function(){
 				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 1100);
+				$('html,body').animate({scrollTop: '0'}, 700);
 			},
 			consult:function(){
 				this.botshow = !this.botshow;

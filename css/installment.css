@@ -61,15 +61,15 @@
 	margin-top: 0.8rem;
 }
 .ins-info .trait .img-item{
+	padding: 0.2rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
 }
 .ins-info .trait .icon{
-	width: 1.5rem;
-	height: 1.5rem;
-	background-color: #f3f3f3;
+	width: 1rem;
+	height: 1rem;
 	margin-bottom: 0.2rem;
 }
 .ins-info .loan-process .title{

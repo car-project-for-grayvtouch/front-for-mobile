@@ -12,7 +12,7 @@
 			  about: 'ABOUT',
 			  center: 'PERSONAL CENTER',
 					top: 'top',
-					online: 'consult\nation',
+					online: 'consult<br>ation',
 			},
 				search: {
 					place: "What's in your mind?"
@@ -41,15 +41,15 @@
 			},
 		  'zh-cn': {
 			header: {
-			  home: '首页',
-			  buy: '我要买车',
-			  sale: '我要卖车',
-			  bargain: '车行值购',
-			  hire: '分期购车',
-			  about: '关于车行',
-			  center: '个人中心',
-					top: '返回顶部',
-					online: '在线咨询',
+			    home: '首页',
+			    buy: '我要买车',
+			    sale: '我要卖车',
+			    bargain: '车行值购',
+			    hire: '分期购车',
+			    about: '关于车行',
+			    center: '个人中心',
+				top: '返回<br>顶部',
+				online: '在线<br>咨询',
 			},
 				search: {
 					place: "此处搜索车型！！！"

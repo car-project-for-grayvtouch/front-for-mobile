@@ -30,13 +30,13 @@
 			    <use xlink:href="#icon-caidan"></use>
 			</svg>
 			<transition name="fade" mode="out-in">
-					<button class="back-to-top" :key="topshow" v-on:click='top()'>{{$t("header.top")}}</button>
+					<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
 			</transition>
 			<transition name="fadel" mode="out-in">
 			<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
 			</transition>
 			<transition name="fadeo" mode="out-in">
-					<button class="online-consultation" :key="botshow" v-on:click='consult()'>{{$t("header.online")}}</button>
+					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
 			</transition>
 			<transition name="slide-fade">
 				<div v-if="show">

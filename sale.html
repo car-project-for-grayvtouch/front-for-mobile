@@ -280,7 +280,10 @@
 				console.log('ss')
 				$('.select').click();
 			});
-			var login = JSON.parse(localStorage.login);
+			var login;
+			 if(localStorage.login){
+				login = JSON.parse(localStorage.login);
+			 }
 			if(login){
 				this.switchlogin = false;
 			}else{

@@ -231,7 +231,10 @@
 			}else{
 				(locale = i18n.locale);
 			}
-			var login = JSON.parse(localStorage.login);
+			var login;
+			 if(localStorage.login){
+				login = JSON.parse(localStorage.login);
+			 }
 			if(login){
 				this.switchlogin = false;
 			}else{

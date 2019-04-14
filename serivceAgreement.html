@@ -13,7 +13,7 @@
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_px7dmnx4qff.js"></script>
+	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
@@ -31,6 +31,14 @@
 					<use xlink:href="#icon-fanhui"></use>
 				</svg>
 			</a>
+			<div class="person">
+				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+				<a v-else href="personalCenter.html">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-yidenglu"></use>
+					</svg>
+				</a>
+			</div>
 			<transition name="fade" mode="out-in">
 					<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
 			</transition>
@@ -40,73 +48,29 @@
 			<transition name="fadeo" mode="out-in">
 					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
 			</transition>
-			<transition name="slide-fade">
-				<div v-if="show">
-					<div class="mask" v-on:click="show = !show">
+			<transition name="searchfade">
+				<div class="login-page" v-if="loginshow">
+					<div class="loginMask" v-on:click="loginshow = !loginshow">
 					</div>
-					<div class="nav-menu">
-						<ul>
-							<li>
-								<a href="index.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-xiazai45"></use>
-									</svg>
-									<span>{{ $t("header.home") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="buy.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-car"></use>
-									</svg>
-									<span>{{ $t("header.buy") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="sale.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-maiche"></use>
-									</svg>
-									<span>{{ $t("header.sale") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="bargain.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-cart"></use>
-									</svg>
-									<span>{{ $t("header.bargain") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="installment.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-huankuanri"></use>
-									</svg>
-									<span>{{ $t("header.hire") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="about.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-chehangBmen"></use>
-									</svg>
-									<span>{{ $t("header.about") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="personalCenter.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-gerenzhongxin"></use>
-									</svg>
-									<span>{{ $t("header.center") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-								</a>
-							</li>
-						</ul>
+					<div class="login">
+						<div class="close" v-on:click="loginshow = !loginshow">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-close"></use>
+							</svg>
+						</div>
+						<div class="login-item">
+							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
+						</div>
+						<div class="login-item">
+							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
+							<input type="button" class="getcode" value="获取验证码" />
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" value="登录" v-on:click="login()">
+						</div>
+						<div class="login-tips">
+							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+						</div>
 					</div>
 				</div>
 			</transition>
@@ -309,6 +273,12 @@
 			topshow: false,
 			botshow: false,
 			enshow: "english",
+			loginshow: false,
+			switchlogin: true,
+			logindata: {
+				phonenum:'',
+				checkcode:''
+			},
 		},
 		mounted() {
 			if(locale){
@@ -317,8 +287,28 @@
 			}else{
 				(locale = i18n.locale);
 			}
+			var login = JSON.parse(localStorage.login);
+			if(login){
+				this.switchlogin = false;
+			}else{
+				this.switchlogin = true;
+			}
 		},
 		methods: {
+			login: function() {
+				if(this.logindata.phonenum == ''){
+					alert("请填写手机号!");
+					return;
+				}
+				else if(this.logindata.checkcode == ''){
+					alert("请填写验证码!");
+					return;
+				}
+				this.switchlogin = !this.switchlogin;
+				this.loginshow = !this.loginshow;
+				alert('登录成功!');
+				localStorage.login = true;
+			},
 			change :function() {
 			    this.enshow = this.enshow == 'english' ? "中文" : "english";
 			    var that = this;
@@ -339,7 +329,7 @@
 				this.botshow = !this.botshow;
 				setTimeout(function(){
 					alert("功能完善中！")
-				},1100)
+				},700)
 			}
 		}
 	}).$mount('#serviceA')

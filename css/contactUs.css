@@ -1,0 +1,40 @@
+.title{
+	width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    color: #969696;
+    font-size: 0.35rem;
+    height: 45px;
+    line-height: 45px;
+    border-bottom: 1px #dedede solid;
+}
+.contact-info{
+	margin: 0 auto;
+    padding-top: 20px;
+    width: 80%;
+    border-bottom: 1px #dedede solid;
+}
+.info-item{
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    justify-content: center;
+	line-height: 0.8rem;
+}
+.info-item img{
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 50%;
+}
+.info-item p{
+	margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    font-family: "微软雅黑", "Microsoft YaHei", "Microsoft YaHei UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+	font-size: 0.35rem;
+	color: #969696;
+}

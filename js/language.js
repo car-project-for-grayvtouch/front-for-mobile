@@ -40,7 +40,7 @@
 				misc: [{"content":'Service agreement','src':"serivceAgreement.html"},
 				{"content":'Privacy statement','src':"private.html"},
 				{"content":'Suggestion feedback','src':"feedback.html"},
-				{"content":'Contact us','src':"serivceAgreement.html"}],
+				{"content":'Contact us','src':"contactUs.html"}],
 			},
 		  'zh-cn': {
 			header: {
@@ -80,7 +80,7 @@
 				misc: [{"content":'服务协议','src':"serivceAgreement.html"},
 				{"content":'隐私声明','src':"private.html"},
 				{"content":'意见反馈','src':"feedback.html"},
-				{"content":'联系我们','src':"serivceAgreement.html"}],
+				{"content":'联系我们','src':"contactUs.html"}],
 		  }
 		}// 设置地区信息
 	})

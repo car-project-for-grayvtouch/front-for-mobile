@@ -83,3 +83,16 @@
     border-top: 1px solid #9ea2a6;
     border-right: 1px solid #9ea2a6;
 }
+.sign-out{
+	color: #fff;
+    background: #da2515;
+    width: 95%;
+    height: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 2.5%;
+	margin-top: 0.4rem;
+	font-size: 0.4rem;
+}

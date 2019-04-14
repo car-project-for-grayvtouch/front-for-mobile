@@ -93,14 +93,6 @@
 								</a>
 							</li>
 							<li>
-								<a href="personalCenter.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-gerenzhongxin"></use>
-									</svg>
-									<span>{{ $t("header.center") }}</span>
-								</a>
-							</li>
-							<li>
 								<a href="#">
 								</a>
 							</li>
@@ -181,6 +173,20 @@
 			}
 		},
 		methods: {
+			login: function() {
+				if(this.logindata.phonenum == ''){
+					alert("请填写手机号!");
+					return;
+				}
+				else if(this.logindata.checkcode == ''){
+					alert("请填写验证码!");
+					return;
+				}
+				this.switchlogin = !this.switchlogin;
+				this.loginshow = !this.loginshow;
+				alert('登录成功!');
+				localStorage.login = true;
+			},
 			change :function() {
 			    this.enshow = this.enshow == 'english' ? "中文" : "english";
 			    var that = this;
@@ -201,7 +207,7 @@
 				this.botshow = !this.botshow;
 				setTimeout(function(){
 					alert("功能完善中！")
-				},1100)
+				},700)
 			}
 		}
 	}).$mount('#about')

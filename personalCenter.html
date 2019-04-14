@@ -91,14 +91,6 @@
 								</a>
 							</li>
 							<li>
-								<a href="personalCenter.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-gerenzhongxin"></use>
-									</svg>
-									<span>{{ $t("header.center") }}</span>
-								</a>
-							</li>
-							<li>
 								<a href="#">
 								</a>
 							</li>
@@ -141,7 +133,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="collection.html">
 						<svg class="icon" aria-hidden="true">
 						    <use xlink:href="#icon-wodeshoucang"></use>
 						</svg>
@@ -157,7 +149,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="feedback.html">
 						<svg class="icon" aria-hidden="true">
 						    <use xlink:href="#icon-yijianfankui"></use>
 						</svg>
@@ -166,55 +158,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="contact">
-			<div class="top">
-					<div class="logo"><img src="images/logor.png" ></div>
-				<div class="wx">
-					<a href="#">
-						<img src="images/humacar.png" >
-						<span>CAR</span>
-					</a>
-				</div>
-				<div class="phone">
-					<a href="#">
-						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
-					</a>
-				</div>
-			</div>
-			</div>
-		<div class="adress">
-			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-			</ul>
-		</div>
-		<div class="misc">
-			<ul>
-				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
-			</ul>
-		</div>
-		<div class="copy">
-			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
-		</div>
+		<button type="button" class="sign-out" v-on:click="signout()">退出登录</button>
 	</div>
 </body>
 <script type="text/javascript">
@@ -236,6 +180,10 @@
 			}
 		},
 		methods: {
+			signout:function() {
+				localStorage.login = false;
+				window.location.href = "index.html";
+			},
 			change :function() {
 			    this.enshow = this.enshow == 'english' ? "中文" : "english";
 			    var that = this;
@@ -256,7 +204,7 @@
 				this.botshow = !this.botshow;
 				setTimeout(function(){
 					alert("功能完善中！")
-				},1100)
+				},700)
 			}
 		}
 	}).$mount('#personalCenter')

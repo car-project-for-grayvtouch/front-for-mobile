@@ -1,0 +1,89 @@
+#chekuang{
+	display: block;
+	background-color: #F5F7FA;
+}
+.report-info {
+    position: relative;
+    background-color: #fff;
+}
+.report-info p {
+    position: relative;
+    line-height: .5rem;
+}
+.re-car-name {
+    color: #495056;
+    font-size: .4rem;
+}
+.report-info .re-tit, .report-info .report-con {
+    font-size: .35rem;
+    color: #757f89;
+}
+.column-head{
+	font-size: 0.4rem;
+	height: 1rem;
+	line-height: 1rem;
+	border-bottom: 1px solid #f3f3f3;
+}
+.column{
+	width: 100%;
+	padding: 0.4rem;
+	box-sizing: border-box;
+	background-color: white;
+	margin-bottom: 0.2rem;
+}
+.re-desc{
+	font-size: 0.35rem;
+	color: #757f89;
+}
+.j-re-list{
+	height: 1.2rem;
+	line-height: 1.2rem;
+	font-size: 0.4rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #5f6670;
+}
+.j-re-list div{
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+.re-depoly li{
+	height: 1rem;
+	line-height: 1rem;
+	font-size: 0.35rem;
+	color: #5f6670;
+}
+.normal{
+	width: 0.8rem;
+	height: 1.1rem;
+}
+.normal .icon{
+	width: 0.8rem;
+	height: 1.1rem;
+}
+.re-depoly{
+	background-color: #FAFAFA;
+}
+.re-depoly i{
+	width: 0.8rem;
+	height: 1rem;
+	position: relative;
+	float: right;
+}
+.re-depoly .icon{
+	width: 0.5rem;
+	height: 0.5rem;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.j-re-list .allicon{
+	width: 0.5rem;
+	height: 0.5rem;
+	margin-left: 0.2rem;
+}

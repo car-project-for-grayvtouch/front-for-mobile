@@ -51,7 +51,7 @@ ul{
     top: 0;
     bottom: 0;
     margin: auto;
-	width: 0.8rem;
+	/* width: 0.8rem; */
 	height: 0.7rem;
 	line-height: 0.7rem;
 	font-size: 0.4rem;
@@ -201,7 +201,7 @@ ul{
 }
 .login-page .login{
 	width: 90%;
-	height: 8rem;
+	height: 10rem;
 	background-color: white;
 	position: absolute;
 	left: 0;
@@ -265,8 +265,21 @@ ul{
 }
 .login-tips p{
 	font-size: 0.32rem !important;
-	text-align: center;
 }
 .login-tips a{
 	color: #A2352E;
+}
+.l-switch{
+	font-size: 0.4rem;
+	padding: 0.2rem;
+	margin-bottom: 0.7rem;
+	border-bottom: 1px solid #DDE4EA;
+}
+.l-switch span{
+	padding: 0.2rem 0;
+	margin-right: 0.5rem;
+}
+.on{
+	border-bottom: 1px solid #DA2515;
+	color: #DA2515;
 }

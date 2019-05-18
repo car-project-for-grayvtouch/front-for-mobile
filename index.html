@@ -6,18 +6,23 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>首页</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
-	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
-	<script type="text/javascript" src="js/vue.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
     <link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" href="dist/styles/iview.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
+	<script src="js/flexible.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/screeningCondition.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
 </head>
 <body>
 	<div id="index" v-cloak>
@@ -29,7 +34,7 @@
 			    <use xlink:href="#icon-caidan"></use>
 			</svg>
 			<div class="person">
-				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 				<a v-else href="personalCenter.html">
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-yidenglu"></use>
@@ -114,24 +119,51 @@
 				<div class="login-page" v-if="loginshow">
 					<div class="loginMask" v-on:click="loginshow = !loginshow">
 					</div>
-					<div class="login">
+					
+					<div class="login" v-if="!regist">
 						<div class="close" v-on:click="loginshow = !loginshow">
 							<svg class="icon" aria-hidden="true">
 								<use xlink:href="#icon-close"></use>
 							</svg>
 						</div>
-						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
-							<input type="button" class="getcode" value="获取验证码" />
+							<input type="number" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 						</div>
 						<div class="login-item">
-							<input type="button" class="btn-login" value="登录" v-on:click="login()">
+							<input type="number" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 						</div>
 						<div class="login-tips">
-							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+							<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
+						</div>
+					</div>
+					<div class="login" v-else>
+						<div class="close" v-on:click="loginshow = !loginshow">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-close"></use>
+							</svg>
+						</div>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
+						</div>
+						<div class="login-item">
+							<input type="number" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
+						</div>
+						<div class="login-item">
+							<input type="number" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('register')" @click="register()">
+						</div>
+						<div class="login-tips">
+							<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 						</div>
 					</div>
 				</div>
@@ -217,32 +249,43 @@
 				</li>
 			</ul>
 		</div>
-	  <div class="swiper-container">
-	    <div class="swiper-wrapper">
-	      <div class="swiper-slide" v-for="item in slideArr"><a href="carDetail.html"><img :src="'images/' + item"></a></div>
-	    </div>
-	    <div class="swiper-pagination"></div>
-	  </div>
+	  <div class="swiper">
+			<Carousel
+				v-model="value3"
+				:autoplay="setting.autoplay"
+				:autoplay-speed="setting.autoplaySpeed"
+				:dots="setting.dots"
+				:radius-dot="setting.radiusDot"
+				:trigger="setting.trigger"
+				:arrow="setting.arrow">
+				<Carousel-Item  v-for="item in slideArr" v-bind:key='item.id'>
+					<img class="carouselimg" :src="item.path" >
+					<!-- <div class="demo-carousel">1</div> -->
+				</Carousel-Item>
+			</Carousel>
+		</div>
 		<div id="tips">
 			<svg class="icon" aria-hidden="true">
 				<use xlink:href="#icon-ling"></use>
 			</svg>
 			<div class="text text-container">
 				<ul class="swiper-wrapper">
-					<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
+					<li class="swiper-slide" v-for="item in $t('tipsArr')">{{item}}</li>
 				</ul>
 			</div>
 		</div>
-		<span class="price-title">CAR Price <a href="buy.html">查看更多&nbsp;></a></span>
+		<span class="price-title">{{ $t("carPrice") }} <a href="buy.html">{{ $t("more") }}&nbsp;></a></span>
 		<div class="price-btns">
-			<button class="btn" type="button" v-for="item in $t('price')" style="border: none;"><a href="buy.html">{{item}}</a></button>
+			<button class="btn" type="button" v-for="item in $t('price')" style="border: none;">
+				<a href="buy.html" @click="navigateTopricebuy(item.id)">{{item.detail}}</a>
+			</button>
 		</div>
-		<span class="price-title">CAR brand</span>
+		<span class="price-title">{{ $t("carBrand") }}</span>
 		<div class="cartype-btns">
-			<button type="button" v-for="item in $t('cartype')">
+			<button type="button" v-for="item in $t('cartype')" @click="navigateToBrandBuy(item.id)">
 				<a href="buy.html">
 					<div class="img-c">
-						<img :src="'images/'+item.logo" >
+						<img :src="item.logo" >
 					</div>
 					<span class="cartype-name">{{item.name}}</span>
 				</a>
@@ -264,21 +307,30 @@
 				</ul>
 			</div>
 			<div class="car-detail">
-				<div class="car-item" v-for="item in $t('explain')">
-					<a href="carDetail.html">
-						<img class="bg" src="images/car-1.jpg">
-						<img class="favorite" src="images/favorite.png">
+				<div class="car-item" v-for="item in $t('explain')" :key='item.id'>
+					<a href="carDetail.html" :data-id = "item.id" @click = "navigatorToDetail(item.id)" >
+						<img class="bg" :src="item.thumb">
+						<img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="collection(index, item.id)">
+						<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="collection(index, item.id)">
 						<div class="car-explain">
 							<div class="explain-t">
 								<div class="car-name">
-									{{item.name}}
+									{{ item.model?item.model.year + '&nbsp':''}}
+									{{item.series?item.series.name + '&nbsp':''}}
+									{{item.model?item.model.displacement + 'L':''}}
 								</div>
 								<div class="car-price">
 									{{item.price}}
 								</div>
 							</div>
 							<div class="distance">
-								{{item.distance}}
+								{{item.mileage + $t('miles')}}
+								{{item.model?'·' + item.model.door_count + $t('door'):''}}
+								{{item.model?'·' + item.model.driver_type:''}}
+								{{item.model?'·' + item.model.cylinder_count + $t('cylinder'):''}}
+								{{item.model?'·' + item.model.displacement + 'L':''}}
+								{{item.model?'·' + item.model.intake_type:''}}
+								{{item.model?'·' + item.model.gearbox:''}}
 							</div>
 						</div>
 					</a>
@@ -364,59 +416,50 @@
 			searchshow: false,
 			loginshow: false,
 			switchlogin: true,
+			regist: false,
+			value3: 0,
+			setting: {
+				autoplay: true,
+				autoplaySpeed: 2000,
+				dots: 'outside',
+				radiusDot: false,
+				trigger: 'hover',
+				arrow: 'hover'
+			},
 			logindata: {
-				phonenum:'',
-				checkcode:''
+				username:'',
+				password:''
+			},
+			registerdata: {
+				username:'',
+				password:''
 			},
 			slideArr: ['index_masthead0cn.jpg','index_masthead1.jpg','index_masthead0cn.jpg','index_masthead1.jpg'],
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
 		},
 		mounted() {
+			var that = this;
 			$('.sel-type').find('li').eq(0).addClass('sel').css('border-bottom','1px solid #C21B36');
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
-			}
+			orifun.initStatu(this);
+			//轮播图数据
+			data.common('ShowImage/home',function(d){
+				console.log(d)
+				that.slideArr = d;
+			})
+			// 可选品牌
+			this.brandd();
 		},
 		methods: {
-			login: function() {
-				if(this.logindata.phonenum == ''){
-					alert("请填写手机号!");
-					return;
-				}
-				else if(this.logindata.checkcode == ''){
-					alert("请填写验证码!");
-					return;
-				}
-				this.switchlogin = !this.switchlogin;
-				this.loginshow = !this.loginshow;
-				alert('登录成功!');
-				localStorage.login = true;
-			},
-			change :function() {
-				this.enshow = this.enshow == 'english' ? "中文" : "english";
+			brandd:function() {
 				var that = this;
-				setTimeout(function(){
-					if(i18n.locale == 'en'){
-						i18n.locale = 'zh-cn';
-					}else if(i18n.locale == 'zh-cn'){
-						i18n.locale = 'en';
-					}
-					localStorage.locale = i18n.locale;
-				},1100)
-			  // console.log(localStorage.locale)
-			 
+				data.common('Brand/all',function(d){
+					// console.log(d);
+					that.$i18n._vm.messages['zh-cn'].cartype = d.slice(0,9);
+				},{language: 'cn'})
+				data.common('Brand/all',function(d){
+					// console.log(d);
+					that.$i18n._vm.messages['en'].cartype = d.slice(0,9);
+				},{language: 'en'})
 			},
 			selected:function(e) {
 				var len = e.target.parentNode.children.length;
@@ -429,30 +472,38 @@
 				e.target.style.borderBottom = '1px solid #C21B36';
 			},
 			top:function(){
-				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 700);
+				orifun.top(this);
+			},
+			login: function() {
+				orifun.login(this);
+			},
+			register: function() {
+				orifun.register(this);
+			},
+			change :function() {
+				orifun.change(this);
 			},
 			consult:function(){
-				this.botshow = !this.botshow;
-				setTimeout(function(){
-					alert("功能完善中！")
-				},700)
+				orifun.consult(this);
+			},
+			lrswitch:function(e){
+				orifun.lrswitch(this,e);
 			}
 		}
 	}).$mount('#index')
-	new Swiper('.swiper-container', {
-        autoHeight: true,
-        pagination: {
-			el: '.swiper-pagination',
-			dynamicBullets: true,
-			clickable: true,
-        },
-        loop:true,
-        autoplay: {
-			delay: 2500,
-			disableOnInteraction:false
-        }
-    });
+	// new Swiper('.swiper-container', {
+ //        autoHeight: true,
+ //        pagination: {
+	// 		el: '.swiper-pagination',
+	// 		dynamicBullets: true,
+	// 		clickable: true,
+ //        },
+ //        loop:true,
+	// 	observer:true,
+ //        autoplay: {
+	// 		delay: 2500
+ //        }
+ //    });
 	new Swiper('.text-container', {
 		direction:'vertical',
 		loop:true,

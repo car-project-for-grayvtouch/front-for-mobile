@@ -9,6 +9,20 @@ body {
 	padding: 0;
 	color: #303741;
 }
+.swiper{
+	width: 90%;
+	height: 3rem;
+	top: 3.3rem;
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 0;
+	margin: auto;
+}
+.swiper img{
+	width: 100%;
+	height: 3rem;
+}
 .swiper-container {
 	width: 90%;
 	height: 3rem;
@@ -85,7 +99,7 @@ body {
 	color: #aab2bd;
 }
 .home-nav{
-	margin-top: 6rem;
+	margin-top: 7rem;
 }
 .home-nav .icon{
 	border-radius: 50%;

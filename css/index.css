@@ -226,6 +226,9 @@ body {
 .cartype-btns button img{
 	height: 80%;
 }
+.car-detail{
+	position: relative;
+}
 .cartype-btns .cartype-name{
 	word-break: break-all;
 	text-overflow: ellipsis;

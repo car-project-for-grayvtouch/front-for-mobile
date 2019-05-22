@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
-	<script src="js/flexible.js"></script>
+	<script type="text/javascript" src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/vue-i18n.js"></script>
@@ -65,7 +65,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="buy.html">
+								<a href="buy.html" @click="navTobuy">
 									<svg class="icon" aria-hidden="true">
 									    <use xlink:href="#icon-car"></use>
 									</svg>
@@ -181,7 +181,7 @@
 						</svg>
 					</div>
 					<div class="content">
-						<input type="text">
+						<input type="text" @click="searchGo">
 					</div>
 					<div class="search">
 						<a href="buy.html">
@@ -193,7 +193,6 @@
 				</div>
 				<div class="search-record">
 					<ul>
-						<a href="buy.html"><li class="record-item">大众</li></a>
 						<a href="buy.html"><li class="record-item">福特</li></a>
 						<a href=""><li class="clear">清除历史搜索记录</li></a>
 					</ul>
@@ -203,12 +202,13 @@
 						热门搜索
 					</div>
 					<ul>
-						<a href="buy.html"><li>大众</li></a>
-						<a href="buy.html"><li>福特</li></a>
-						<a href="buy.html"><li>兰博基尼</li></a>
-						<a href="buy.html"><li>兰博基尼</li></a>
-						<a href="buy.html"><li>兰博基尼</li></a>
-						<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
+						<a href="buy.html" v-for="item in $t('hotsearchArr')" @click="navigateToSearchBuy(item)">
+							<li class="record-item" v-if="item.type === 'brand'">{{item.brand?item.brand.name:''}}</li>
+							<li class="record-item" v-else-if="item.type === 'series'">{{item.series?item.series.name:''}}</li>
+							<li class="record-item" v-else-if="item.type === 'keyword'">{{item.value}}</li>
+							<li class="record-item" v-else-if="item.type === 'sale_point'">{{item.sale_point}}</li>
+							<li class="record-item" v-else>{{ $t("other") }}</li>
+						</a>
 					</ul>
 				</div>
 			</div>
@@ -303,11 +303,12 @@
 			<span class="re-title">{{ $t("recom") }}</span>
 			<div class="sel-type">
 				<ul>
-					<li v-for="item in $t('seltype')" v-on:click="selected($event)">{{item}}</li>
+					<li v-for="(item, index) in $t('seltype')" v-on:click="selected($event)" @click="recommonedata(index)">{{item}}</li>
 				</ul>
 			</div>
 			<div class="car-detail">
-				<div class="car-item" v-for="item in $t('explain')" :key='item.id'>
+				<Spin size="large" fix v-if="spinShow"></Spin>
+				<div class="car-item" v-for="(item, index) in $t('explain')" :key='item.id'>
 					<a href="carDetail.html" :data-id = "item.id" @click = "navigatorToDetail(item.id)" >
 						<img class="bg" :src="item.thumb">
 						<img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="collection(index, item.id)">
@@ -320,7 +321,7 @@
 									{{item.model?item.model.displacement + 'L':''}}
 								</div>
 								<div class="car-price">
-									{{item.price}}
+									{{'$' + item.price}}
 								</div>
 							</div>
 							<div class="distance">
@@ -339,15 +340,20 @@
 		</div>
 		<div class="recommoned">
 			<span class="re-title">{{ $t("mediaVoice") }}</span>
+			<Alert style="margin-top: 10px;width: 100%;" show-icon v-if="$t('media').length == 0">
+				{{ $t("metip") }}
+				<Icon type="ios-bulb-outline" slot="icon"></Icon>
+				<template slot="desc">{{ $t("metipc") }}</template>
+			</Alert>
 			<a href="#">
 				<div class="media-detail">
-					<div class="media-item" v-for="item in $t('media')">
-						<img class="bg" src="images/car-1.jpg">
+					<div class="media-item" v-for="item in $t('media')" data-id = "item.id">
+						<img class="bg" :src="item.thumb">
 						<div class="media-title">
 							{{item.title}}
 						</div>
 						<div class="media-art">
-							{{item.art}}
+							{{item.content?item.content.content:''}}
 						</div>
 					</div>
 				</div>
@@ -358,38 +364,21 @@
 					<div class="logo"><img src="images/logor.png" ></div>
 				<div class="wx">
 					<a>
-						<img src="images/humacar.png" >
-						<span>CHAMPION</span>
+						<img src="images/wximg.jpg" >
+						<span>{{$t('champion')}}</span>
 					</a>
 				</div>
 				<div class="phone">
 					<a>
 						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
+						<span>{{$t('addressphone')}}</span>
 					</a>
 				</div>
 			</div>
 			</div>
 		<div class="adress">
 			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
+				<img src="images/address.png" >
 			</ul>
 		</div>
 		<div class="misc">
@@ -434,8 +423,9 @@
 				username:'',
 				password:''
 			},
-			slideArr: ['index_masthead0cn.jpg','index_masthead1.jpg','index_masthead0cn.jpg','index_masthead1.jpg'],
-			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
+			spinShow: true,
+			search: '',
+			slideArr: [],
 		},
 		mounted() {
 			var that = this;
@@ -450,8 +440,25 @@
 			this.brandd();
 			// 车行推荐默认最新最热数据
 			this.recommonedata(0);
+			// 评论
+			this.commontd();
+			// 热门搜索
+			this.searchd();
+			
+			orifun.initStatu(this);
 		},
 		methods: {
+			searchd: function() {
+				var that = this;
+				data.common('SearchLog/hot',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['zh-cn'].hotsearchArr = d;
+				},{language: 'cn'})
+				data.common('SearchLog/hot',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['en'].hotsearchArr = d;
+				},{language: 'en'})
+			},
 			brandd:function() {
 				var that = this;
 				data.common('Brand/all',function(d){
@@ -462,16 +469,6 @@
 					// console.log(d);
 					that.$i18n._vm.messages['en'].cartype = d.slice(0,9);
 				},{language: 'en'})
-			},
-			selected:function(e) {
-				var len = e.target.parentNode.children.length;
-				var node = e.target.parentNode.children;
-				for(i=0; i < len; i++){
-					node[i].classList.remove('sel');
-					node[i].style.borderBottom = '1px solid #EAEAEA';
-				}
-				e.target.classList.add('sel');
-				e.target.style.borderBottom = '1px solid #C21B36';
 			},
 			recommonedata:function(index) {
 				var that = this;
@@ -504,6 +501,178 @@
 					that.$i18n._vm.messages['en'].explain = d.slice(0,8);
 					that.spinShow = false;
 				},form)
+			},
+			commontd: function() {
+				var that = this;
+				function story(){
+					return	new Promise((resolve, reject) => {
+						data.common('Story/listForHome',function(d){
+							// console.log(d)
+							that.$i18n._vm.messages['zh-cn'].comment = d.slice(0, 4);
+						},{language: 'cn'})
+						resolve('step1');
+					})
+				}
+				story().then(() => {
+					data.common('Story/listForHome',function(d){
+						// console.log(d)
+						that.$i18n._vm.messages['en'].comment = d.slice(0, 4);
+					},{language: 'en'})
+
+				}).then(() => {
+					//文章
+					data.common('Article/listForHome',function(d){
+						// console.log(d)
+						that.$i18n._vm.messages['en'].media = d.slice(0, 4);
+					},{language: 'en'})
+
+				}).then(() => {
+					//文章
+					data.common('Article/listForHome',function(d){
+						// console.log(d)
+						that.$i18n._vm.messages['zh-cn'].media = d.slice(0, 4);
+					},{language: 'cn'})
+				
+				})
+			},
+			collection: function(index,id) {
+				var that = this;
+				var mes;
+				if(!localStorage.token){
+					mes = orifun.getInfo('Please login first!','请先登录!')
+					this.$Message.warning(mes);
+					return;
+				}
+				var ccol = that.$i18n._vm.messages[localStorage.locale].explain;
+				if(ccol[index].collected == 'y'){
+					ccol[index].collected = 'n';
+					mes = orifun.getInfo('Cancel the collection successfully!','取消收藏成功!')
+				}else if(ccol[index].collected == 'n'){
+					mes = orifun.getInfo('Collection of success!','收藏成功!')
+					ccol[index].collected = 'y';
+				}else{
+					var notice = orifun.getInfo('Waiting for data update!','等待数据更新!');
+					this.$Message.error(notice);
+					return;
+				}
+				var collectBody = {
+					car_id: id,
+					collected: ccol[index].collected
+				}
+				data.common('CarWithAuth/collect',function(d){
+						// console.log(d);
+					if(d.code != 400 && d != 'undefined'){
+						that.$Notice.success({
+							title: 'Notification',
+							desc:mes,
+							duration: 4
+						});
+						that.$i18n._vm.messages['en'].explain[index].collected = ccol[index].collected;
+						that.$i18n._vm.messages['zh-cn'].explain[index].collected = ccol[index].collected;
+					}else{
+						mes = orifun.getInfo('Collection of failure!!','收藏失败!')
+						that.$Message.error(mes);
+					}
+					
+				},collectBody);
+			},
+			searchGo: function(e) {
+				localStorage.postbody = JSON.stringify({
+					brand_id: '',
+					car_series_id: '',
+					car_type_id: '',
+					price: '',
+					mileage: '',
+					age: '',
+					gearbox: '',
+					color: '',
+					keyword: e,
+					sale_point: '',
+					page: 1,
+					sort: ''
+				})
+				window.location.href= "buy.html";
+			},
+			navTobuy: function(){
+				orifun.initpostbody();
+			},
+			navigateToBrandBuy: function(e){
+				localStorage.postbody = JSON.stringify({
+					brand_id: e,
+					car_series_id: '',
+					car_type_id: '',
+					price: '',
+					mileage: '',
+					age: '',
+					gearbox: '',
+					color: '',
+					keyword: '',
+					sale_point: '',
+					page: 1,
+					sort: ''
+				})
+				window.location.href= "buy.html";
+			},
+			navigateToSearchBuy: function(e){
+				var postbody = {
+					brand_id: '',
+					car_series_id: '',
+					car_type_id: '',
+					price: '',
+					mileage: '',
+					age: '',
+					gearbox: '',
+					color: '',
+					keyword: '',
+					sale_point: '',
+					page: 1,
+					sort: ''
+				};
+				console.log(e)
+				var type = e.type;
+				if(type == 'series'){
+					type = 'car_series_id';
+				}else if(type == 'brand'){
+					type = 'brand_id';
+				}else if(type == 'type'){
+					type = 'car_type_id';
+				}
+				postbody[type] = e.value;
+				localStorage.postbody = JSON.stringify(postbody)
+				console.log(JSON.stringify(postbody))
+				window.location.href= "buy.html";
+			},
+			navigateTopricebuy: function(e){
+				console.log(e)
+				localStorage.postbody = JSON.stringify({
+					brand_id: '',
+					car_series_id: '',
+					car_type_id: '',
+					price: e,
+					mileage: '',
+					age: '',
+					gearbox: '',
+					color: '',
+					keyword: '',
+					sale_point: '',
+					page: 1,
+					sort: ''
+				})
+				window.location.href= "buy.html";
+			},
+			navigatorToDetail: function(e) {
+				window.location.href= "carDetail.html";
+				localStorage.goodId = e;
+			},
+			selected:function(e) {
+				var len = e.target.parentNode.children.length;
+				var node = e.target.parentNode.children;
+				for(i=0; i < len; i++){
+					node[i].classList.remove('sel');
+					node[i].style.borderBottom = '1px solid #EAEAEA';
+				}
+				e.target.classList.add('sel');
+				e.target.style.borderBottom = '1px solid #C21B36';
 			},
 			top:function(){
 				orifun.top(this);

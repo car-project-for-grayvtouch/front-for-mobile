@@ -55,7 +55,7 @@
 				door: 'Dr',
 				cylinder: 'cylinder',
 				//登录注册
-				login: 'Login in',
+				login: 'Login',
 				log: 'Login',
 				register: 'Register',
 				pname: 'Please enter your username',
@@ -364,7 +364,7 @@
 					// 页面footer
 					address: '马塞诸萨州',
 					other: '其他',
-					champion: 'CHAMPION WXchat',
+					champion: 'CHAMPION WECHAT',
 					addressphone: '617-481-7697',
 					addressDetail: '134 east Howard st，Quincy，ma，02169，usa',
 					sale:{

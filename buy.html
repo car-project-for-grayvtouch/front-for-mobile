@@ -6,17 +6,24 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>我要买车</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
-	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
-	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
 	<link rel="stylesheet" href="css/buy.css">
+	<link rel="stylesheet" href="dist/styles/iview.css">
+	<script type="text/javascript" src="js/flexible.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="dist/locale/en-US.js"></script>
+	<script type="text/javascript" src="js/screeningCondition.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="dist/locale/zh-CN.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
 </head>
 <body>
 	<div id="buy" v-cloak>
@@ -28,7 +35,7 @@
 			    <use xlink:href="#icon-caidan"></use>
 			</svg>
 			<div class="person">
-				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 				<a v-else href="personalCenter.html">
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-yidenglu"></use>
@@ -59,7 +66,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="buy.html">
+								<a href="buy.html" @click="navTobuy">
 									<svg class="icon" aria-hidden="true">
 									    <use xlink:href="#icon-car"></use>
 									</svg>
@@ -99,7 +106,10 @@
 								</a>
 							</li>
 							<li>
-								<a href="#">
+								
+							</li>
+							<li>
+								<a href="">
 								</a>
 							</li>
 						</ul>
@@ -110,24 +120,51 @@
 				<div class="login-page" v-if="loginshow">
 					<div class="loginMask" v-on:click="loginshow = !loginshow">
 					</div>
-					<div class="login">
+					
+					<div class="login" v-if="!regist">
 						<div class="close" v-on:click="loginshow = !loginshow">
 							<svg class="icon" aria-hidden="true">
 								<use xlink:href="#icon-close"></use>
 							</svg>
 						</div>
-						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
-							<input type="button" class="getcode" value="获取验证码" />
+							<input type="number" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 						</div>
 						<div class="login-item">
-							<input type="button" class="btn-login" value="登录" v-on:click="login()">
+							<input type="number" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 						</div>
 						<div class="login-tips">
-							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+							<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
+						</div>
+					</div>
+					<div class="login" v-else>
+						<div class="close" v-on:click="loginshow = !loginshow">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-close"></use>
+							</svg>
+						</div>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
+						</div>
+						<div class="login-item">
+							<input type="number" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
+						</div>
+						<div class="login-item">
+							<input type="number" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('register')" @click="register()">
+						</div>
+						<div class="login-tips">
+							<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 						</div>
 					</div>
 				</div>
@@ -141,86 +178,135 @@
 				<li><span>清除<br>筛选</span></li>
 			</ul>
 		</div>
-		<div class="order">
-			<ul>
-				<li>默认排序</li>
-				<li>按价格排序</li>
-				<li>按车龄排序</li>
-				<li>按里程排序</li>
-			</ul>
-		</div>
 		<div class="recommoned">
-			<div class="car-detail">
-				<div class="car-item" v-for="item in $t('explain')">
-					<a href="#">
-						<img class="bg" src="images/car-1.jpg">
-						<img class="favorite" src="images/favorite.png">
-						<div class="car-explain">
-							<div class="explain-t">
-								<div class="car-name">
-									{{item.name}}
-								</div>
-								<div class="car-price">
-									{{item.price}}
-								</div>
-							</div>
-							<div class="distance">
-								{{item.distance}}
-							</div>
-						</div>
-					</a>
+				<div class="order">
+					<ul>
+						<i-Button size="large" type="primary" @click="sortdefult">{{$t('buy.defaultSort')}}</i-Button>
+						<i-Button size="large" type="primary" @click="sortbyprice">{{$t('buy.priceSort')}}</i-Button>
+						<i-Button size="large" type="primary" @click="sortbyage">{{$t('buy.ageSort')}}</i-Button>
+						<i-Button size="large" type="primary" @click="sortbydistance">{{$t('buy.mileageSort')}}</i-Button>
+					</ul>
+					<div class="order-right">
+						<Icon type="md-menu" data-menucss = "1" @click="menucss($event)" :style="menucssindex == 1? 'background-color: #2db7f5;color: white;':''"></Icon>
+						<Icon type="md-grid" data-menucss = "2" @click="menucss($event)" :style="menucssindex == 2? 'background-color: #2db7f5;color: white;':''"></Icon>
+					</div>
 				</div>
+				<div>
+					<Spin size="large" fix v-if="spinShow"></Spin>
+					<div class="car-detail">
+						<Row v-if="compact">
+							<div class="car-item" v-for="(item, index) in $t('buy.searchArr')" :key='item.id'>
+								<a href="carDetail.html" :data-id = "item.id" @click = "navigatorToDetail(item.id)" >
+									<img class="bg" :src="item.thumb">
+									<img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="collection(index, item.id)">
+									<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="collection(index, item.id)">
+									<div class="car-explain">
+										<div class="explain-t">
+											<div class="car-name">
+												{{ item.model?item.model.year + '&nbsp':''}}
+												{{item.series?item.series.name + '&nbsp':''}}
+												{{item.model?item.model.displacement + 'L':''}}
+											</div>
+											<div class="car-price">
+												{{'$' + item.price}}
+											</div>
+										</div>
+										<div class="distance">
+											{{item.mileage + $t('miles')}}
+											{{item.model?'·' + item.model.door_count + $t('door'):''}}
+											{{item.model?'·' + item.model.driver_type:''}}
+											{{item.model?'·' + item.model.cylinder_count + $t('cylinder'):''}}
+											{{item.model?'·' + item.model.displacement + 'L':''}}
+											{{item.model?'·' + item.model.intake_type:''}}
+											{{item.model?'·' + item.model.gearbox:''}}
+										</div>
+									</div>
+								</a>
+							</div>
+						</Row>
+						<Row v-else class=" car-menu-new">
+							<i-col span="24" v-for="(item, index) in $t('buy.searchArr')" :key='item.id'>
+								<div class="car-item" @click="navigationToDetail(item.id)">
+									<a href="carDetail.html">
+										<img class="bg" :src="item.thumb">
+										<img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="collection(index, item.id)">
+										<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="collection(index, item.id)">
+										<div class="car-explain">
+											<div class="explain-t">
+												<div class="car-name">
+													{{ item.model?item.model.year + '&nbsp':''}}
+													{{item.series?item.series.name + '&nbsp':''}}
+													{{item.model?item.model.displacement + 'L':''}}
+												</div>
+												<Tag color="volcano" size="large"  class="car-price">${{'$' + item.price}}</Tag>
+											</div>
+											<div class="distance">
+												<div class="dis-item">
+													<span>Mileage:</span>
+													<span>{{item.mileage + $t('miles')}}</span>
+												</div>
+												<div class="dis-item">
+													<span>Cylinder count:</span>
+													<span>{{item.model?item.model.cylinder_count + $t('cylinder'):''}}</span>
+												</div>
+												<div class="dis-item">
+													<span>Gearbox:</span>
+													<span>{{item.model?item.model.gearbox:''}}</span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+							</i-col>
+						</Row>
+					</div>
+					<Alert style="margin-top: 10px;" show-icon v-if="$t('buy.searchArr').length == 0">
+						{{$t('buy.tips')}}
+						<Icon type="ios-bulb-outline" slot="icon"></Icon>
+						<template slot="desc">{{$t('buy.tipsc')}}</template>
+					</Alert>
+				</div>
+				<!-- <div class="redirectTopage">
+					<Page 
+					:current="page.index" 
+					:total="page.total" 
+					:page-size="page.size"
+					show-total
+					@on-change="currentpage" />
+				</div> -->
 			</div>
-		</div>
 		<div class="contact">
-			<div class="top">
-					<div class="logo"><img src="images/logor.png" ></div>
-				<div class="wx">
-					<a href="#">
-						<img src="images/humacar.png" >
-						<span>CAR</span>
-					</a>
+				<div class="top">
+						<div class="logo"><img src="images/logor.png" ></div>
+					<div class="wx">
+						<a>
+							<img src="images/wximg.jpg" >
+							<span>{{$t('champion')}}</span>
+						</a>
+					</div>
+					<div class="phone">
+						<a>
+							<img src="images/phone.png" >
+							<span>{{$t('addressphone')}}</span>
+						</a>
+					</div>
 				</div>
-				<div class="phone">
-					<a href="#">
-						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
-					</a>
 				</div>
+			<div class="adress">
+				<ul>
+					<img src="images/address.png" >
+				</ul>
 			</div>
+			<div class="misc">
+				<ul>
+					<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+				</ul>
 			</div>
-		<div class="adress">
-			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-			</ul>
-		</div>
-		<div class="misc">
-			<ul>
-				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
-			</ul>
-		</div>
-		<div class="copy">
-			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
-		</div>
+			<div class="copy">
+				<span>
+		    Copyright@2016 CHAMPION Inc. Privacy Terms
+		</span>
+			</div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -235,67 +321,161 @@
 			loginshow: false,
 			switchlogin: true,
 			logindata: {
-				phonenum:'',
-				checkcode:''
+				username: '',
+				password: '',
+				remember: 'y'
 			},
+			registerdata: {
+				username: '',
+				password: ''
+			},
+			screeningCondition: screeningConditioncn,
+			value1: [],
+			models:['','','','','','',''],
+			searchArr: [],
+			page: {
+				total: 10,
+				index: 1,
+				size: 20
+			},
+			postbody:{
+				brand_id: '',
+				car_series_id: '',
+				car_type_id: '',
+				price: '',
+				mileage: '',
+				age: '',
+				gearbox: '',
+				color: '',
+				keyword: '',
+				sale_point: '',
+				page: 1,
+				sort: ''
+			},
+			sort: [false,false,false],
+			spinShow: false,
+			compact: false,
+			menucssindex: 1,
 		},
 		mounted() {
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
-			}
+			var that = this;
+			orifun.initStatu(this);
 			$('.order').find('li').click(function(){
 				$(this).css({'background-color':'#DA2515','color':'white'}).siblings().css({'background-color':'white','color':'black'});
 			});
+			if(localStorage.postbody){
+				that.postbody = JSON.parse(localStorage.postbody);
+			}
+			 // console.log(JSON.parse(localStorage.postbody))
+			 this.carlistdata(that.postbody);
 		},
 		methods: {
-			login: function() {
-				if(this.logindata.phonenum == ''){
-					alert("请填写手机号!");
-					return;
+			menucss: function(e){
+				this.menucssindex = e.target.dataset.menucss;
+				if(this.menucssindex == 1){
+					this.compact = false;
+				}else{
+					this.compact = true;
 				}
-				else if(this.logindata.checkcode == ''){
-					alert("请填写验证码!");
-					return;
-				}
-				this.switchlogin = !this.switchlogin;
-				this.loginshow = !this.loginshow;
-				alert('登录成功!');
-				localStorage.login = true;
 			},
-			change :function() {
-			    this.enshow = this.enshow == 'english' ? "中文" : "english";
-			    var that = this;
-			    setTimeout(function(){
-					if(i18n.locale == 'en'){
-						i18n.locale = 'zh-cn';
-					}else if(i18n.locale == 'zh-cn'){
-						i18n.locale = 'en';
+			collection: function(index,id) {
+				var that = this;
+				if(!localStorage.token){
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
+					return;
+				}
+				var ccol,notice;
+				ccol = that.$i18n._vm.messages[localStorage.locale].buy.searchArr;
+				if(ccol[index].collected == 'y'){
+					ccol[index].collected = 'n';
+					notice = orifun.getInfo('Cancel the collection successfully!','取消收藏成功!');
+				}else if(ccol[index].collected == 'n'){
+					ccol[index].collected = 'y';
+					notice = orifun.getInfo('Collection of success!','收藏成功!');
+				}else{
+					this.$Message.error(orifun.getInfo('Waiting for data update!','等待数据更新!'));
+					return;
+				}
+				var collectBody = {
+					car_id: id,
+					collected: ccol[index].collected
+				}
+				data.common('CarWithAuth/collect',function(d){
+						// console.log(d);
+					if(d.code != 400 && d != 'undefined'){
+						that.$Notice.success({
+							title: 'Notification',
+							desc:notice,
+							duration: 4
+						});
+						that.$i18n._vm.messages['en'].buy.searchArr[index].collected = ccol[index].collected;
+						that.$i18n._vm.messages['zh-cn'].buy.searchArr[index].collected = ccol[index].collected;
+					}else{
+						that.$Message.error(orifun.getInfo('Collection of failure!!','收藏失败!'));
 					}
-					localStorage.locale = i18n.locale;
-			    },1100)
+					
+				},collectBody);
+			},
+			// 车辆列表
+			carlistdata:function(form) {
+				var that = this;
+				that.spinShow = true;
+					form.language = 'cn';
+				data.common('Car/list',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['zh-cn'].buy.searchArr = d.data.splice(0,15);
+					that.page.total = d.total;
+				},form)
+				form.language = 'en';
+				data.common('Car/list',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['en'].buy.searchArr = d.data.splice(0,15);
+					that.page.total = d.total;
+					that.spinShow = false;
+				},form)
+			},
+			navTobuy: function(){
+				orifun.initpostbody();
+			},
+			navigationToDetail: function(e) {
+				localStorage.goodId = e;
+			},
+			sortdefult: function() {
+				this.clearall();
+				this.postbody.sort = '';
+				this.carlistdata(this.postbody);
+			},
+			sortbyprice: function() {
+				this.clearall();
+				this.postbody.sort = 'price|asc';
+				this.carlistdata(this.postbody);
+				// this.sort[0] =!this.sort[0];
+			},
+			sortbyage: function() {
+				this.clearall();
+				this.postbody.sort = 'year|asc';
+				this.carlistdata(this.postbody);
+			},
+			sortbydistance: function() {
+				this.clearall();
+				this.postbody.sort ='mileage|asc';
+				this.carlistdata(this.postbody);
 			},
 			top:function(){
-				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 700);
+				orifun.top(this);
+			},
+			login: function() {
+				orifun.login(this);
+			},
+			register: function() {
+				orifun.register(this);
+			},
+			change :function() {
+				orifun.change(this);
 			},
 			consult:function(){
-				this.botshow = !this.botshow;
-				setTimeout(function(){
-					alert("功能完善中！")
-				},700)
-			}
+				orifun.consult(this);
+			},
 		}
 	}).$mount('#buy')
 	// 现在应用程序已经准备好了！

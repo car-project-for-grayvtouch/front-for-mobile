@@ -448,6 +448,8 @@
 			})
 			// 可选品牌
 			this.brandd();
+			// 车行推荐默认最新最热数据
+			this.recommonedata(0);
 		},
 		methods: {
 			brandd:function() {
@@ -470,6 +472,38 @@
 				}
 				e.target.classList.add('sel');
 				e.target.style.borderBottom = '1px solid #C21B36';
+			},
+			recommonedata:function(index) {
+				var that = this;
+				that.spinShow = true;
+				var form = {'type':'luxury'};
+				switch(index){
+					case 0:
+					form = {'type':'newAndHot'};
+					break;
+					case 1:
+					form = {'type':'affordable'};
+					break;
+					case 2:
+					form = {'type':'new'};
+					break;
+					case 3:
+					form = {'type':'luxury'};
+					break;
+					default:
+					form = {};
+				}
+				form.language = 'cn';
+				data.common('Car/listForHome',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['zh-cn'].explain = d.slice(0,8);
+				},form)
+				form.language = 'en';
+				data.common('Car/listForHome',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['en'].explain = d.slice(0,8);
+					that.spinShow = false;
+				},form)
 			},
 			top:function(){
 				orifun.top(this);

@@ -132,10 +132,10 @@
 							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
+							<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
+							<input type="password" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
 						</div>
 						<div class="login-item">
 							<input type="button" class="btn-login" :value="$t('log')" @click="login()">
@@ -155,10 +155,10 @@
 							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
+							<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
+							<input type="password" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
 						</div>
 						<div class="login-item">
 							<input type="button" class="btn-login" :value="$t('register')" @click="register()">
@@ -172,20 +172,24 @@
 		</div>
 		<div class="buy-sel">
 			<ul>
-				<li><span>品牌</span></li>
-				<li><span>价格</span></li>
-				<li><span>车龄</span></li>
-				<li><span>清除<br>筛选</span></li>
+				<li @click="brandsel"><span>{{$t('buy.brand')}}</span></li>
+				<li @click="priceel"><span>{{$t('buy.price')}}</span></li>
+				<li @click="agesel"><span>{{$t('buy.age')}}</span></li>
+				<li @click='clearall()'><span v-html="$t('buy.clearAll')"></span></li>
 			</ul>
 		</div>
+		
 		<div class="recommoned">
 				<div class="order">
 					<ul>
-						<i-Button size="large" type="primary" @click="sortdefult">{{$t('buy.defaultSort')}}</i-Button>
-						<i-Button size="large" type="primary" @click="sortbyprice">{{$t('buy.priceSort')}}</i-Button>
-						<i-Button size="large" type="primary" @click="sortbyage">{{$t('buy.ageSort')}}</i-Button>
-						<i-Button size="large" type="primary" @click="sortbydistance">{{$t('buy.mileageSort')}}</i-Button>
+						<i-Button size="small" type="primary" @click="sortdefult">{{$t('buy.defaultSort')}}</i-Button>
+						<i-Button size="small" type="primary" @click="sortbyprice">{{$t('buy.priceSort')}}</i-Button>
+						<i-Button size="small" type="primary" @click="sortbyage">{{$t('buy.ageSort')}}</i-Button>
+						<i-Button size="small" type="primary" @click="sortbydistance">{{$t('buy.mileageSort')}}</i-Button>
 					</ul>
+				</div>
+				<div class="order view">
+					<div class="title">View switches</div>
 					<div class="order-right">
 						<Icon type="md-menu" data-menucss = "1" @click="menucss($event)" :style="menucssindex == 1? 'background-color: #2db7f5;color: white;':''"></Icon>
 						<Icon type="md-grid" data-menucss = "2" @click="menucss($event)" :style="menucssindex == 2? 'background-color: #2db7f5;color: white;':''"></Icon>
@@ -304,8 +308,34 @@
 			</div>
 			<div class="copy">
 				<span>
-		    Copyright@2016 CHAMPION Inc. Privacy Terms
+		    Copyright@2019 CHAMPION Inc. Privacy Terms
 		</span>
+			</div>
+			<div class="buy-selop" v-if="selshow" @touchmove.stop @touchmove="touchmove">
+				<ul v-if="selshowindex==0">
+					<li v-for="item in $t('buy.screeningCondition.brand')">
+						<div class="title">
+							{{item.label}}
+						</div>
+						<div class="con">
+							<span v-for="it in item.children" :style="topselArr[0]==it.id?'background:#C21B36;color:white;':''" @click="getvaluebrand(it.id)">{{it.value}}</span>
+						</div>
+					</li>
+				</ul>
+				<ul class="buy-selop-price" v-if="selshowindex==1">
+					<li v-for="item in $t('buy.screeningCondition.price')" :style="topselArr[1]==item.value?'background:#C21B36;color:white;':''" @click="getvalueprice(item.value)">
+						<div class="title">
+							{{item.label}}
+						</div>
+					</li>
+				</ul>
+				<ul class="buy-selop-price" v-if="selshowindex==2">
+					<li v-for="item in $t('buy.screeningCondition.age')" :style="topselArr[2]==item.value?'background:#C21B36;color:white;':''" @click="getvalueage(item.value)">
+						<div class="title">
+							{{item.label}}
+						</div>
+					</li>
+				</ul>
 			</div>
 	</div>
 </body>
@@ -320,6 +350,7 @@
 			enshow: "english",
 			loginshow: false,
 			switchlogin: true,
+			regist: false,
 			logindata: {
 				username: '',
 				password: '',
@@ -356,6 +387,9 @@
 			spinShow: false,
 			compact: false,
 			menucssindex: 1,
+			topselArr: [0,0,0],
+			selshow: false,
+			selshowindex: 0
 		},
 		mounted() {
 			var that = this;
@@ -368,8 +402,103 @@
 			}
 			 // console.log(JSON.parse(localStorage.postbody))
 			 this.carlistdata(that.postbody);
+			 // 品牌可选筛选条件
+			function brandall(body){
+				data.common('Brand/all',function(d){
+					// console.log(that)
+					var sb;
+					if(body.language == 'cn'){
+						sb = that.$i18n._vm.messages['zh-cn'].buy.screeningCondition;
+					}else{
+						sb = that.$i18n._vm.messages['en'].buy.screeningCondition;
+					}
+					// console.log(d)
+					
+					// 根据获取到的品牌数据创建符合条件的数据结构
+					if(sb.brand){
+						// console.log('已存在brand数组');
+					}else{
+						sb.brand = [];
+					}
+					for(var k in d){
+						// 查看数组中是否已有符合条件的一级数据,没有自行创建
+						var inarr = false,
+						index;
+						for(var s in sb.brand){
+							// console.log(d[k].letter,sb.brand[s].label)
+							if(d[k].letter == sb.brand[s].label){
+								inarr = true;
+								index = s;
+								// console.log('符合' + s)
+							}else{
+								// console.log('不符合')
+							}
+						}
+						// console.log(inarr);
+						if(inarr){
+							sb.brand[index].children.push({id:d[k].id,value:d[k].name,label:d[k].name})
+						}else{
+							// console.log(d[k].letter, d[k].id, d[k].name)
+							sb.brand.push({value: d[k].letter,label: d[k].letter,children: [{id:d[k].id,value:d[k].name,label:d[k].name}]})
+						}
+					}
+					// console.log(sb)
+					if(body.language == 'cn'){
+						that.$i18n._vm.messages['zh-cn'].buy.screeningCondition = sb;
+					}else{
+						that.$i18n._vm.messages['en'].buy.screeningCondition = sb;
+					}
+				},body)
+			} 
+			brandall({language:'en'});
+			brandall({language:'cn'});
+			// console.log(that.$i18n._vm.messages['en'].buy.screeningCondition)
 		},
 		methods: {
+			touchmove: function() {
+				console.log('ss')
+			},
+			brandsel: function() {
+				this.selshow = !this.selshow;
+				this.selshowindex = 0;
+			},
+			priceel: function() {
+				this.selshowindex = 1;
+				this.selshow = !this.selshow;
+			},
+			agesel: function() {
+				this.selshowindex = 2;
+				this.selshow = !this.selshow;
+			},
+			getvaluebrand: function(e) {
+				// console.log(e)
+				this.postbody.brand_id = Number(e);
+				this.topselArr[0] = e;
+				this.carlistdata(this.postbody);
+				this.selshow = false;
+			},
+			getvalueprice: function(e) {
+				// console.log(e)
+				this.postbody.price = Number(e);
+				this.topselArr[1] = e;
+				this.carlistdata(this.postbody);
+				this.selshow = false;
+			},
+			getvalueage: function(e) {
+				// console.log(e)
+				this.postbody.age = Number(e);
+				this.topselArr[2] = e;
+				this.carlistdata(this.postbody);
+				this.selshow = false;
+			},
+			clearall: function() {
+				this.postbody.brand_id = '';
+				this.postbody.price = '';
+				this.postbody.age = '';
+				this.topselArr = [0,0,0];
+				this.carlistdata(this.postbody);
+				this.selshow = false;
+			},
 			menucss: function(e){
 				this.menucssindex = e.target.dataset.menucss;
 				if(this.menucssindex == 1){
@@ -476,6 +605,9 @@
 			consult:function(){
 				orifun.consult(this);
 			},
+			lrswitch:function(e){
+				orifun.lrswitch(this,e);
+			}
 		}
 	}).$mount('#buy')
 	// 现在应用程序已经准备好了！

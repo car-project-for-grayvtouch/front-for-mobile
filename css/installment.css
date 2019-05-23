@@ -10,6 +10,10 @@
     margin: 0 auto;
     position: relative;
 }
+#installment{
+	position: absolute;
+	top: 1.5rem;
+}
 .ins-info li{
 	margin-bottom: 0.4rem;
 }
@@ -36,8 +40,7 @@
     width: 50%;
 }
 .ins-info .checkcode img {
-    width: 4rem;
-    height: 1.5rem;
+    width: 50%;
 }
 
 .ins-info .choose-radio{
@@ -116,4 +119,5 @@
     position: relative;
     left: 2.5%;
 	margin: 0.2rem 0;
+	font-size: 0.35rem;
 }

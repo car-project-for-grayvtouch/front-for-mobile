@@ -134,7 +134,7 @@
 					pickupc: 'CHAM to help you complete the transfer of vehicles, mortgages and other procedures, the day loan',
 				},
 				bargin: {
-					existing: 'existing',
+					existing: 'Existing',
 					request:  "people submitted a vehicle request",
 					find: 'Looking for a car on the way is not lonely, leave your contact information, we contact you.',
 					service: 'CHAMPION for you',
@@ -165,20 +165,20 @@
 				buy:{
 					screeningCondition: screeningConditionen,
 					conditions: 'Filter',
-					clearAll: 'Clear all',
+					clearAll: 'Removal<br>filter',
 					Determine: 'Determine the screening',
 					brand: 'Brand',
 					series: 'Series',
-					price: 'price',
+					price: 'Price',
 					model: 'Model',
 					mileage: 'Mileage',
 					age: 'Age',
 					color: 'Color',
 					gearbox: 'Gearbox',
-					defaultSort: 'The default sort',
-					priceSort: 'The price sorted',
-					ageSort: 'The age sorted',
-					mileageSort: 'The mileage sorted',
+					defaultSort: 'Default sort',
+					priceSort: 'Price sorted',
+					ageSort: 'Age sorted',
+					mileageSort: 'Mileage sorted',
 					tips: 'Tips',
 					tipsc: 'There is no selected vehicle at present, please inform the customer service of the new one.',
 					searchArr: [],
@@ -261,7 +261,7 @@
 					verifycode: 'verification code',
 					tipsp: 'Mass car source, custom demand!You can choose CHAMPIONAUTO value and purchasing',
 					cv: 'click to view',
-					td: 'travlled distance',
+					td: 'travlled<br>distance',
 					mile: 'mileage',
 					reviewlevel: 'Review of the level',
 					tranferRecord: 'The transfer record',
@@ -294,6 +294,7 @@
 					wp: 'Whole process',
 					sw: 'Suppose you want to see',
 					guesswant: [],
+					moreparam: 'More detailed parameter configuration',
 				}
 			},
 		    'zh-cn':{
@@ -448,7 +449,7 @@
 					buy:{
 						screeningCondition:screeningConditioncn,
 						conditions: '条件筛选',
-						clearAll: '清除所有',
+						clearAll: '清除<br>筛选',
 						Determine: '确定筛选',
 						brand: '品牌',
 						series: '车系',
@@ -577,6 +578,7 @@
 						wp: '购车流程',
 						sw: '猜你想看',
 						guesswant: [],
+						moreparam: '更多详细参数配置',
 					}
 				}
 		}// 设置地区信息

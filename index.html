@@ -131,10 +131,10 @@
 							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
+							<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
+							<input type="password" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
 						</div>
 						<div class="login-item">
 							<input type="button" class="btn-login" :value="$t('log')" @click="login()">
@@ -154,10 +154,10 @@
 							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
+							<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
+							<input type="password" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
 						</div>
 						<div class="login-item">
 							<input type="button" class="btn-login" :value="$t('register')" @click="register()">
@@ -388,7 +388,7 @@
 		</div>
 		<div class="copy">
 			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
+        Copyright@2019 CHAMPION Inc. Privacy Terms
     </span>
 		</div>
 	</div>

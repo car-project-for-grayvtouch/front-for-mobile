@@ -6,17 +6,24 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>我要卖车</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
-	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
 	<link rel="stylesheet" href="css/sale.css">
+	<link rel="stylesheet" href="dist/styles/iview.css">
+	<script type="text/javascript" src="js/flexible.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="dist/locale/en-US.js"></script>
+	<script type="text/javascript" src="js/screeningCondition.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="dist/locale/zh-CN.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
 </head>
 <body>
 	<div id="sale" v-cloak>
@@ -28,7 +35,7 @@
 			    <use xlink:href="#icon-caidan"></use>
 			</svg>
 			<div class="person">
-				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 				<a v-else href="personalCenter.html">
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-yidenglu"></use>
@@ -59,7 +66,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="buy.html">
+								<a href="buy.html" @click="navTobuy">
 									<svg class="icon" aria-hidden="true">
 									    <use xlink:href="#icon-car"></use>
 									</svg>
@@ -99,7 +106,10 @@
 								</a>
 							</li>
 							<li>
-								<a href="#">
+								
+							</li>
+							<li>
+								<a href="">
 								</a>
 							</li>
 						</ul>
@@ -110,24 +120,51 @@
 				<div class="login-page" v-if="loginshow">
 					<div class="loginMask" v-on:click="loginshow = !loginshow">
 					</div>
-					<div class="login">
+					
+					<div class="login" v-if="!regist">
 						<div class="close" v-on:click="loginshow = !loginshow">
 							<svg class="icon" aria-hidden="true">
 								<use xlink:href="#icon-close"></use>
 							</svg>
 						</div>
-						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
-							<input type="button" class="getcode" value="获取验证码" />
+							<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 						</div>
 						<div class="login-item">
-							<input type="button" class="btn-login" value="登录" v-on:click="login()">
+							<input type="password" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 						</div>
 						<div class="login-tips">
-							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+							<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
+						</div>
+					</div>
+					<div class="login" v-else>
+						<div class="close" v-on:click="loginshow = !loginshow">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-close"></use>
+							</svg>
+						</div>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
+						</div>
+						<div class="login-item">
+							<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
+						</div>
+						<div class="login-item">
+							<input type="password" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('register')" @click="register()">
+						</div>
+						<div class="login-tips">
+							<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 						</div>
 					</div>
 				</div>
@@ -138,107 +175,90 @@
 			<ul>
 				<li>
 					<label for="vin">vin*</label>
-					<input type="text" name="vin" id="vin" placeholder="请输入17位的vin码"/>
+					<input type="text" v-model="postbody.vin" name="vin" :placeholder="$t('sale.vin')"/>
 				</li>
 				<li>
-					<label for="mileage">行驶里程*</label>
-					<input type="text" name="mileage" id="mileage" placeholder="请输入当前英里数"/>
+					<label for="mileage">{{$t('sale.mileage')}}*</label>
+					<input type="text" name="mileage" v-model="postbody.mileage" id="mileage" :placeholder="$t('sale.pmileage')"/>
 				</li>
 				<li>
-					<label for="preprice">预期价格*</label>
-					<input type="text" name="preprice" id="preprice" placeholder="多少美元"/>
+					<label for="preprice">{{$t('sale.preprice')}}*</label>
+					<input type="text" v-model="postbody.price" name="preprice" :placeholder="$t('sale.ppreprice')"/>
 				</li>
 				<li>
-					<label for="address">请输入您的所在地*</label>
-					<input type="text" name="address" id="address" placeholder="所在地"/>
+					<label for="address">{{$t('sale.personPosi')}}*</label>
+					<input type="text" v-model="postbody.address" name="address" :placeholder="$t('sale.personPosi')"/>
 				</li>
 				<li>
 					<div class="facecolor">
-						<label class="">车身颜色*</label>
-						<select v-model="faceselected">
-						  <option v-for="option in facecolor" v-bind:value="option.value">
-							{{ option.text }}
+						<label class="">{{$t('sale.body')}}*</label>
+						<select v-model="postbody.color">
+						  <option v-for="item in $t('sale.facecolor')" @click="getFaceIndex($event)" v-bind:value="item">
+							{{ item }}
 						  </option>
 						</select>
 					</div>
 				</li>
 				<li>
 					<div class="facecolor">
-						<label>内饰颜色*</label>
-						<select v-model="insideselected">
-						  <option v-for="option in insidecolor" v-bind:value="option.value">
-							{{ option.text }}
+						<label>{{$t('sale.interior')}}*</label>
+						<select v-model="postbody.interior_color">
+						  <option v-for="option in $t('sale.insidecolor')" @click="getInterIndex($event)" v-bind:value="option">
+							{{ option }}
 						  </option>
 						</select>
 					</div>
 				</li>
 				<li>
-					<label class="remarkcolor">备注*</label>
-					<textarea class="remark" placeholder="请输入您爱车的配置,以、号隔开,以便我们对您的车辆有更多的了解">
+					<label class="remarkcolor">{{$t('sale.remark')}}*</label>
+					<textarea class="remark" v-model="postbody.remark" :placeholder="$t('sale.premark')">
 						
 					</textarea>
 				</li>
 				<li>
-					<label>车主信息*</label>
-					<input type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
-					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的微信号"/>
+					<label>{{$t('sale.owner')}}*</label>
+					<input type="text" v-model="postbody.phone" name="phoneNum" :placeholder="$t('sale.phoneNumber')"/>
+					<input type="text" v-model="postbody.weixin" name="wxnum" :placeholder="$t('sale.wxNumber')"/>
 					<div class="checkcode">
-						<input type="text" name="check" id="check" placeholder="请输入您的验证码"/>
-						<img src="images/check.jpg" >
+						<input type="text" name="check" id="check" v-model="postbody.verify_code" :placeholder="$t('sale.serifyCode')"/>
+						<img :src="verifyImg" @click="getVerifyImg">
 					</div>
 				</li>
 			</ul>
-			<button class="submit" type="button">确认提交</button>
+			<button class="submit" type="button" @click="post">{{$t('sale.submit')}}</button>
 		</div>
 		<div class="contact">
-			<div class="top">
-					<div class="logo"><img src="images/logor.png" ></div>
-				<div class="wx">
-					<a href="#">
-						<img src="images/humacar.png" >
-						<span>CAR</span>
-					</a>
+				<div class="top">
+						<div class="logo"><img src="images/logor.png" ></div>
+					<div class="wx">
+						<a>
+							<img src="images/wximg.jpg" >
+							<span>{{$t('champion')}}</span>
+						</a>
+					</div>
+					<div class="phone">
+						<a>
+							<img src="images/phone.png" >
+							<span>{{$t('addressphone')}}</span>
+						</a>
+					</div>
 				</div>
-				<div class="phone">
-					<a href="#">
-						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
-					</a>
 				</div>
+			<div class="adress">
+				<ul>
+					<img src="images/address.png" >
+				</ul>
 			</div>
+			<div class="misc">
+				<ul>
+					<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+				</ul>
 			</div>
-		<div class="adress">
-			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-			</ul>
-		</div>
-		<div class="misc">
-			<ul>
-				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
-			</ul>
-		</div>
-		<div class="copy">
-			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
-		</div>
+			<div class="copy">
+				<span>
+		    Copyright@2019 CHAMPION Inc. Privacy Terms
+		</span>
+			</div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -250,82 +270,136 @@
 			topshow: false,
 			botshow: false,
 			enshow: "english",
-			faceselected: 'A',
-			insideselected: 'A',
 			loginshow: false,
 			switchlogin: true,
+			compact: false,
+			regist: false,
 			logindata: {
-				phonenum:'',
-				checkcode:''
+				username: '',
+				password: '',
+				remember: 'y'
 			},
-			facecolor: [
-			  { text: '白', value: 'A' },
-			  { text: '黑', value: 'B' },
-			  { text: '灰', value: 'C' }
-			],
-			insidecolor: [
-			  { text: '白', value: 'A' },
-			  { text: '黑', value: 'B' },
-			  { text: '银', value: 'C' }
-			]
+			registerdata: {
+				username: '',
+				password: ''
+			},
+			verifyImg: '',
+			postbody: {
+				address: '',
+				vin: '',
+				mileage: '',
+				price: '',
+				phone: '',
+				weixin: '',
+				verify_code: '',
+				remark: '',
+				color: '',
+				interior_color: '',
+				verify_code_key: '',
+			},
 		},
 		mounted() {
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
-			$('.facecolor').click(function(){
-				console.log('ss')
-				$('.select').click();
-			});
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
-			}
+			orifun.initStatu(this);
+			this.getVerifyImg();
 		},
 		methods: {
-			login: function() {
-				if(this.logindata.phonenum == ''){
-					alert("请填写手机号!");
+			post: function(){
+				var that = this;
+				if(!localStorage.token){
+					that && that.$Message.warning(orifun.getInfo('Please log in before apply!','请登录后进行申请!'));
 					return;
 				}
-				else if(this.logindata.checkcode == ''){
-					alert("请填写验证码!");
+				if(this.postbody.verify_code_key == ''){
+					that && that.$Message.warning(orifun.getInfo('The verification code has not been refreshed!','验证码尚未刷新!'));
 					return;
 				}
-				this.switchlogin = !this.switchlogin;
-				this.loginshow = !this.loginshow;
-				alert('登录成功!');
-				localStorage.login = true;
+				if(this.postbody.address == ''){
+					that && that.$Message.warning(orifun.getInfo('The address cannot be empty!','地址不能为空!'));
+					return;
+				}
+				if(this.postbody.vin == ''){
+					that && that.$Message.warning(orifun.getInfo('Vin code cannot be empty!','vin码不能为空!'));
+					return;
+				}
+				if(this.postbody.mileage == ''){
+					that && that.$Message.warning(orifun.getInfo('Mileage cannot be empty!','里程不能为空!'));
+					return;
+				}
+				if(this.postbody.price == ''){
+					that && that.$Message.warning(orifun.getInfo('The price cannot be empty!','价格不能为空!'));
+					return;
+				}
+				if(this.postbody.phone == ''){
+					that && that.$Message.warning(orifun.getInfo('The cell phone number cannot be empty!','手机号不能为空!'));
+					return;
+				}
+				if(this.postbody.weixin == ''){
+					that && that.$Message.warning(orifun.getInfo('WeChat ID cannot be empty!','微信号不能为空!'));
+					return;
+				}
+				if(this.postbody.verify_code == ''){
+					that && that.$Message.warning(orifun.getInfo('The verification code cannot be empty!','验证码不能为空!'));
+					return;
+				}
+				if(this.postbody.remark == ''){
+					that && that.$Message.warning(orifun.getInfo('Messages cannot be left blank!','留言不能为空!'));
+					return;
+				}
+				if(this.postbody.color == ''){
+					that && that.$Message.warning(orifun.getInfo('Please select vehicle appearance color!','请选择车辆外观颜色!'));
+					return;
+				}
+				if(this.postbody.interior_color == ''){
+					that && that.$Message.warning(orifun.getInfo('Please select vehicle interior color!','请选择车辆内饰颜色!'));
+					return;
+				}
+				// console.log(this.postbody)
+				data.common('CarWithAuth/saleApplication',function(d){
+					console.log(d)
+						if(d.code !== 400){
+							that.$Notice.success({
+								title: orifun.getInfo('Application is successful!','申请成功!'),
+							});
+						}else{
+							var s = '';
+							for(var k in d.data){
+								s = s + d.data[k];
+							}
+							that.$Message.warning(s);
+						}
+				},this.postbody)
 			},
-			change :function() {
-			    this.enshow = this.enshow == 'english' ? "中文" : "english";
-			    var that = this;
-			    setTimeout(function(){
-					if(i18n.locale == 'en'){
-						i18n.locale = 'zh-cn';
-					}else if(i18n.locale == 'zh-cn'){
-						i18n.locale = 'en';
-					}
-					localStorage.locale = i18n.locale;
-			    },1100)
+			getVerifyImg: function(){
+				var that = this;
+				data.common('Misc/verifyCode',function(d){
+						if(d.code !== 400){
+							that.verifyImg = d.img;
+							that.postbody.verify_code_key = d.key;
+						}else{
+							console.log('请求验证码失败')
+						}
+				})
+			},
+			navTobuy: function(){
+				orifun.initpostbody();
 			},
 			top:function(){
-				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 700);
+				orifun.top(this);
+			},
+			login: function() {
+				orifun.login(this);
+			},
+			register: function() {
+				orifun.register(this);
+			},
+			change :function() {
+				orifun.change(this);
 			},
 			consult:function(){
-				this.botshow = !this.botshow;
-				setTimeout(function(){
-					alert("功能完善中！")
-				},700)
+				orifun.consult(this);
+			},
+			lrswitch:function(e){
+				orifun.lrswitch(this,e);
 			}
 		}
 	}).$mount('#sale')

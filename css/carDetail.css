@@ -1,3 +1,6 @@
+#about{
+	margin-top: 1.5rem;
+}
 .swiper-container {
 	width: 100%;
 	position: relative;
@@ -36,10 +39,12 @@
 	margin: 0.4rem;
 }
 .car-info .default{
-	height: 1.5rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+.car-info .default-left{
+	width: 70%;
 }
 .car-info .default-top{
 	display: flex;
@@ -49,12 +54,13 @@
 .car-info .name{
 	font-size: 0.5rem;
 }
+.car-info .coll span{
+	float: left;
+	line-height: 0.8rem;
+}
 .car-info .coll img{
 	width: 1rem;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	margin: auto;
+	margin-bottom: -0.3rem;
 }
 .car-info .price{
 	font-size: 0.35rem;
@@ -73,6 +79,7 @@
     border: none;
     outline: none;
     position: relative;
+	font-size: 0.35rem;
 	right: 0;
 }
 .car-info .config{
@@ -199,4 +206,15 @@
 .recommoned .car-item{
 	box-shadow: none;
 	border: 1px solid #f3f3f3;
+}
+.preorder .ivu-row{
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.preorder .ivu-modal{
+	/* width: 480px !important; */
+}
+.preorder .ivu-col{
+	position: relative;
 }

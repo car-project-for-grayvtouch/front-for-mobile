@@ -295,6 +295,7 @@
 					sw: 'Suppose you want to see',
 					guesswant: [],
 					moreparam: 'More detailed parameter configuration',
+					detailReport: 'View the detailed test report'
 				}
 			},
 		    'zh-cn':{
@@ -579,6 +580,7 @@
 						sw: '猜你想看',
 						guesswant: [],
 						moreparam: '更多详细参数配置',
+						detailReport: '查看详细检测报告'
 					}
 				}
 		}// 设置地区信息

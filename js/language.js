@@ -55,7 +55,7 @@
 				door: 'Dr',
 				cylinder: 'cylinder',
 				//登录注册
-				login: 'Login in',
+				login: 'Login',
 				log: 'Login',
 				register: 'Register',
 				pname: 'Please enter your username',

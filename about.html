@@ -170,22 +170,9 @@
 		</div>
 		<img class="about-carimg" src="images/index_masthead0cn.jpg" alt="car">
 		<ul class="article">
-			<li>
-				<p>Q：CHAMPION是一家怎样的公司呢？</p>
-				<p>A：CHIMPON是北美第一家整合线下优质资源的O2O汽车服务平台，我们为用户提供租车、学车、购车、贷款、维修保养等本地化服务的一站式中文汽车平台，让每一个用户，省钱安心购好车。
-            </p>
-			</li>
-			<li>
-				<p>Q：购车流程是怎样的？</p>
-				<p>A：1. 拨打看车电话/在线预约<br>
-				2. 顾问电话确认并接你看车<br>
-				3. 严选车辆，经过 300 项检测<br>
-				4. 选定爱车，帮你代办一切手续<br>
-				</p>
-			</li>
-			<li>
-				<p>Q：卖车需要准备什么材料？</p>
-				<p>A：您只需在线上卖车处填写完整的信息，我们的工作人员会联系您并安排线下给您的爱车做全面的检测</p>
+			<li v-for="(item,value) in $t('about')">
+				<p>Q：{{value}}</p>
+				<p v-html="'A：'+ item"></p>
 			</li>
 		</ul>
 		<div class="contact">

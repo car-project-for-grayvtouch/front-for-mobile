@@ -321,6 +321,7 @@ body {
     -webkit-appearance: textfield;
 	border-radius: 0.1rem;
 	padding-left: 0.2rem;
+	font-size: 0.35rem;
 }
 .search-record{
 	width: 100%;

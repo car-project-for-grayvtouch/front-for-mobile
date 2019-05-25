@@ -6,8 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>首页</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="css/swiper.min.css">
 	<link rel="stylesheet" href="dist/styles/iview.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/common.css">
@@ -181,10 +181,10 @@
 						</svg>
 					</div>
 					<div class="content">
-						<input type="text" @click="searchGo">
+						<input type="text" v-model:value='cursearch'>
 					</div>
 					<div class="search">
-						<a href="buy.html">
+						<a  @click="searchGo">
 							<svg class="icon" aria-hidden="true">
 								<use xlink:href="#icon-search1187938easyiconnet"></use>
 							</svg>
@@ -193,8 +193,8 @@
 				</div>
 				<div class="search-record">
 					<ul>
-						<a href="buy.html"><li class="record-item">福特</li></a>
-						<a href=""><li class="clear">清除历史搜索记录</li></a>
+						<a href="buy.html" v-for="item in searchRecord"><li class="record-item">{{item}}</li></a>
+						<a @click="clearSearch"><li class="clear">清除历史搜索记录</li></a>
 					</ul>
 				</div>
 				<div class="hot-search">
@@ -427,7 +427,15 @@
 			spinShow: true,
 			search: '',
 			slideArr: [],
+			searchRecord: [],
+			cursearch: '',
 		},
+		watch: {
+			// 如果 `question` 发生改变，这个函数就会运行
+			cursearch: function (newQuestion, oldQuestion) {
+			  console.log(newQuestion)
+			}
+		  },
 		mounted() {
 			var that = this;
 			$('.sel-type').find('li').eq(0).addClass('sel').css('border-bottom','1px solid #C21B36');
@@ -447,6 +455,11 @@
 			this.searchd();
 			
 			orifun.initStatu(this);
+			if(!localStorage.searchRecord){
+				localStorage.searchRecord = '[]';
+			}else{
+				this.searchRecord = JSON.parse(localStorage.searchRecord);
+			}
 		},
 		methods: {
 			searchd: function() {
@@ -577,7 +590,7 @@
 					
 				},collectBody);
 			},
-			searchGo: function(e) {
+			searchGo: function() {
 				localStorage.postbody = JSON.stringify({
 					brand_id: '',
 					car_series_id: '',
@@ -587,12 +600,19 @@
 					age: '',
 					gearbox: '',
 					color: '',
-					keyword: e,
+					keyword: this.cursearch,
 					sale_point: '',
 					page: 1,
 					sort: ''
 				})
+				var sa = JSON.parse(localStorage.searchRecord);
+				sa.push(this.cursearch);
+				localStorage.searchRecord = JSON.stringify(sa);
 				window.location.href= "buy.html";
+			},
+			clearSearch: function() {
+				localStorage.searchRecord = '[]';
+				this.searchRecord = [];
 			},
 			navTobuy: function(){
 				orifun.initpostbody();

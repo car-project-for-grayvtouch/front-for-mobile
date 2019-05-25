@@ -81,6 +81,8 @@ ul{
 	color: #C21B36;
 	font-size: 0.3rem;
 	opacity: 0.8;
+	border: none;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 .header .language-switch{
 	background-color: white;

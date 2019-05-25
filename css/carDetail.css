@@ -1,3 +1,5 @@
+#about{
+}
 .swiper-container {
 	width: 100%;
 	position: relative;
@@ -36,10 +38,11 @@
 	margin: 0.4rem;
 }
 .car-info .default{
-	height: 1.5rem;
-	display: flex;
+	/* display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: center; */
+}
+.car-info .default-left{
 }
 .car-info .default-top{
 	display: flex;
@@ -49,16 +52,20 @@
 .car-info .name{
 	font-size: 0.5rem;
 }
+.car-info .coll span{
+	float: left;
+	line-height: 0.8rem;
+}
 .car-info .coll img{
 	width: 1rem;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	margin: auto;
+	margin-bottom: -0.3rem;
 }
 .car-info .price{
 	font-size: 0.35rem;
 	margin-top: 0.2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .car-info .price span{
 	color: red;
@@ -67,12 +74,13 @@
 .car-info button{
 	color: #fff;
     background: #da2515;
-    width: 30%;
-    height: 1rem;
+    width: 3rem;
+    height: 1.1rem;
     border-radius: 0.5rem;
     border: none;
     outline: none;
     position: relative;
+	font-size: 0.35rem;
 	right: 0;
 }
 .car-info .config{
@@ -95,6 +103,7 @@
 }
 .car-info .config li:nth-last-child(1){
 	margin-top: 0.4rem;
+	width: 100%;
 }
 .car-info .config .icon{
 	padding: 0.2rem;
@@ -199,4 +208,15 @@
 .recommoned .car-item{
 	box-shadow: none;
 	border: 1px solid #f3f3f3;
+}
+.preorder .ivu-row{
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.preorder .ivu-modal{
+	/* width: 480px !important; */
+}
+.preorder .ivu-col{
+	position: relative;
 }

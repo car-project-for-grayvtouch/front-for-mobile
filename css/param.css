@@ -7,6 +7,7 @@
 .param{
 	font-size: 0.35rem;
 	margin: 0.4rem;
+	position: relative;
 }
 .record,.default-param,.engine-param,.chassis-braking,.security-config,.external-config,.interior-config{
 	background-color: white;
@@ -28,15 +29,20 @@
 .record li,.default-param li,.engine-param li,.chassis-braking li,.security-config li,.external-config li,.interior-config li{
 	display: flex;
 	justify-content: space-around;
-	height: 0.8rem;
-	line-height: 0.8rem;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	line-height: 0.65rem;
+	margin: 0.2rem 0;
+	position: relative;
 }
 .record li span,.default-param li span,.engine-param li span,.chassis-braking li span,.security-config li span,.external-config li span,.interior-config li span{
 	width: 100%;
 }
-.record li span:nth-child(1),.default-param li span:nth-child(1),.engine-param li span:nth-child(1),.chassis-braking li span:nth-child(1),.security-config li span:nth-child(1),.external-config li span:nth-child(1),.interior-config li span:nth-child(1){
+.record li span:nth-child(1) p,.default-param li span:nth-child(1) p,.engine-param li span:nth-child(1) p,.chassis-braking li span:nth-child(1) p,.security-config li span:nth-child(1) p,.external-config li span:nth-child(1) p,.interior-config li span:nth-child(1) p{
 	color: #757f89;
+	float: left;
 }
-.record li span:nth-child(2),.default-param li span:nth-child(2),.engine-param li span:nth-child(2),.chassis-braking li span:nth-child(2),.security-config li span:nth-child(2),.external-config li span:nth-child(2),.interior-config li span:nth-child(2){
+.record li span div,.default-param li span div,.engine-param li span div,.chassis-braking li span div,.security-config li span div,.external-config li span div,.interior-config li span div{
     color: #495056;
+	float: left;
 }

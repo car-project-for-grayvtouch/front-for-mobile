@@ -13,7 +13,7 @@
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_hnvxccisg1p.js"></script>
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
@@ -232,9 +232,16 @@
 			enshow: "english",
 			loginshow: false,
 			switchlogin: true,
+			compact: false,
+			regist: false,
 			logindata: {
-				phonenum:'',
-				checkcode:''
+				username: '',
+				password: '',
+				remember: 'y'
+			},
+			registerdata: {
+				username: '',
+				password: ''
 			},
 			index: 0,
 			imgarr: [],

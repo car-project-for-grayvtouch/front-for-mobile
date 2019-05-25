@@ -6,19 +6,23 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>车辆详情</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
-	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
-	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
+	<link rel="stylesheet" href="dist/styles/iview.css">
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
 	<link rel="stylesheet" href="css/carDetail.css">
+	<script type="text/javascript" src="js/flexible.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/screeningCondition.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_hnvxccisg1p.js"></script>
 </head>
 <body>
 	<div id="about" v-cloak>
@@ -26,13 +30,11 @@
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
 			</div>
-			<a href="javascript:history.back()">
-				<svg class="icon back" aria-hidden="true">
-					<use xlink:href="#icon-fanhui"></use>
-				</svg>
-			</a>
+			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
+			    <use xlink:href="#icon-caidan"></use>
+			</svg>
 			<div class="person">
-				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 				<a v-else href="personalCenter.html">
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-yidenglu"></use>
@@ -48,28 +50,120 @@
 			<transition name="fadeo" mode="out-in">
 					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
 			</transition>
+			<transition name="slide-fade">
+				<div v-if="show">
+					<div class="mask" v-on:click="show = !show">
+					</div>
+					<div class="nav-menu">
+						<ul>
+							<li>
+								<a href="index.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-xiazai45"></use>
+									</svg>
+									<span>{{ $t("header.home") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="buy.html" @click="navTobuy">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-car"></use>
+									</svg>
+									<span>{{ $t("header.buy") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="sale.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-maiche"></use>
+									</svg>
+									<span>{{ $t("header.sale") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="bargain.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-cart"></use>
+									</svg>
+									<span>{{ $t("header.bargain") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="installment.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-huankuanri"></use>
+									</svg>
+									<span>{{ $t("header.hire") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="about.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-chehangBmen"></use>
+									</svg>
+									<span>{{ $t("header.about") }}</span>
+								</a>
+							</li>
+							<li>
+								
+							</li>
+							<li>
+								<a href="">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</transition>
 			<transition name="searchfade">
 				<div class="login-page" v-if="loginshow">
 					<div class="loginMask" v-on:click="loginshow = !loginshow">
 					</div>
-					<div class="login">
+					
+					<div class="login" v-if="!regist">
 						<div class="close" v-on:click="loginshow = !loginshow">
 							<svg class="icon" aria-hidden="true">
 								<use xlink:href="#icon-close"></use>
 							</svg>
 						</div>
-						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
-							<input type="button" class="getcode" value="获取验证码" />
+							<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 						</div>
 						<div class="login-item">
-							<input type="button" class="btn-login" value="登录" v-on:click="login()">
+							<input type="password" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 						</div>
 						<div class="login-tips">
-							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+							<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
+						</div>
+					</div>
+					<div class="login" v-else>
+						<div class="close" v-on:click="loginshow = !loginshow">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-close"></use>
+							</svg>
+						</div>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
+						</div>
+						<div class="login-item">
+							<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
+						</div>
+						<div class="login-item">
+							<input type="password" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('register')" @click="register()">
+						</div>
+						<div class="login-tips">
+							<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 						</div>
 					</div>
 				</div>
@@ -79,7 +173,7 @@
 		  <div class="swiper-wrapper">
 		    <div class="swiper-slide" v-for="item in slideArr">
 				<!-- <a href="xx.html"> -->
-					<img :src="'images/' + item">
+					<img :src="item.url">
 				<!-- </a> -->
 			</div>
 		  </div>
@@ -93,18 +187,71 @@
 				<div class="default-left">
 					<div class="default-top">
 						<div class="name">
-							哈弗H6
-						</div>
-						<div class="coll">
-							<img src="images/favorite.png" >
+							<div class="coll">
+								<span>{{$t("detail.topinfo.name")}}
+								<img v-if="$t('detail.collect')=='y'" src="images/collected.png" @click="collection">
+								<img v-else src="images/favorite.png" @click="collection">
+								</span>
+							</div>
 						</div>
 					</div>
 					<div class="price">
-						CHAMPION价格：
-						<span>$12451.2</span>
+						<div>
+							{{$t("detail.championprice")}}:
+							<span>${{$t("detail.topinfo.price")}}</span>
+						</div>
+						<button type="button" @click="preorder">{{$t("detail.appointment")}}</button>
 					</div>
 				</div>
-				<button type="button">预约看车</button>
+			</div>
+			<div class="to-preorder">
+				<Modal
+					v-model="modal1"
+					:title="$t('detail.appointment')"
+					@on-ok="ok"
+					@on-cancel="cancel"
+					:loading ="loading"
+					class="preorder">
+					<Row>
+						<i-col span="12">
+							<div class="">
+								{{$t("detail.date")}}：
+							</div>
+							<Date-Picker type="date" size="large" placeholder="Select date" @on-change="getdate"></Date-Picker>
+						</i-col>
+						<i-col span="12">
+							<div class="">
+								{{$t("detail.time")}}：
+							</div>
+							<Time-Picker type="time" size="large" format="HH:mm" placeholder="Select time" style="width: 168px" @on-change="gettime"></Time-Picker>
+						</i-col>
+					</Row>
+					<Row>
+						<i-col span="12">
+							<div class="">
+								{{$t("detail.phone")}}：
+							</div>
+							<i-input v-model="value1" size="large" placeholder="enter the phone number" />
+						</i-col>
+						<i-col span="12">
+							<div class="">
+								{{$t("detail.weixin")}}：
+							</div>
+							<i-input v-model="value3" size="large" placeholder="enter the WeChat ID" />
+						</i-col>
+					</Row>
+					<Row>
+						<i-col span="12">
+							<div class="">
+								{{$t("detail.verifycode")}}：
+							</div>
+							<i-input v-model="value2" size="large" placeholder="enter the verification code" />
+						</i-col>
+						<i-col span="12">
+							<img class="verifyCode" :src="verifyCode" @click="tranverifyCode">
+						</i-col>
+					</Row>
+				</Modal>
 			</div>
 			<div class="config">
 				<ul>
@@ -113,8 +260,8 @@
 						    <use xlink:href="#icon-socar_displacement_icon"></use>
 						</svg>
 						<div class="config-r">
-							<span>排量：</span>
-							<span>1.5L 2.0L</span>
+							<p>{{$t('detail.displace')}}</p>
+							<p>{{$t('detail.config.displacement') + 'L'}}</p>
 						</div>
 					</li>
 					<li>
@@ -122,8 +269,8 @@
 						    <use xlink:href="#icon-item-gear-box"></use>
 						</svg>
 						<div class="config-r">
-							<span>变速箱：</span>
-							<span>手动 双离合</span>
+							<p>{{$t('detail.gear')}}</p>
+							<p>{{$t('detail.config.gearbox')}}</p>
 						</div>
 					</li>
 					<li>
@@ -131,8 +278,7 @@
 						    <use xlink:href="#icon-youhao"></use>
 						</svg>
 						<div class="config-r">
-							<span>油耗：</span>
-							<span>7-8.3L/百公里</span>
+							<p>{{$t('detail.ci') + '：'}}{{$t('detail.config.cityfuelConsumption')}}GL/{{$t('detail.hs')}}：{{$t('detail.config.speedfuelConsumption')}}GL</p>
 						</div>
 					</li>
 					<li>
@@ -140,8 +286,8 @@
 						    <use xlink:href="#icon-cf-c64"></use>
 						</svg>
 						<div class="config-r">
-							<span>级别：</span>
-							<span>SUV</span>
+							<p>{{$t('detail.le')}}</p>
+							<p>{{$t('detail.config.type')}}</p>
 						</div>
 					</li>
 					<li>
@@ -149,8 +295,8 @@
 						    <use xlink:href="#icon-chicun"></use>
 						</svg>
 						<div class="config-r">
-							<span>尺寸：</span>
-							<span>4600*1860*1720</span>
+							<p>{{$t('detail.si')}}</p>
+							<p>{{$t('detail.config.size') + 'inch'}}</p>
 						</div>
 					</li>
 					<li>
@@ -158,94 +304,95 @@
 						    <use xlink:href="#icon-zuoweishu-shi"></use>
 						</svg>
 						<div class="config-r">
-							<span>承载数量</span>
-							<span>5座</span>
+							<p>{{$t('detail.sc')}}</p>
+							<p>{{$t('detail.config.seat') + ' '}}{{$t('detail.c')}}</p>
 						</div>
 					</li>
 					<li>
-						<span class="more"><a href="param.html">更多详细参数配置&nbsp;&nbsp;<img class="arrow-r" src="images/jiantou.png"></a></span>
+						<span class="more"><a href="param.html">{{$t('detail.moreparam')}}&nbsp;&nbsp;<img class="arrow-r" src="images/jiantou.png"></a></span>
 					</li>
 				</ul>
 			</div>
 			<div class="level">
 				<div class="level-item">
-					<span>行驶里程</span>
-					<span>33213英里</span>
+					<span v-html="$t('detail.td')"></span>
+					<span>{{$t('detail.mileage') + ' '}}{{$t('detail.mile')}}</span>
 				</div>
 				<div class="level-item">
-					<span>复查等级</span>
-					<span>A</span>
+					<span>{{$t("detail.reviewlevel")}}</span>
+					<span>{{$t('detail.level')}}</span>
 				</div>
 				<div class="level-item">
-					<span>过户记录</span>
-					<span>1次</span>
+					<span>{{$t("detail.tranferRecord")}}</span>
+					<span>{{$t('detail.transfer') + ' '}}{{$t('detail.degr')}}</span>
 				</div>
 			</div>
 			<div class="point">
-				<div class="title">亮点配置</div>
+				<div class="title">{{$t('detail.Highlight')}}</div>
 				<ul>
-					<li>倒车影像</li>
-					<li>蓝牙链接</li>
-					<li>电动天窗</li>
-					<li>碰撞预警</li>
-					<li>胎压监测</li>
-					<li>防抱死系统</li>
-					<li>定速巡航</li>
-					<li>启动前自检</li>
-					<li>免提电话</li>
-					<li>铝合金轮毂</li>
+					<li v-for="item in $t('detail.point')">{{item.name}}</li>
 				</ul>
 			</div>
 			<div class="report">
-				<div class="title">检测报告</div>
+				<div class="title">{{$t("detail.vtr")}}</div>
 				<ul>
 					<li>
 						<svg class="icon" aria-hidden="true">
 						    <use xlink:href="#icon-shigupaicha1"></use>
 						</svg>
-						<span>事故排查</span>
+						<span>{{$t("detail.reportresult[0].name")}}</span>
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
 						    <use xlink:href="#icon-shebeijiance"></use>
 						</svg>
-						<span>设备检测</span>
+						<span>{{$t("detail.reportresult[1].name")}}</span>
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
 						    <use xlink:href="#icon-waiguanneishijiancex"></use>
 						</svg>
-						<span>外观内饰检测</span>
+						<span>{{$t("detail.reportresult[2].name")}}</span>
 					</li>
 					<li>
 						<svg class="icon" aria-hidden="true">
 						    <use xlink:href="#icon-jiance-copy"></use>
 						</svg>
-						<span>驾驶系统检测</span>
+						<span>{{$t("detail.reportresult[3].name")}}</span>
 					</li>
 				</ul>
 				<a class="report-detail" href="report.html">
-					查看详细检测报告
+					{{$t("detail.detailReport")}}
 				</a>
 			</div>
 		</div>
 		<div class="recommoned">
-			<div class="title">猜你想看</div>
+			<div class="title">{{$t('detail.sw')}}</div>
 			<div class="car-detail">
-				<div class="car-item" v-for="item in $t('explain')">
+				<div class="car-item" v-for="(item, index) in $t('detail.guesswant')" :key='item.id' @click = "navigatorToDetail(item.id)">
 					<a href="#">
-						<img class="bg" src="images/car-1.jpg">
+						<img class="bg" :src="item.thumb">
+						<img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="guesswantCollection(index, item.id)">
+						<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="guesswantCollection(index, item.id)">
 						<div class="car-explain">
 							<div class="explain-t">
 								<div class="car-name">
-									{{item.name}}
+									{{ item.model?item.model.year + '&nbsp':''}}
+									{{item.series?item.series.name + '&nbsp':''}}
+									{{item.model?item.model.displacement + 'L':''}}
 								</div>
 								<div class="car-price">
-									{{item.price}}
+									{{'$' + item.price}}
 								</div>
 							</div>
 							<div class="distance">
-								{{item.distance}}
+								{{item.mileage + $t('miles')}}
+								{{item.model?'·' + item.model.door_count + $t('door'):''}}
+								{{item.model?'·' + item.model.driver_type:''}}
+								{{item.model?'·' + item.model.cylinder_count + $t('cylinder'):''}}
+								{{item.model?'·' + item.model.displacement + 'L':''}}
+								{{item.model?'·' + item.model.intake_type:''}}
+								{{item.model?'·' + item.model.gearbox:''}}
 							</div>
 						</div>
 					</a>
@@ -256,39 +403,22 @@
 			<div class="top">
 					<div class="logo"><img src="images/logor.png" ></div>
 				<div class="wx">
-					<a href="#">
-						<img src="images/humacar.png" >
-						<span>CAR</span>
+					<a>
+						<img src="images/wximg.jpg" >
+						<span>{{$t('champion')}}</span>
 					</a>
 				</div>
 				<div class="phone">
-					<a href="#">
+					<a>
 						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
+						<span>{{$t('addressphone')}}</span>
 					</a>
 				</div>
 			</div>
 			</div>
 		<div class="adress">
 			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
+				<img src="images/address.png" >
 			</ul>
 		</div>
 		<div class="misc">
@@ -298,9 +428,10 @@
 		</div>
 		<div class="copy">
 			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
+				Copyright@2019 CHAMPION Inc. Privacy Terms
+			</span>
 		</div>
+		<Spin size="large" fix v-if="spinShow"></Spin>
 	</div>
 </body>
 <script type="text/javascript">
@@ -314,65 +445,624 @@
 			enshow: "english",
 			loginshow: false,
 			switchlogin: true,
+			compact: false,
+			regist: false,
 			logindata: {
-				phonenum:'',
-				checkcode:''
+				username: '',
+				password: '',
+				remember: 'y'
 			},
-			slideArr: ['face.jpg','control.jpg','other.jpg','seat.jpg'],
+			registerdata: {
+				username: '',
+				password: ''
+			},
+			slideArr: [],
+			loanarr: [0.3,0.4,0.5,0.6,0.7],
+			defaultloanarr:[],
+			mileage: 0,
+			level: 'A',
+			transferRecord: 0,
+			point: [],
+			min: 0,
+			spinShow: false,
+			carreport: 'true',
+			//预约看车
+			modal1: false,
+			verifyCode: '',
+			value1: '',
+			value2: '',
+			value3: '',
+			date: '',
+			time: '',
+			loading: true,
+			collect: '',
+			collectArr: [],
 		},
 		mounted() {
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
+			var thatvu = this;
+			
+			orifun.initStatu(this);
+			var goodId;
+			if(localStorage.goodId){
+				goodId = localStorage.goodId;
 			}else{
-				(locale = i18n.locale);
+				goodId = 2;
 			}
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
+			function cardetail(lang){
+				thatvu.spinShow = true;
+				data.common('Car/detail',function(d){
+					// console.log(d)
+					var car = d.car;
+					var model = car.model;
+					
+					
+					thatvu.slideArr = car.image;
+					if(lang == 'en'){
+						that = thatvu.$i18n._vm.messages['en'].detail;
+						that.collect = car.collected;
+						if(!model){
+							// 顶部右侧车辆基础信息
+							that.topinfo.name = ' ' + car.brand.name+ ' ' + car.series.name + ' ';
+							that.topinfo.price = car.price;
+							that.mileage = car.mileage;
+							that.level = '';
+							that.transfer = '' + car.transfer_record;
+							//计算贷款方案
+							thatvu.loanfun();
+						}else{
+							// 顶部右侧车辆基础信息
+							that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
+							that.topinfo.price = car.price;
+							that.mileage = car.mileage;
+							that.level = model.level;
+							that.transfer = '' + car.transfer_record;
+							//计算贷款方案
+							thatvu.loanfun();
+							//亮点配置
+							that.point = model.configuration;
+							that.config.displacement = model.displacement;
+							that.config.gearbox = model.gearbox;
+							that.config.cityfuelConsumption = model.city_fuel_consumption;
+							that.config.speedfuelConsumption = model.high_speed_fuel_consumption;
+							that.config.type = model.car_type.name;
+							that.config.size = model.size;
+							that.config.seat = '' + model.seat_count;
+							
+						}
+						
+						//车辆检测报告
+						if(car.report){
+							let find = function(rm, id, value) {
+								for(var k in rm){
+									// console.log(rm[k][id], value)
+									if (rm[k][id] == value) {
+										return rm[k];
+									}
+									
+								}
+							};
+							// 检测报告四条title
+							var report = car.report;
+							that.reportTime = '' + report.update_time;
+							var rm = report.module;
+							
+							var accident,
+							facecheck,
+							autodevice,
+							dirveSys;
+							for(var k in rm){
+								var f = find(rm, 'detection_module_id', Number(k) + 1);
+								that.reportresult[k].result = '' + f.result;
+								that.reportresult[k].name = '' + f.name;
+							}
+							accident = find(rm, 'detection_module_id', 1).position;
+							facecheck = find(rm, 'detection_module_id', 2).position;
+							// console.log(facecheck)
+							autodevice = find(rm, 'detection_module_id', 3).position;
+							dirveSys = find(rm, 'detection_module_id', 4).position;
+							
+							// console.log(accident)
+							// 事故排查
+							for(var k in accident){
+								if(k < 14){
+									that.accidentArrone.push(accident[k]);
+								}else if(k >= 14){
+									that.accidentArrtwo.push(accident[k]);
+								}
+								
+							}
+							// 外观内饰
+							var facecheckArr = [
+								{
+									value: find(facecheck, 'name' ,'1')?find(facecheck, 'name' ,'1').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'2')?find(facecheck, 'name' ,'2').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'3')?find(facecheck, 'name' ,'3').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'4')?find(facecheck, 'name' ,'4').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'5')?find(facecheck, 'name' ,'5').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'6')?find(facecheck, 'name' ,'6').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'7')?find(facecheck, 'name' ,'7').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'8')?find(facecheck, 'name' ,'8').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'9')?find(facecheck, 'name' ,'9').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'10')?find(facecheck, 'name' ,'10').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'11')?find(facecheck, 'name' ,'11').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'12')?find(facecheck, 'name' ,'12').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'13')?find(facecheck, 'name' ,'13').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'14')?find(facecheck, 'name' ,'14').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'15')?find(facecheck, 'name' ,'15').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'16')?find(facecheck, 'name' ,'16').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'17')?find(facecheck, 'name' ,'17').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'18')?find(facecheck, 'name' ,'18').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'19')?find(facecheck, 'name' ,'19').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'20')?find(facecheck, 'name' ,'20').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'21')?find(facecheck, 'name' ,'21').item[0].value:'one'
+								}
+							];
+							that.facecheck = facecheckArr;
+							
+							//启动设备检测
+							// console.log(autodevice)
+							that.autodeviceone = find(autodevice, 'name' ,'2')?find(autodevice, 'name' ,'2').item.slice(0, 1): [{value:'normal',desc:'车辆排气正常'}];
+							that.autodevicethree = find(autodevice, 'name' ,'3')?find(autodevice, 'name' ,'3').item.slice(0, 5): [{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警'},{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警 各类灯光调节功能正常'},{value:'normal',desc:'空调系统运转正常'},{value:'normal',desc:'泊车辅助系统工作正常'},{value:'normal',desc:'方向盘自由行程转角小于15度'}];
+							that.autodevicetwo = find(autodevice, 'name' ,'4')?find(autodevice, 'name' ,'4').item.slice(0, 1): [{value:'normal',desc:'脚踏板功能正常'}];
+							that.autodevicefour = find(autodevice, 'name' ,'5')?find(autodevice, 'name' ,'5').item.slice(0, 2): [{value:'normal',desc:'原地打转向时,转向机、转向柱、方向系统正常'},{value:'normal',desc:'变速箱换挡功能正常'}];
+							that.autodevicefive = find(autodevice, 'name' ,'6')?find(autodevice, 'name' ,'6').item.slice(0, 3): [{value:'normal',desc:'怠速运转时发动机运转稳定'},{value:'normal',desc:"空挡提速时发动机运转稳定"},{value:'normal',desc:" 驻车制动器工作正常"}];
+							that.autodevicesix = find(autodevice, 'name' ,'7')?find(autodevice, 'name' ,'7').item.slice(0, 1): [{value:'normal',desc:"车辆启动顺畅"}];
+							
+							//驾驶系统检测
+							// console.log(dirveSys)
+							for(var k in dirveSys){
+								if(dirveSys[k].detection_group_id == 1){
+									that.dirveSysone.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 2){
+									that.dirveSystwo.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 3){
+									that.dirveSysthree.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 4){
+									that.dirveSysfour.push(dirveSys[k].item);
+								}else{
+									that.dirveSysfive.push(dirveSys[k].item);
+								}
+							}
+						}else{
+							that.carreport = 'false';
+						}
+					}else{
+						that = thatvu.$i18n._vm.messages['zh-cn'].detail;
+						that.collect = car.collected;
+						if(!model){
+							// 顶部右侧车辆基础信息
+							that.topinfo.name = ' ' + car.brand.name+ ' ' + car.series.name + ' ';
+							that.topinfo.price = car.price;
+							that.mileage = car.mileage;
+							that.level = '';
+							that.transfer = '' + car.transfer_record;
+							//计算贷款方案
+							thatvu.loanfun();
+						}else{
+							// 顶部右侧车辆基础信息
+							that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
+							that.topinfo.price = car.price;
+							that.mileage = car.mileage;
+							that.level = model.level;
+							that.transfer = '' + car.transfer_record;
+							//计算贷款方案
+							thatvu.loanfun();
+							//亮点配置
+							that.point = model.configuration;
+							that.config.displacement = model.displacement;
+							that.config.gearbox = model.gearbox;
+							that.config.cityfuelConsumption = model.city_fuel_consumption;
+							that.config.speedfuelConsumption = model.high_speed_fuel_consumption;
+							that.config.type = model.car_type.name;
+							that.config.size = model.size;
+							that.config.seat = '' + model.seat_count;
+							
+							
+						}
+						
+						//车辆检测报告
+						if(car.report){
+							let find = function(rm, id, value) {
+								for(var k in rm){
+									// console.log(rm[k][id], value)
+									if (rm[k][id] == value) {
+										return rm[k];
+									}
+									
+								}
+							};
+							// 检测报告四条title
+							var report = car.report;
+							that.reportTime = report.update_time;
+							var rm = report.module;
+							
+							var accident,
+							facecheck,
+							autodevice,
+							dirveSys;
+							for(var k in rm){
+								var f = find(rm, 'detection_module_id', Number(k) + 1);
+								that.reportresult[k].result = '' + f.result;
+								that.reportresult[k].name = '' + f.name;
+							}
+							accident = find(rm, 'detection_module_id', 1).position;
+							facecheck = find(rm, 'detection_module_id', 2).position;
+							autodevice = find(rm, 'detection_module_id', 3).position;
+							dirveSys = find(rm, 'detection_module_id', 4).position;
+							
+							// console.log(accident)
+							// 事故排查
+							for(var k in accident){
+								if(k < 14){
+									that.accidentArrone.push(accident[k]);
+								}else if(k >= 14){
+									that.accidentArrtwo.push(accident[k]);
+								}
+								
+							}
+							// 外观内饰
+							var facecheckArr = [
+								{
+									value: find(facecheck, 'name' ,'1')?find(facecheck, 'name' ,'1').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'2')?find(facecheck, 'name' ,'2').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'3')?find(facecheck, 'name' ,'3').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'4')?find(facecheck, 'name' ,'4').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'5')?find(facecheck, 'name' ,'5').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'6')?find(facecheck, 'name' ,'6').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'7')?find(facecheck, 'name' ,'7').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'8')?find(facecheck, 'name' ,'8').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'9')?find(facecheck, 'name' ,'9').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'10')?find(facecheck, 'name' ,'10').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'11')?find(facecheck, 'name' ,'11').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'12')?find(facecheck, 'name' ,'12').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'13')?find(facecheck, 'name' ,'13').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'14')?find(facecheck, 'name' ,'14').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'15')?find(facecheck, 'name' ,'15').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'16')?find(facecheck, 'name' ,'16').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'17')?find(facecheck, 'name' ,'17').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'18')?find(facecheck, 'name' ,'18').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'19')?find(facecheck, 'name' ,'19').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'20')?find(facecheck, 'name' ,'20').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'21')?find(facecheck, 'name' ,'21').item[0].value:'one'
+								}
+							];
+							that.facecheck = facecheckArr;
+							
+							//启动设备检测
+							// console.log(autodevice)
+							that.autodeviceone = find(autodevice, 'name' ,'2')?find(autodevice, 'name' ,'2').item.slice(0, 1): [{value:'normal',desc:'车辆排气正常'}];
+							that.autodevicethree = find(autodevice, 'name' ,'3')?find(autodevice, 'name' ,'3').item.slice(0, 5): [{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警'},{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警 各类灯光调节功能正常'},{value:'normal',desc:'空调系统运转正常'},{value:'normal',desc:'泊车辅助系统工作正常'},{value:'normal',desc:'方向盘自由行程转角小于15度'}];
+							that.autodevicetwo = find(autodevice, 'name' ,'4')?find(autodevice, 'name' ,'4').item.slice(0, 1): [{value:'normal',desc:'脚踏板功能正常'}];
+							that.autodevicefour = find(autodevice, 'name' ,'5')?find(autodevice, 'name' ,'5').item.slice(0, 2): [{value:'normal',desc:'原地打转向时,转向机、转向柱、方向系统正常'},{value:'normal',desc:'变速箱换挡功能正常'}];
+							that.autodevicefive = find(autodevice, 'name' ,'6')?find(autodevice, 'name' ,'6').item.slice(0, 3): [{value:'normal',desc:'怠速运转时发动机运转稳定'},{value:'normal',desc:"空挡提速时发动机运转稳定"},{value:'normal',desc:" 驻车制动器工作正常"}];
+							that.autodevicesix = find(autodevice, 'name' ,'7')?find(autodevice, 'name' ,'7').item.slice(0, 1): [{value:'normal',desc:"车辆启动顺畅"}];
+							
+							//驾驶系统检测
+							// console.log(dirveSys)
+							for(var k in dirveSys){
+								if(dirveSys[k].detection_group_id == 1){
+									that.dirveSysone.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 2){
+									that.dirveSystwo.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 3){
+									that.dirveSysthree.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 4){
+									that.dirveSysfour.push(dirveSys[k].item);
+								}else{
+									that.dirveSysfive.push(dirveSys[k].item);
+								}
+							}
+						}else{
+							that.carreport = 'false';
+						}
+					}
+					// that.collect = car.collected;//保存收藏状态
+					// console.log(car.collected)
+					// 顶部图片切换
+					// console.log(model)
+					thatvu.$nextTick(function(){
+						thatvu.spinShow = false;
+					})
+				},{id:goodId,language:lang})
 			}
+			cardetail('en');
+			cardetail('cn');
+			// console.log(thatvu.$i18n._vm.messages['en'].detail);
+			// 猜你想看
+			this.guesswantinfo();
+			//获取验证码
+			this.tranverifyCode();
 		},
 		methods: {
-			login: function() {
-				if(this.logindata.phonenum == ''){
-					alert("请填写手机号!");
-					return;
-				}
-				else if(this.logindata.checkcode == ''){
-					alert("请填写验证码!");
-					return;
-				}
-				this.switchlogin = !this.switchlogin;
-				this.loginshow = !this.loginshow;
-				alert('登录成功!');
-				localStorage.login = true;
+			guesswantinfo: function(){
+				var that = this;
+				data.common('Car/recommendation',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['en'].detail.guesswant = d.slice(0,4);
+				},{language:'en'})
+				data.common('Car/recommendation',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['zh-cn'].detail.guesswant = d.slice(0,4);
+				},{language:'cn'})
 			},
-			change :function() {
-			    this.enshow = this.enshow == 'english' ? "中文" : "english";
-			    var that = this;
-			    setTimeout(function(){
-					if(i18n.locale == 'en'){
-						i18n.locale = 'zh-cn';
-					}else if(i18n.locale == 'zh-cn'){
-						i18n.locale = 'en';
+			guesswantCollection: function(index,id) {
+				var that = this;
+				if(!localStorage.token){
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
+					return;
+				}
+				var ccol = this.$i18n._vm.messages[localStorage.locale].detail.guesswant,
+				notice;
+				if(ccol[index].collected == 'y'){
+					ccol[index].collected = 'n';
+					notice = orifun.getInfo('Cancel the collection successfully!','取消收藏成功!');
+				}else if(ccol[index].collected == 'n'){
+					ccol[index].collected = 'y';
+					notice = orifun.getInfo('Collection of success!','收藏成功!');
+				}else{
+					this.$Message.error(orifun.getInfo('Waiting for data update!','等待数据更新!'));
+					return;
+				}
+				var collectBody = {
+					car_id: id,
+					collected: ccol[index].collected
+				}
+				data.common('CarWithAuth/collect',function(d){
+						console.log(d);
+					if(d.code != 400 && d != 'undefined'){
+						that.$Notice.success({
+							title: 'Notification',
+							desc:notice,
+							duration: 4
+						});
+						that.$i18n._vm.messages['en'].detail.guesswant[index].collected = ccol[index].collected;
+						that.$i18n._vm.messages['zh-cn'].detail.guesswant[index].collected = ccol[index].collected;
+					}else{
+						that.$Message.error(orifun.getInfo('Collection of failure!!','收藏失败!'));
 					}
-					localStorage.locale = i18n.locale;
-			    },1100)
+					
+				},collectBody);
+			},
+			collection: function() {
+				var that = this;
+				if(!localStorage.token){
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
+					return;
+				}
+				var ccol = this.$i18n._vm.messages[localStorage.locale].detail.collect,
+				notice;
+				if(ccol == 'y'){
+					ccol = 'n';
+					notice = orifun.getInfo('Cancel the collection successfully!','取消收藏成功!');
+				}else if(ccol == 'n'){
+					ccol = 'y';
+					notice = orifun.getInfo('Collection of success!','收藏成功!');
+				}else{
+					this.$Message.error(orifun.getInfo('Waiting for data update!','等待数据更新!'));
+					return;
+				}
+				var collectBody = {
+					car_id: localStorage.goodId,
+					collected: ccol
+				}
+				data.common('CarWithAuth/collect',function(d){
+						// console.log(d);
+					if(d.code != 400 && d != 'undefined'){
+						that.$Notice.success({
+							title: 'Notification',
+							desc:notice,
+							duration: 4
+						});
+						that.$i18n._vm.messages['en'].detail.collect = ccol;
+						that.$i18n._vm.messages['zh-cn'].detail.collect = ccol;
+						that.guesswantinfo();
+					}else{
+						that.$Message.error(orifun.getInfo('Collection of failure!!','收藏失败!'));
+					}
+					
+				},collectBody);
+			},
+			getdate: function(e) {
+				this.date = e;
+			},
+			gettime: function(e) {
+				this.time = e;
+			},
+			preorder: function() {
+				this.modal1 = true;
+				if(!localStorage.token){
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
+				}
+			},
+			tranverifyCode: function() {
+				var that = this;
+				data.common('Misc/verifyCode',function(d){
+					// console.log(d)
+					that.verifyCode = d.img;
+					localStorage.verifyKey = d.key;
+				})
+			},
+			ok: function() {
+				var that = this;
+				if(!localStorage.token){
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
+					this.loading = false;
+					return;
+				}
+				if(this.date == ''){
+					this.$Message.info(orifun.getInfo('Please select date!','请选择日期!'));
+					this.loading = false;
+					return;
+				}
+				if(this.time == ''){
+					this.$Message.info(orifun.getInfo('Please select time!','请选择时间!'));
+					this.loading = false;
+					return;
+				}
+				if(this.value1 == ''){
+					this.$Message.info(orifun.getInfo('Please fill in your mobile phone number!','请填写手机号!'));
+					this.loading = false;
+					return;
+				}
+				if(this.value2 == ''){
+					this.$Message.info(orifun.getInfo('Please fill in the verification code!','请填写验证码!'));
+					this.loading = false;
+					return;
+				}
+				if(this.value3 == ''){
+					this.$Message.info(orifun.getInfo('Please fill in WeChat ID!','请填写微信号!'));
+					this.loading = false;
+					return;
+				}
+				this.loading = true;
+				var pbody = {
+					phone: this.value1,
+					weixin: this.value3,
+					appointment: this.date + ' ' + this.time,
+					verify_code_key: localStorage.verifyKey,
+					verify_code: this.value2,
+					car_id: localStorage.goodId,
+				}
+				// console.log(pbody)
+				data.common('CarWithAuth/reservation',function(d){
+					if(d.code != 400 && d != 'undefined'){
+						// console.log(d);
+						that.$Notice.success({
+							title: 'Notification',
+							desc:orifun.getInfo('Reservation successful, waiting for notification!','预约成功,等待通知!'),
+							duration: 0
+						});
+						that.modal1 = false;
+					}else{
+						that.$Message.error(orifun.getInfo('Make an appointment to failure!','预约失败!'));
+						that.loading = false;
+					}
+					
+				},pbody);
+            },
+            cancel: function() {
+                
+            },
+			navigatorToDetail: function(e) {
+				localStorage.goodId = e;
+				window.location.href= "carDetail.html";
+			},
+			navTobuy: function(){
+				orifun.initpostbody();
+			},
+			//计算贷款方案
+			loanfun: function() {
+				for(var k in this.loanarr){
+					var totalrepay = (1 - this.loanarr[k]) * Number(this.$i18n._vm.messages[localStorage.locale].detail.topinfo.price);
+					this.defaultloanarr[k] = Math.ceil((totalrepay * 0.099 + totalrepay)/48);
+				}
+				var dmin = (1 - this.loanarr[this.loanarr.length-1]) * Number(this.$i18n._vm.messages[localStorage.locale].detail.topinfo.price);
+				this.min = Math.ceil((dmin * 0.099 + dmin)/48);
+			},
+			//贷款方案弹窗
+			instance (type) {
+                const title = orifun.getInfo('Loan scheme','贷款方案');
+                const content = '\
+				<div class = "loan-pop-up">\
+					<p class = "ptor">' + orifun.getInfo('A down payment ','首付 ') + '30%</p>\
+					<p class = "pbor">' + orifun.getInfo('Monthly repayment amount','月还款金额') + '<span>$'+ this.defaultloanarr[0] +'</span></p>\
+					<p class = "ptor">' + orifun.getInfo('A down payment ','首付 ') + '40%</p>\
+					<p class = "pbor">' + orifun.getInfo('Monthly repayment amount','月还款金额') + '<span>$'+ this.defaultloanarr[1] +'</span></p>\
+					<p class = "ptor">' + orifun.getInfo('A down payment ','首付 ') + '50%</p>\
+					<p class = "pbor">' + orifun.getInfo('Monthly repayment amount','月还款金额') + '<span>$'+ this.defaultloanarr[2]+'</span></p>\
+					<p class = "ptor">' + orifun.getInfo('A down payment ','首付 ') + '60%</p>\
+					<p class = "pbor">' + orifun.getInfo('Monthly repayment amount','月还款金额') + '<span>$'+ this.defaultloanarr[3] +'</span></p>\
+					<p class = "ptor">' + orifun.getInfo('A down payment ','首付 ') + '70%</p>\
+					<p class = "pbor">' + orifun.getInfo('Monthly repayment amount','月还款金额') + '<span>$'+ this.defaultloanarr[4] +'</span></p>\
+					<div class="lptp">' + orifun.getInfo('This scheme is only for reference. In fact, please confirm with CHAMPION financial commissioner after communication','该方案仅供参考,实际请与CHAMPION金融专员沟通后确认') + '</div>\
+					<div class = "lpub">\
+						<div class = "lpub-item">\
+							<div class = "lpubit"\
+								<label>' + orifun.getInfo('Support groups','支持人群') + '：</label>\
+								<span>' + orifun.getInfo('students','学生') + '</span>\
+							</div>\
+							<div class = "lpubib"\
+								<label>' + orifun.getInfo('Vehicle prices','车辆价格') + '：</label>\
+								<span>$'+ this.$i18n._vm.messages[localStorage.locale].detail.topinfo.price +'</span>\
+							</div>\
+						</div>\
+						<div class = "lpub-item">\
+							<div class = "lpubit"\
+								<label>' + orifun.getInfo('Document type','证件类型') + '：</label>\
+								<span>SSN</span>\
+							</div>\
+							<div class = "lpubib"\
+								<label>' + orifun.getInfo('Reimbursement deadline','还款期限') + '：</label>\
+								<span>' + orifun.getInfo('48 months','48个月') + '</span>\
+							</div>\
+						</div>\
+					</div>\
+				</div>';
+				this.$Modal.info({
+					title: title,
+					content: content
+				});
+            },
+			navTobuy: function(){
+				orifun.initpostbody();
 			},
 			top:function(){
-				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 700);
+				orifun.top(this);
+			},
+			login: function() {
+				orifun.login(this);
+			},
+			register: function() {
+				orifun.register(this);
+			},
+			change :function() {
+				orifun.change(this);
 			},
 			consult:function(){
-				this.botshow = !this.botshow;
-				setTimeout(function(){
-					alert("功能完善中！")
-				},700)
+				orifun.consult(this);
+			},
+			lrswitch:function(e){
+				orifun.lrswitch(this,e);
 			}
 		}
 	}).$mount('#about')
@@ -387,10 +1077,7 @@
 		  prevEl: '.swiper-button-prev',
 		},
 	    loop:true,
-// 	    autoplay: {
-// 			delay: 2500,
-// 			disableOnInteraction:false
-// 	    }
+		observer:true
 	});
 </script>
 </html>

@@ -37,10 +37,11 @@
 }
 .car-item{
 	width: 48%;
-	height: 6.5rem;
+	height: 7rem;
 	position: relative;
 	margin-top: 0.3rem;
-	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+	/* box-shadow: 0 0 5px rgba(0, 0, 0, .5); */
+	border: 1px solid #EFEFEF;
 }
 .car-item .bg{
 	width: 100%;
@@ -55,7 +56,7 @@
 }
 .car-explain{
 	position: absolute;
-	top: 3.2rem;
+	top: 3.7rem;
 	width: 100%;
 	padding: 0 0.2rem 0.1rem 0.2rem;
 	box-sizing: border-box;
@@ -70,6 +71,8 @@
 .car-name{
 	color: black;
 	font-size: 0.4rem;
+	height: 1.1rem;
+	line-height: 0.6rem;
 }
 .car-price{
 	color: #ff7147;
@@ -78,12 +81,12 @@
 .distance{
 	color: #BFBFBF;
 	font-size: 0.4rem;
-	line-height: 0.4rem;
+	line-height: 0.6rem;
 	word-break: break-all;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 5;
+	-webkit-line-clamp: 2;
 	overflow: hidden;
 }
 .back{

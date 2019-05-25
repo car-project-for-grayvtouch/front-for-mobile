@@ -13,9 +13,13 @@
 .re-car-name {
     color: #495056;
     font-size: .4rem;
+	margin-bottom: 0.2rem;
+}
+.re-d{
+	font-size: .34rem;
 }
 .report-info .re-tit, .report-info .report-con {
-    font-size: .35rem;
+    font-size: .32rem;
     color: #757f89;
 }
 .column-head{
@@ -50,14 +54,22 @@
 	align-items: center;
 }
 .re-depoly li{
-	height: 1rem;
 	line-height: 1rem;
 	font-size: 0.35rem;
 	color: #5f6670;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
 }
 .normal{
 	width: 0.8rem;
 	height: 1.1rem;
+}
+.li-normal{
+	border-bottom: 1px solid #EFEFEF;
+}
+.li-normal span{
+	width: 80%;
 }
 .normal .icon{
 	width: 0.8rem;
@@ -67,7 +79,7 @@
 	background-color: #FAFAFA;
 }
 .re-depoly i{
-	width: 0.8rem;
+	width: 1rem;
 	height: 1rem;
 	position: relative;
 	float: right;
@@ -86,4 +98,160 @@
 	width: 0.5rem;
 	height: 0.5rem;
 	margin-left: 0.2rem;
+}
+.facecheck span {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #00C261;
+}
+.facecheck {
+    position: relative;
+    height: 3.2rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.facecheck-c {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+	margin-top: 0.5rem;
+}
+.facecheck-c .title {
+    display: flex;
+    margin-top: 0;
+    justify-content: center;
+}
+.facecheck-c .title-item {
+    display: flex;
+	width: 25%;
+	flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.4rem;
+    margin-right: 0.2rem;
+	font-size: 0.3rem;
+	justify-content: flex-start;
+	text-align: center;
+}
+.facecheck-c .title-item .node{
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+}
+.facecheck-c .title-item .normal {
+    background-color: #7FD441;
+}
+.facecheck-c .title-item .repair {
+    background-color: #b2cce5;
+}
+.facecheck-c .title-item .update {
+    background-color: #ffb2b2;
+}
+.facecheck-c .title-item .norepair {
+    background-color: #ff9900;
+}
+.facecheck img{
+	width: 100%;
+	height: 3.2rem;
+	/* transform: rotate(90deg); */
+}
+.facecheck div {
+    width: 0.2rem;
+    height: 0.2rem;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+}
+.facecheck div:nth-child(2) {
+    top: 1.15rem;
+    left: 0.2rem;
+}
+.facecheck div:nth-child(3) {
+    top: 0.04rem;
+    left: 1.3rem;
+}
+.facecheck div:nth-child(6) {
+    top: 0.04rem;
+    left: 2rem;
+}
+.facecheck div:nth-child(9) {
+    top: 0.04rem;
+    left: 2.6rem
+}
+.facecheck div:nth-child(11) {
+    top: 0.04rem;
+    left: 3.2rem;
+}
+.facecheck div:nth-child(4) {
+    top: 1.15rem;
+    left: 1.05rem;
+}
+.facecheck div:nth-child(7) {
+    top: 1.15rem;
+    left: 2.15rem;
+}
+.facecheck div:nth-child(12) {
+    top: 1.15rem;
+    left: 3.5rem;
+}
+.facecheck div:nth-child(14) {
+    top: 1.15rem;
+    left: 4.7rem;
+}
+.facecheck div:nth-child(5) {
+    top: 2.25rem;
+    left: 1.3rem;
+}
+.facecheck div:nth-child(8) {
+    top: 2.25rem;
+    left: 2.1rem;
+}
+.facecheck div:nth-child(10) {
+    top: 2.25rem;
+    left: 2.7rem;
+}
+.facecheck div:nth-child(13) {
+    top: 2.25rem;
+    left: 3.2rem
+}
+.facecheck div:nth-child(17) {
+    top: 0.12rem;
+    left: 7.1rem;
+}
+.facecheck div:nth-child(19) {
+    top: 0.12rem;
+    left: 7.9rem;
+}
+.facecheck div:nth-child(15) {
+    top: 0.9rem;
+    left: 6.9rem;
+}
+.facecheck div:nth-child(15) {
+    top: 0.9rem;
+    left: 6.9rem;
+}
+.facecheck div:nth-child(20) {
+    top: 0.9rem;
+    left: 7.7rem;
+}
+.facecheck div:nth-child(16) {
+    top: 1.5rem;
+    left: 6.9rem;
+}
+.facecheck div:nth-child(21) {
+    top: 1.5rem;
+    left: 7.7rem;
+}
+.facecheck div:nth-child(18) {
+    top: 2.2rem;
+    left: 7.1rem;
+}
+.facecheck div:nth-child(22) {
+    top: 2.2rem;
+    left: 7.9rem;
+}
+.mod-re-lists p{
+	font-size: 0.35rem;
 }

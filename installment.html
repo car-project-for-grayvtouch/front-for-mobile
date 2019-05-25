@@ -6,17 +6,22 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>分期购车</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/installment.css">
+	<link rel="stylesheet" type="text/css" href="dist/styles/iview.css">
+	<script type="text/javascript" src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/installment.css">
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/screeningCondition.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_hnvxccisg1p.js"></script>
 </head>
 <body>
 	<div id="installment" v-cloak>
@@ -28,7 +33,7 @@
 			    <use xlink:href="#icon-caidan"></use>
 			</svg>
 			<div class="person">
-				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 				<a v-else href="personalCenter.html">
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-yidenglu"></use>
@@ -59,7 +64,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="buy.html">
+								<a href="buy.html" @click="navTobuy">
 									<svg class="icon" aria-hidden="true">
 									    <use xlink:href="#icon-car"></use>
 									</svg>
@@ -99,7 +104,10 @@
 								</a>
 							</li>
 							<li>
-								<a href="#">
+								
+							</li>
+							<li>
+								<a href="">
 								</a>
 							</li>
 						</ul>
@@ -110,24 +118,51 @@
 				<div class="login-page" v-if="loginshow">
 					<div class="loginMask" v-on:click="loginshow = !loginshow">
 					</div>
-					<div class="login">
+					
+					<div class="login" v-if="!regist">
 						<div class="close" v-on:click="loginshow = !loginshow">
 							<svg class="icon" aria-hidden="true">
 								<use xlink:href="#icon-close"></use>
 							</svg>
 						</div>
-						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
-							<input type="button" class="getcode" value="获取验证码" />
+							<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 						</div>
 						<div class="login-item">
-							<input type="button" class="btn-login" value="登录" v-on:click="login()">
+							<input type="password" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 						</div>
 						<div class="login-tips">
-							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+							<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
+						</div>
+					</div>
+					<div class="login" v-else>
+						<div class="close" v-on:click="loginshow = !loginshow">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-close"></use>
+							</svg>
+						</div>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
+						</div>
+						<div class="login-item">
+							<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
+						</div>
+						<div class="login-item">
+							<input type="password" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('register')" @click="register()">
+						</div>
+						<div class="login-tips">
+							<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 						</div>
 					</div>
 				</div>
@@ -135,134 +170,116 @@
 		</div>
 		<img class="ins-carimg" src="images/index_masthead0cn.jpg" alt="car">
 		<div class="ins-info">
-			<p class="service">请确保您的手机号可用，支持中国，美国手机号</p>
+			<p class="service">{{$t('loan.service')}}</p>
 			<ul>
 				<li>
-					<input class="input" type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
+					<input class="input" type="text" name="phoneNum" v-model="postbody.phone" :placeholder="$t('loan.pphone')"/>
+				</li>
+				<li>
+					<input class="input" type="text" name="phoneNum" v-model="postbody.weixin" :placeholder="$t('loan.weixin')"/>
 				</li>
 				<li>
 					<div class="checkcode">
-						<input class="input" type="text" name="check" id="check" placeholder="请输入您的验证码"/>
-						<img src="images/check.jpg" >
+						<input class="input" type="text" name="check" v-model="postbody.verify_code" :placeholder="$t('loan.verifyCode')"/>
+						<img :src="verifyImg" @click="getVerifyImg" >
 					</div>
 				</li>
 				<li>
-					<label>选择你的身份</label>
+					<label>{{$t('loan.identity')}}</label>
 					<div class="choose-radio">
-						<input type="radio" id="one" value="One" v-model="picked">
-						<label class="mr" for="one">平民</label>
-						<input type="radio" id="two" value="Two" v-model="picked">
-						<label class="mr" for="two">国王</label>
-						<input type="radio" id="three" value="Three" v-model="picked">
-						<label class="mr" for="three">工作</label>
-						<input type="radio" id="four" value="Four" v-model="picked">
-						<label class="mr" for="four">流浪</label>
+						<Radio-Group v-model="cprofession" @on-change="changeProfession">
+							<Radio :label="$t('loan.work')"></Radio>
+							<Radio :label="$t('loan.student')"></Radio>
+						</Radio-Group>
 					</div>
 				</li>
 				<li>
-					<label>是否有SSN</label>
+					<label>{{$t('loan.ssn')}}</label>
 					<div class="choose-radio">
-						<input type="radio" id="one" value="One" v-model="ssnpicked">
-						<label class="mr" for="one">是</label>
-						<input type="radio" id="two" value="Two" v-model="ssnpicked">
-						<label class="mr" for="two">否</label>
+						<Radio-Group v-model="cssn" @on-change="changeSsn">
+							<Radio :label="$t('loan.yes')"></Radio>
+							<Radio :label="$t('loan.no')"></Radio>
+						</Radio-Group>
 					</div>
 				</li>
-				<button class="submit" type="button">立即申请</button>
+				<button class="submit" type="button" @click="post">{{$t('loan.apply')}}</button>
 				<li>
 					<div class="trait">
 						<div class="img-item">
 							<svg class="icon" aria-hidden="true">
 								<use xlink:href="#icon-shoufu"></use>
 							</svg>
-							<span>低首付</span>
+							<span>{{$t('loan.paymentc')}}</span>
 						</div>
 						<div class="img-item">
 							<svg class="icon" aria-hidden="true">
 								<use xlink:href="#icon-yuegongdai"></use>
 							</svg>
-							<span>低月供</span>
+							<span>{{$t('loan.lendingc')}}</span>
 						</div>
 						<div class="img-item">
 							<svg class="icon" aria-hidden="true">
 							    <use xlink:href="#icon-yiduiyifuwu"></use>
 							</svg>
-							<span>一对一服务</span>
+							<span>{{$t('loan.customizedc')}}</span>
 						</div>
 					</div>
 				</li>
 				<li>
 					<div class="loan-process">
-						<div class="title">贷款流程</div>
+						<div class="title">{{$t('loan.loanProcess')}}</div>
 						<div class="img-item">
-							<span><div class="step-num">1</div>30秒申请</span>
-							<p>在线填写4项基本信息（姓名、身份证号、储蓄卡号、手机号)，秒出结果</p>
+							<span><div class="step-num">1</div>{{$t('loan.tapply')}}</span>
+							<p>{{$t('loan.tapplyc')}}</p>
 						</div>
 						<div class="img-item">
-							<span><div class="step-num">2</div>预约看车</span>
-							<p>在线挑选爱车，线下售车顾问一对一全程陪同讲解</p>
+							<span><div class="step-num">2</div>{{$t('loan.Telephone')}}</span>
+							<p>{{$t('loan.Telephonec')}}</p>
 						</div>
 						<div class="img-item">
-							<span><div class="step-num">3</div>线上审批</span>
-							<p>资料提交后立即审批，免流水、免家访，最快30分钟出结果</p>
+							<span><div class="step-num">3</div>{{$t('loan.approval')}}</span>
+							<p>{{$t('loan.approvalc')}}</p>
 						</div>
 						<div class="img-item">
-							<span><div class="step-num">4</div>放款提车</span>
-							<p>瓜子助您完成车辆过户、抵押等手续后，当天放款</p>
+							<span><div class="step-num">4</div>{{$t('loan.pickup')}}</span>
+							<p>{{$t('loan.pickupc')}}</p>
 						</div>
 					</div>
 				</li>
 			</ul>
 		</div>
 		<div class="contact">
-			<div class="top">
-					<div class="logo"><img src="images/logor.png" ></div>
-				<div class="wx">
-					<a href="#">
-						<img src="images/humacar.png" >
-						<span>CAR</span>
-					</a>
+				<div class="top">
+						<div class="logo"><img src="images/logor.png" ></div>
+					<div class="wx">
+						<a>
+							<img src="images/wximg.jpg" >
+							<span>{{$t('champion')}}</span>
+						</a>
+					</div>
+					<div class="phone">
+						<a>
+							<img src="images/phone.png" >
+							<span>{{$t('addressphone')}}</span>
+						</a>
+					</div>
 				</div>
-				<div class="phone">
-					<a href="#">
-						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
-					</a>
 				</div>
+			<div class="adress">
+				<ul>
+					<img src="images/address.png" >
+				</ul>
 			</div>
+			<div class="misc">
+				<ul>
+					<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+				</ul>
 			</div>
-		<div class="adress">
-			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-			</ul>
-		</div>
-		<div class="misc">
-			<ul>
-				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
-			</ul>
-		</div>
-		<div class="copy">
-			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
-		</div>
+			<div class="copy">
+				<span>
+		    Copyright@2019 CHAMPION Inc. Privacy Terms
+		</span>
+			</div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -276,66 +293,133 @@
 			enshow: "english",
 			loginshow: false,
 			switchlogin: true,
+			compact: false,
+			regist: false,
 			logindata: {
-				phonenum:'',
-				checkcode:''
+				username: '',
+				password: '',
+				remember: 'y'
 			},
+			registerdata: {
+				username: '',
+				password: ''
+			},
+			postbody: {
+				phone: '',
+				weixin: '',
+				profession: '',
+				ssn: '',
+				verify_code_key: '',
+				verify_code: ''
+			},
+			verifyImg: '',
+			cprofession: '',
+			cssn: '',
 			picked: '',
 			ssnpicked: '',
 		},
 		mounted() {
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
-			}
+			orifun.initStatu(this);
+			this.getVerifyImg();
 		},
 		methods: {
-			login: function() {
-				if(this.logindata.phonenum == ''){
-					alert("请填写手机号!");
-					return;
+			changeProfession: function(){
+				if(this.cprofession == "学生"){
+					this.postbody.profession = 'student';
+				}else if(this.cprofession == "工作"){
+					this.postbody.profession = 'work';
+				}else{
+					this.postbody.profession = this.cprofession;
 				}
-				else if(this.logindata.checkcode == ''){
-					alert("请填写验证码!");
-					return;
-				}
-				this.switchlogin = !this.switchlogin;
-				this.loginshow = !this.loginshow;
-				alert('登录成功!');
-				localStorage.login = true;
 			},
-			change :function() {
-			    this.enshow = this.enshow == 'english' ? "中文" : "english";
-			    var that = this;
-			    setTimeout(function(){
-					if(i18n.locale == 'en'){
-						i18n.locale = 'zh-cn';
-					}else if(i18n.locale == 'zh-cn'){
-						i18n.locale = 'en';
-					}
-					localStorage.locale = i18n.locale;
-			    },1100)
+			changeSsn: function(){
+				if(this.cssn == "是" || this.cssn == "yes"){
+					this.postbody.ssn = 'y';
+				}else if(this.cssn == "否" || this.cssn == "no"){
+					this.postbody.ssn = 'n';
+				}else{
+					this.postbody.ssn = this.cssn;
+				}
+			},
+			post: function(){
+				var that = this;
+				if(!localStorage.token){
+					that && that.$Message.warning(orifun.getInfo('Please log in before apply!','请登录后进行申请!'));
+					return;
+				}
+				if(this.postbody.verify_code_key == ''){
+					that && that.$Message.warning(orifun.getInfo('The verification code has not been refreshed!','验证码尚未刷新!'));
+					return;
+				}
+				if(this.postbody.phone == ''){
+					that && that.$Message.warning(orifun.getInfo('The cell phone number cannot be empty!','手机号不能为空!'));
+					return;
+				}
+				if(this.postbody.weixin == ''){
+					that && that.$Message.warning(orifun.getInfo('WeChat ID cannot be empty!','微信号不能为空!'));
+					return;
+				}
+				if(this.postbody.verify_code == ''){
+					that && that.$Message.warning(orifun.getInfo('The verification code cannot be empty!','验证码不能为空!'));
+					return;
+				}
+				console.log(this.postbody.profession)
+				if(this.postbody.profession == ''){
+					that && that.$Message.warning(orifun.getInfo('Please select your identity!','请选择您的身份!'));
+					return;
+				}
+				if(this.postbody.ssn == ''){
+					that && that.$Message.warning(orifun.getInfo('Select whether there is an SSN!','请选择是否有SSN!'));
+					return;
+				}
+				// console.log(this.postbody)
+				data.common('CarWithAuth/stagingBuyApplication',function(d){
+					console.log(d)
+						if(d.code !== 400){
+							that.$Notice.success({
+								title: orifun.getInfo('Application is successful!','申请成功! '),
+							});
+						}else{
+							var s = '';
+							for(var k in d.data){
+								s = s + d.data[k];
+							}
+							that.$Message.warning(s);
+						}
+				},this.postbody)
+			},
+			getVerifyImg: function(){
+				var that = this;
+				data.common('Misc/verifyCode',function(d){
+					// console.log(d)
+						if(d.code !== 400){
+							that.verifyImg = d.img;
+							that.postbody.verify_code_key = d.key;
+						}else{
+							console.log('请求验证码失败')
+						}
+				})
+			},
+			navTobuy: function(){
+				orifun.initpostbody();
 			},
 			top:function(){
-				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 700);
+				orifun.top(this);
+			},
+			login: function() {
+				orifun.login(this);
+			},
+			register: function() {
+				orifun.register(this);
+			},
+			change :function() {
+				orifun.change(this);
 			},
 			consult:function(){
-				this.botshow = !this.botshow;
-				setTimeout(function(){
-					alert("功能完善中！")
-				},700)
+				orifun.consult(this);
+			},
+			lrswitch:function(e){
+				orifun.lrswitch(this,e);
 			}
 		}
 	}).$mount('#installment')

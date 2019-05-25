@@ -6,19 +6,23 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>检查报告</title>
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-		<script src="js/flexible.js"></script>
-		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-		<script type="text/javascript" src="js/vue.js"></script>
-		<script type="text/javascript" src="js/global.js"></script>
-		<script src="js/vue-i18n.js"></script>
-		<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/swiper.min.js"></script>
-		<script src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
+		<link rel="stylesheet" href="dist/styles/iview.css">
 		<link rel="stylesheet" href="css/swiper.min.css">
 		<link rel="stylesheet" href="css/header.css">
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" href="css/footer.css">
 		<link rel="stylesheet" href="css/report.css">
+		<script type="text/javascript" src="js/flexible.js"></script>
+		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/vue-i18n.js"></script>
+		<script type="text/javascript" src="js/screeningCondition.js"></script>
+		<script type="text/javascript" src="js/language.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
+		<script type="text/javascript" src="dist/iview.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_ohuyan4wjp.js"></script>
 	</head>
 	<body>
 		<div id="about" v-cloak>
@@ -26,13 +30,11 @@
 				<div class="logos">
 					<img class="logor" src="images/logor.png">
 				</div>
-				<a href="javascript:history.back()">
-					<svg class="icon back" aria-hidden="true">
-						<use xlink:href="#icon-fanhui"></use>
-					</svg>
-				</a>
+				<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
+				    <use xlink:href="#icon-caidan"></use>
+				</svg>
 				<div class="person">
-					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 					<a v-else href="personalCenter.html">
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-yidenglu"></use>
@@ -40,36 +42,128 @@
 					</a>
 				</div>
 				<transition name="fade" mode="out-in">
-					<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
+						<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
 				</transition>
 				<transition name="fadel" mode="out-in">
-					<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
+				<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
 				</transition>
 				<transition name="fadeo" mode="out-in">
-					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
+						<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
+				</transition>
+				<transition name="slide-fade">
+					<div v-if="show">
+						<div class="mask" v-on:click="show = !show">
+						</div>
+						<div class="nav-menu">
+							<ul>
+								<li>
+									<a href="index.html">
+										<svg class="icon" aria-hidden="true">
+										    <use xlink:href="#icon-xiazai45"></use>
+										</svg>
+										<span>{{ $t("header.home") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="buy.html" @click="navTobuy">
+										<svg class="icon" aria-hidden="true">
+										    <use xlink:href="#icon-car"></use>
+										</svg>
+										<span>{{ $t("header.buy") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="sale.html">
+										<svg class="icon" aria-hidden="true">
+										    <use xlink:href="#icon-maiche"></use>
+										</svg>
+										<span>{{ $t("header.sale") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="bargain.html">
+										<svg class="icon" aria-hidden="true">
+										    <use xlink:href="#icon-cart"></use>
+										</svg>
+										<span>{{ $t("header.bargain") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="installment.html">
+										<svg class="icon" aria-hidden="true">
+										    <use xlink:href="#icon-huankuanri"></use>
+										</svg>
+										<span>{{ $t("header.hire") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="about.html">
+										<svg class="icon" aria-hidden="true">
+										    <use xlink:href="#icon-chehangBmen"></use>
+										</svg>
+										<span>{{ $t("header.about") }}</span>
+									</a>
+								</li>
+								<li>
+									
+								</li>
+								<li>
+									<a href="">
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</transition>
 				<transition name="searchfade">
 					<div class="login-page" v-if="loginshow">
 						<div class="loginMask" v-on:click="loginshow = !loginshow">
 						</div>
-						<div class="login">
+						
+						<div class="login" v-if="!regist">
 							<div class="close" v-on:click="loginshow = !loginshow">
 								<svg class="icon" aria-hidden="true">
 									<use xlink:href="#icon-close"></use>
 								</svg>
 							</div>
-							<div class="login-item">
-								<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号" />
+							<div class="l-switch">
+								<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+								<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 							</div>
 							<div class="login-item">
-								<input type="number" class="defa getcodeinp" v-model="logindata.checkcode" placeholder="验证码" />
-								<input type="button" class="getcode" value="获取验证码" />
+								<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 							</div>
 							<div class="login-item">
-								<input type="button" class="btn-login" value="登录" v-on:click="login()">
+								<input type="password" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
+							</div>
+							<div class="login-item">
+								<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 							</div>
 							<div class="login-tips">
-								<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+								<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
+							</div>
+						</div>
+						<div class="login" v-else>
+							<div class="close" v-on:click="loginshow = !loginshow">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-close"></use>
+								</svg>
+							</div>
+							<div class="l-switch">
+								<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+								<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
+							</div>
+							<div class="login-item">
+								<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
+							</div>
+							<div class="login-item">
+								<input type="password" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
+							</div>
+							<div class="login-item">
+								<input type="button" class="btn-login" :value="$t('register')" @click="register()">
+							</div>
+							<div class="login-tips">
+								<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 							</div>
 						</div>
 					</div>
@@ -78,21 +172,15 @@
 			<div class="checkcar">
 				<div id="chekuang" class="layout-item  active">
 					<section class="column report-info">
-						<p>
-
-							<span class="re-car-name">哈弗H6 2018款 30周年年型 Sportback 35 TFSI 时尚型</span>
+						<p class="re-car-name">
+							<span>{{$t("detail.vtr")}}
 						</p>
-						<p>
-							<span class="re-tit">检测时间：</span>
-							<span class="report-con">2019-03-30</span>
+						<p class="re-car-name re-d">
+							<span>{{$t("detail.dm") + '：'}}{{$t("detail.topinfo.name")}}</span>
 						</p>
-						<p>
-							<span class="re-tit">评估结论：</span>
-							<span class="report-con">检测此车无泡水,无火烧,无事故,无调表,
-								车辆结构:正常
-								车辆配置:正常
-								车辆外观:正常
-								因各地车辆排放标准不同,如需外迁,买方核实车辆实际排放标准.</span>
+						<p class="">
+							<span class="re-tit"><span>{{$t("detail.dt") + '：'}}</span></span>
+							<span class="report-con">{{$t("detail.reportTime")}}</span>
 						</p>
 					</section>
 
@@ -101,22 +189,22 @@
 					<!--初检：非外观   复检：严选,或者非外观-->
 					<section class="column report-detail report-detail-b" id="detail_accident">
 						<div class="column-head">
-							<div class="column-title">事故排查</div>
+							<div class="column-title">{{$t("detail.reportresult[0].name")}}</div>
 						</div>
 						<div class="re-desc">
 							<!-- 只有命中了4.0.0版本才show-->
-							修复需要一定成本，可能对车辆性能造成影响
+							{{$t("detail.reportresult[0].result")}}
 						</div>
 						<div class="mod-re-lists showNotice">
 							<div class="re-list">
 								<a href="javaScript:;" class="j-re-list">
-									<p>排除重大事故</p>
+									<p>{{$t('detail.accidentTime')}}</p>
 									<div class="unormal-right">
 									</div>
 									<div>
 										<!--<span>27项-->
 
-										<span>27项</span>
+										<span>{{$t('detail.accidentArrone').length}}{{$t('detail.item')}}</span>
 										<svg class="allicon" aria-hidden="true">
 											<use xlink:href="#icon-tubiao-"></use>
 										</svg>
@@ -132,396 +220,20 @@
 								<!-- 隐藏的弹层 -->
 								<div class="re-depoly">
 									<ul>
-										<li class="li-normal">
-											右前纵梁梁头连接板
-											<i>
+										<li class="li-normal" v-for="item in $t('detail.accidentArrone')">
+											{{item.name}}
+											<i v-if="item.item[0].value == 'normal'">
 												<svg class="icon" aria-hidden="true">
 													<use xlink:href="#icon-tubiao-"></use>
 												</svg>
 											</i>
-										</li>
-										<li class="li-normal">
-											左前纵梁梁头连接板
-											<i>
+											<i v-else>
 												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
+													<use xlink:href="#icon-gantan"></use>
 												</svg>
 											</i>
 										</li>
-										<li class="li-normal">
-											左前翼子板支架
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右前翼子板支架
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											左前减震器座
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右前减震器座
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											左前纵梁
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右前纵梁
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											防火墙
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右A柱主体及封边
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右B柱封边
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右车顶边梁
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右C柱主体及封边
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右D柱主体及封边
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右侧底边梁封边
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右后翼子板内衬
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											左后翼子板内衬
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											后备箱底板
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											右后纵梁
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											左后纵梁
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											车顶检测
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											左D柱主体及封边
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											左C柱主体及封边
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											左车顶边梁
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											左B柱封边
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											左A柱主体及封边
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											左侧底边梁封边
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="re-list">
-								<a href="javaScript:;" class="j-re-list">
-									<p>排除泡水火烧</p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>18项-->
-
-										<span>18项</span>
-										<svg class="allicon" aria-hidden="true">
-											<use xlink:href="#icon-tubiao-"></use>
-										</svg>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-
-
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-normal">
-											发动机主线束
-											<i>
-												<svg class="icon" aria-hidden="true">
-													<use xlink:href="#icon-tubiao-"></use>
-												</svg>
-											</i>
-										</li>
-										<li class="li-normal">
-											防火墙隔音棉
-											<i></i>
-										</li>
-										<li class="li-normal">
-											车辆覆盖件及驾驶舱
-											<i></i>
-										</li>
-										<li class="li-normal">
-											发动机线束及橡胶制品
-											<i></i>
-										</li>
-										<li class="li-normal">
-											发动机舱
-											<i></i>
-										</li>
-										<li class="li-normal">
-											后备箱边角及备胎槽
-											<i></i>
-										</li>
-										<li class="li-normal">
-											座椅滑轨及安装螺丝
-											<i></i>
-										</li>
-										<li class="li-normal">
-											车内线束
-											<i></i>
-										</li>
-										<li class="li-normal">
-											安全带底部
-											<i></i>
-										</li>
-										<li class="li-normal">
-											全车座椅坐垫
-											<i></i>
-										</li>
-										<li class="li-normal">
-											保险盒及OBD接口
-											<i></i>
-										</li>
-										<li class="li-normal">
-											车内保险盒
-											<i></i>
-										</li>
-										<li class="li-normal">
-											全车地胶地毯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											点烟器底座
-											<i></i>
-										</li>
-										<li class="li-normal">
-											踏板支架
-											<i></i>
-										</li>
-										<li class="li-normal">
-											转向柱
-											<i></i>
-										</li>
-										<li class="li-normal">
-											综合判断是否为泡水车
-											<i></i>
-										</li>
-										<li class="li-normal">
-											保养记录泡水维修
-											<i></i>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="re-list">
-								<a href="javaScript:;" class="j-re-list">
-									<p>调表排查</p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>11项-->
-
-										<span>11项</span>
-										<svg class="allicon" aria-hidden="true">
-											<use xlink:href="#icon-tubiao-"></use>
-										</svg>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-
-
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-normal">
-											制动盘片磨损
-											<i></i>
-										</li>
-										<li class="li-normal">
-											方向盘磨损
-											<i></i>
-										</li>
-										<li class="li-normal">
-											档把磨损
-											<i></i>
-										</li>
-										<li class="li-normal">
-											手刹杆磨损
-											<i></i>
-										</li>
-										<li class="li-normal">
-											脚踏板磨损
-											<i></i>
-										</li>
-										<li class="li-normal">
-											门把手磨损
-											<i></i>
-										</li>
-										<li class="li-normal">
-											门窗按钮磨损
-											<i></i>
-										</li>
-										<li class="li-normal">
-											中控按钮磨损
-											<i></i>
-										</li>
-										<li class="li-normal">
-											里程表
-											<i></i>
-										</li>
-										<li class="li-normal">
-											综合判断是否为调表车
-											<i></i>
-										</li>
-										<li class="li-normal">
-											OBD里程数差异
-											<i></i>
-										</li>
+										
 									</ul>
 								</div>
 							</div>
@@ -530,22 +242,25 @@
 					<!--初检：非外观   复检：严选,或者非外观-->
 					<section class="column report-detail report-detail-b" id="detail_slight">
 						<div class="column-head">
-							<div class="column-title">轻微碰撞</div>
+							<div class="column-title">{{$t('detail.reportresult[1].name')}}</div>
 						</div>
 						<div class="re-desc">
 							<!-- 只有命中了4.0.0版本才show-->
-							车辆加固部件，修复后对车辆行驶安全影响不大
+							{{$t('detail.reportresult[1].result')}}
 						</div>
 						<div class="mod-re-lists showNotice">
 							<div class="re-list ">
 								<a href="javaScript:;" class="j-re-list">
-									<p>轻微碰撞</p>
+									<p>{{$t('detail.facecheckTime')}}</p>
 									<div class="unormal-right">
 									</div>
 									<div>
 										<!--<span>21项-->
 
-										<span>21项</span>
+										<span>{{$t('detail.facecheck').length}}{{$t('detail.item')}}</span>
+										<svg class="allicon" aria-hidden="true">
+											<use xlink:href="#icon-tubiao-"></use>
+										</svg>
 										<i class="normal">
 											<svg class="icon" aria-hidden="true">
 												<use xlink:href="#icon-down"></use>
@@ -556,781 +271,185 @@
 									</div>
 								</a>
 								<!-- 隐藏的弹层 -->
+								<div class="re-depoly r-content facecheck-c">
+									<div class="title">
+										<div class="title-item">
+											<div class="node normal"></div>
+											<span class="texts">{{$t('detail.normal')}}</span>
+										</div>
+										<div class="title-item">
+											<div class="node repair"></div>
+											<span class="texts">{{$t('detail.repair')}}</span>
+										</div>
+										<div class="title-item">
+											<div class="node update"></div>
+											<span class="texts">{{$t('detail.update')}}</span>
+										</div>
+										<div class="title-item">
+											<div class="node norepair"></div>
+											<span class="texts">{{$t('detail.norepair')}}</span>
+										</div>
+									</div>
+									<div class="facecheck">
+										<img src="images/report_body.png" >
+										<div v-for="item in $t('detail.facecheck')">
+											<span v-if="item.value == 'one'" style="background-color: #7FD441;"></span>
+											<span v-else-if="item.value == 'two'" style="background-color: #b2cce5;"></span>
+											<span v-if="item.value == 'three'" style="background-color: #ffb2b2;"></span>
+											<span v-if="item.value == 'four'" style="background-color: #ff9900;"></span>
+										</div>
+									</div>
+								</div>
+								<!-- <div class="re-depoly facecheck">
+									<ul>
+										<li class="li-normal" v-for="item in $t('detail.facecheck')">
+											{{item.name}}
+											<span v-if="item.value == 'one'" style="background-color: #7FD441;"></span>
+											<span v-else-if="item.value == 'two'" style="background-color: #b2cce5;"></span>
+											<span v-if="item.value == 'three'" style="background-color: #ffb2b2;"></span>
+											<span v-if="item.value == 'four'" style="background-color: #ff9900;"></span>
+										</li>
+									</ul>
+								</div> -->
+							</div>
+						</div>
+					</section>
+					<section class="column report-detail report-detail-b" id="detail_accident">
+						<div class="column-head">
+							<div class="column-title">{{$t("detail.reportresult[2].name")}}</div>
+						</div>
+						<div class="re-desc">
+							<!-- 只有命中了4.0.0版本才show-->
+							{{$t("detail.reportresult[2].result")}}
+						</div>
+						<div class="mod-re-lists showNotice">
+							<div class="re-list">
+								<a href="javaScript:;" class="j-re-list">
+									<p>{{$t('detail.autodeviceTime')}}</p>
+									<div class="unormal-right">
+									</div>
+									<div>
+										<span>{{$t('detail.autodeviceone').length + 
+										$t('detail.autodevicetwo').length + 
+										$t('detail.autodevicethree').length + 
+										$t('detail.autodevicefour').length + 
+										$t('detail.autodevicefive').length + 
+										$t('detail.autodevicesix').length}}{{$t('detail.item')}}</span>
+										<svg class="allicon" aria-hidden="true">
+											<use xlink:href="#icon-tubiao-"></use>
+										</svg>
+										<i class="normal">
+											<svg class="icon" aria-hidden="true">
+												<use xlink:href="#icon-down"></use>
+											</svg>
+										</i>
+									</div>
+								</a>
+								<!-- 隐藏的弹层 -->
 								<div class="re-depoly">
 									<ul>
-										<li class="li-normal">
-											前防撞梁
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.autodeviceone')">
+											<span>{{item.desc}}</span>
+											<i  v-if="item.value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
-										<li class="li-normal">
-											水箱框架
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.autodevicetwo')">
+											<span>{{item.desc}}</span>
+											<i  v-if="item.value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
-										<li class="li-normal">
-											左前翼子板内衬
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.autodevicethree')">
+											<span>{{item.desc}}</span>
+											<i  v-if="item.value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
-										<li class="li-normal">
-											右前翼子板内衬
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.autodevicefour')">
+											<span>{{item.desc}}</span>
+											<i  v-if="item.value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
-										<li class="li-normal">
-											右A柱覆盖面
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.autodevicefive')">
+											<span>{{item.desc}}</span>
+											<i  v-if="item.value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
-										<li class="li-normal">
-											右B柱覆盖面
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右C柱覆盖面
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右D柱覆盖面
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右侧底边梁(金属)
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右侧门槛梁
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右侧底大边(非金属)
-											<i></i>
-										</li>
-										<li class="li-normal">
-											后围板
-											<i></i>
-										</li>
-										<li class="li-normal">
-											后防撞梁
-											<i></i>
-										</li>
-										<li class="li-normal">
-											后备箱导水槽
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左D柱覆盖面
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左C柱覆盖面
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左B柱覆盖面
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左A柱覆盖面
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左侧底边梁(金属)
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左侧门槛梁
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左侧底大边(非金属)
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.autodevicesix')">
+											<span>{{item.desc}}</span>
+											<i  v-if="item.value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					</section>
-					<!--初检：非外观   复检：严选,或者非外观-->
-					<section class="column report-detail report-detail-b" id="detail_easyWear">
+					<section class="column report-detail report-detail-b" id="detail_accident">
 						<div class="column-head">
-							<div class="column-title">易损耗部件</div>
+							<div class="column-title">{{$t("detail.reportresult[3].name")}}</div>
 						</div>
 						<div class="re-desc">
 							<!-- 只有命中了4.0.0版本才show-->
-							车辆损耗部件，保养修复后可保障车辆各方面性能及行驶安全
+							{{$t("detail.reportresult[3].result")}}
 						</div>
 						<div class="mod-re-lists showNotice">
-							<div class="re-list ">
+							<div class="re-list">
 								<a href="javaScript:;" class="j-re-list">
-									<p>易损耗部件</p>
+									<p style="font-size: 0.35rem;">{{$t('detail.dirveSysTime')}}</p>
 									<div class="unormal-right">
 									</div>
 									<div>
-										<!--<span>18项-->
-
-										<span>18项</span>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-
-
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-normal">
-											左前减震器
-											<i></i>
-										</li>
-										<li class="li-normal">
-											气门室盖垫
-											<i></i>
-										</li>
-										<li class="li-normal">
-											发动机缸垫
-											<i></i>
-										</li>
-										<li class="li-normal">
-											发动机外围皮带
-											<i></i>
-										</li>
-										<li class="li-normal">
-											水箱
-											<i></i>
-										</li>
-										<li class="li-normal">
-											水箱水管
-											<i></i>
-										</li>
-										<li class="li-normal">
-											转向助力泵
-											<i></i>
-										</li>
-										<li class="li-normal">
-											助力油壶
-											<i></i>
-										</li>
-										<li class="li-normal">
-											制动油壶
-											<i></i>
-										</li>
-										<li class="li-normal">
-											电瓶（极柱）
-											<i></i>
-										</li>
-										<li class="li-normal">
-											冷凝器
-											<i></i>
-										</li>
-										<li class="li-normal">
-											发动机油底壳
-											<i></i>
-										</li>
-										<li class="li-normal">
-											机油
-											<i></i>
-										</li>
-										<li class="li-normal">
-											防冻液
-											<i></i>
-										</li>
-										<li class="li-normal">
-											变速箱油底壳
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右前减震器
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右后减震器
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左后减震器
-											<i></i>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</section>
-					<!--初检：非外观   复检：严选,或者非外观-->
-					<section class="column report-detail report-detail-b" id="detail_function">
-						<div class="column-head">
-							<div class="column-title">常用功能</div>
-						</div>
-						<div class="re-desc">
-							<!-- 只有命中了4.0.0版本才show-->
-						</div>
-						<div class="mod-re-lists showNotice">
-							<div class="re-list ">
-								<a href="javaScript:;" class="j-re-list">
-									<p>安全系统</p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>15项-->
-
-										<span>15项</span>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-
-
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-normal">
-											驾驶座安全气囊
-											<i></i>
-										</li>
-										<li class="li-normal">
-											副驾驶安全气囊
-											<i></i>
-										</li>
-										<li class="li-notest">
-											前排侧气囊
-											<i></i>
-										</li>
-										<li class="li-notest">
-											后排侧气囊
-											<i></i>
-										</li>
-										<li class="li-notest">
-											前排头部气囊
-											<i></i>
-										</li>
-										<li class="li-notest">
-											后排头部气囊
-											<i></i>
-										</li>
-										<li class="li-normal">
-											胎压监测
-											<i></i>
-										</li>
-										<li class="li-normal">
-											中控锁
-											<i></i>
-										</li>
-										<li class="li-normal">
-											儿童座椅接口
-											<i></i>
-										</li>
-										<li class="li-notest">
-											无钥匙启动
-											<i></i>
-										</li>
-										<li class="li-notest">
-											无钥匙进入系统
-											<i></i>
-										</li>
-										<li class="li-normal">
-											遥控钥匙
-											<i></i>
-										</li>
-										<li class="li-normal">
-											防抱死系统(ABS)
-											<i></i>
-										</li>
-										<li class="li-normal">
-											车身稳定控制(ESP)
-											<i></i>
-										</li>
-										<li class="li-notest">
-											电子驻车制动
-											<i></i>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="re-list ">
-								<a href="javaScript:;" class="j-re-list">
-									<p>外部配置</p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>26项-->
-
-										<span>26项</span>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-
-
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-normal">
-											左前轮胎
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左前轮毂
-											<i></i>
-										</li>
-										<li class="li-normal">
-											前风挡玻璃
-											<i></i>
-										</li>
-										<li class="li-normal">
-											天窗玻璃
-											<i></i>
-										</li>
-										<li class="li-normal">
-											车辆改装
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右前轮胎
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右前轮毂
-											<i></i>
-										</li>
-										<li class="li-normal">
-											同轴花纹一致
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右后轮胎
-											<i></i>
-										</li>
-										<li class="li-normal">
-											右后轮毂
-											<i></i>
-										</li>
-										<li class="li-normal">
-											后风挡玻璃
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左后轮胎
-											<i></i>
-										</li>
-										<li class="li-normal">
-											左后轮毂
-											<i></i>
-										</li>
-										<li class="li-notest">
-											全景天窗
-											<i></i>
-										</li>
-										<li class="li-normal">
-											感应雨刷
-											<i></i>
-										</li>
-										<li class="li-normal">
-											后雨刷
-											<i></i>
-										</li>
-										<li class="li-normal">
-											前电动车窗
-											<i></i>
-										</li>
-										<li class="li-normal">
-											后电动车窗
-											<i></i>
-										</li>
-										<li class="li-normal">
-											后视镜电动调节
-											<i></i>
-										</li>
-										<li class="li-notest">
-											后视镜电动折叠
-											<i></i>
-										</li>
-										<li class="li-notest">
-											后视镜加热
-											<i></i>
-										</li>
-										<li class="li-notest">
-											电动吸合门
-											<i></i>
-										</li>
-										<li class="li-notest">
-											后排侧遮阳帘
-											<i></i>
-										</li>
-										<li class="li-notest">
-											感应后备箱
-											<i></i>
-										</li>
-										<li class="li-normal">
-											电动天窗
-											<i></i>
-										</li>
-										<li class="li-notest">
-											电动后备箱
-											<i></i>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="re-list ">
-								<a href="javaScript:;" class="j-re-list">
-									<p>内部配置</p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>19项-->
-
-										<span>19项</span>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-
-
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-normal">
-											维修保养记录里程
-											<i></i>
-										</li>
-										<li class="li-notest">
-											皮质座椅
-											<i></i>
-										</li>
-										<li class="li-notest">
-											前排座椅加热
-											<i></i>
-										</li>
-										<li class="li-notest">
-											座椅通风
-											<i></i>
-										</li>
-										<li class="li-normal">
-											驾驶座座椅电动调节
-											<i></i>
-										</li>
-										<li class="li-normal">
-											多功能方向盘
-											<i></i>
-										</li>
-										<li class="li-notest">
-											定速巡航
-											<i></i>
-										</li>
-										<li class="li-notest">
-											GPS导航
-											<i></i>
-										</li>
-										<li class="li-normal">
-											倒车雷达
-											<i></i>
-										</li>
-										<li class="li-notest">
-											倒车影像系统
-											<i></i>
-										</li>
-										<li class="li-normal">
-											手动空调
-											<i></i>
-										</li>
-										<li class="li-notest">
-											自动空调
-											<i></i>
-										</li>
-										<li class="li-notest">
-											HUD抬头显示
-											<i></i>
-										</li>
-										<li class="li-notest">
-											后排座椅加热
-											<i></i>
-										</li>
-										<li class="li-notest">
-											后风挡遮阳帘
-											<i></i>
-										</li>
-										<li class="li-normal">
-											中控台
-											<i></i>
-										</li>
-										<li class="li-normal">
-											空调状态
-											<i></i>
-										</li>
-										<li class="li-normal">
-											四门玻璃启动
-											<i></i>
-										</li>
-										<li class="li-normal">
-											天窗(含全景)启动
-											<i></i>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="re-list ">
-								<a href="javaScript:;" class="j-re-list">
-									<p>灯光系统</p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>16项-->
-
-										<span>16项</span>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-
-
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-normal">
-											前示宽灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											近光灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											远光灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											前转向灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											前雾灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											后转向灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											刹车灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											倒车灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											后雾灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											室内顶灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											氙气大灯
-											<i></i>
-										</li>
-										<li class="li-notest">
-											LED大灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											自动头灯
-											<i></i>
-										</li>
-										<li class="li-notest">
-											前雾灯（配置项）
-											<i></i>
-										</li>
-										<li class="li-normal">
-											大灯高度可调
-											<i></i>
-										</li>
-										<li class="li-notest">
-											大灯清洗
-											<i></i>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="re-list ">
-								<a href="javaScript:;" class="j-re-list">
-									<p>高科技配置</p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>5项-->
-
-										<span>5项</span>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-
-
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-notest">
-											车道偏离预警系统
-											<i></i>
-										</li>
-										<li class="li-notest">
-											自动泊车
-											<i></i>
-										</li>
-										<li class="li-notest">
-											盲点辅助系统
-											<i></i>
-										</li>
-										<li class="li-notest">
-											全景摄像头
-											<i></i>
-										</li>
-										<li class="li-notest">
-											发动机自动启停
-											<i></i>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="re-list ">
-								<a href="javaScript:;" class="j-re-list">
-									<p>随车工具<i class="tip-icon j-tools-notice" data-gzlog="tracking_type=click&amp;eventid=0220050000099072"></i></p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>5项-->
-
-										<span>5项</span>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-
-
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-notest">
-											千斤顶
-											<i></i>
-										</li>
-										<li class="li-notest">
-											灭火器
-											<i></i>
-										</li>
-										<li class="li-notest">
-											三角警示标
-											<i></i>
-										</li>
-										<li class="li-notest">
-											维修工具包
-											<i></i>
-										</li>
-										<li class="li-normal">
-											备胎
-											<i></i>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</section>
-					<!--初检：非外观   复检：严选,或者非外观-->
-					<section class="column report-detail report-detail-b" id="detail_start">
-						<div class="column-head">
-							<div class="column-title">启动检测</div>
-						</div>
-						<div class="re-desc">
-							<!-- 只有命中了4.0.0版本才show-->
-						</div>
-						<div class="mod-re-lists showNotice">
-							<div class="re-list ">
-								<a href="javaScript:;" class="j-re-list">
-									<p>仪表台指示灯</p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>9项-->
-
-										<span>9项</span>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-
-
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-normal">
-											制动系统指示灯(手刹)
-											<i></i>
-										</li>
-										<li class="li-normal">
-											安全系统指示灯(不含气囊故障码)
-											<i></i>
-										</li>
-										<li class="li-normal">
-											发动机工况指示灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											变速箱指示灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											车身稳定系统故障灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											机油压力指示灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											着车时电瓶灯
-											<i></i>
-										</li>
-										<li class="li-normal">
-											故障代码
-											<i></i>
-										</li>
-										<li class="li-normal">
-											水温
-											<i></i>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="re-list ">
-								<a href="javaScript:;" class="j-re-list">
-									<p>发动机状态</p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>5项-->
-										<span>5项</span>
+										<span>{{$t('detail.dirveSysone').length + $t('detail.dirveSystwo').length + $t('detail.dirveSysthree').length + $t('detail.dirveSysfour').length + $t('detail.dirveSysfive').length}}{{$t('detail.item')}}</span>
+										<svg class="allicon" aria-hidden="true">
+											<use xlink:href="#icon-tubiao-"></use>
+										</svg>
 										<i class="normal">
 											<svg class="icon" aria-hidden="true">
 												<use xlink:href="#icon-down"></use>
@@ -1341,66 +460,70 @@
 								<!-- 隐藏的弹层 -->
 								<div class="re-depoly">
 									<ul>
-										<li class="li-normal">
-											发动机
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.dirveSysone')">
+											<span>{{item[0].name}}</span>
+											<i   v-if="item[0].value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
-										<li class="li-normal">
-											启动状态
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.dirveSystwo')">
+											<span>{{item[0].name}}</span>
+											<i   v-if="item[0].value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
-										<li class="li-normal">
-											发动机抖动
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.dirveSysthree')">
+											<span>{{item[0].name}}</span>
+											<i   v-if="item[0].value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
-										<li class="li-normal">
-											怠速状态
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.dirveSysfour')">
+											<span>{{item[0].name}}</span>
+											<i   v-if="item[0].value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
-										<li class="li-normal">
-											尾气
-											<i></i>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="re-list ">
-								<a href="javaScript:;" class="j-re-list">
-									<p>变速箱及转向</p>
-									<div class="unormal-right">
-									</div>
-									<div>
-										<!--<span>5项-->
-										<span>5项</span>
-										<i class="normal">
-											<svg class="icon" aria-hidden="true">
-												<use xlink:href="#icon-down"></use>
-											</svg>
-										</i>
-									</div>
-								</a>
-								<!-- 隐藏的弹层 -->
-								<div class="re-depoly">
-									<ul>
-										<li class="li-normal">
-											变速箱
-											<i></i>
-										</li>
-										<li class="li-normal">
-											变速箱挂挡
-											<i></i>
-										</li>
-										<li class="li-normal">
-											转向
-											<i></i>
-										</li>
-										<li class="li-normal">
-											离合器
-											<i></i>
-										</li>
-										<li class="li-normal">
-											四驱系统功能
-											<i></i>
+										<li class="li-normal" v-for="item in $t('detail.dirveSysfive')">
+											<span>{{item[0].name}}</span>
+											<i   v-if="item[0].value == 'normal'">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-tubiao-"></use>
+												</svg>
+											</i>
+											<i v-else>
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-gantan"></use>
+												</svg>
+											</i>
 										</li>
 									</ul>
 								</div>
@@ -1410,56 +533,38 @@
 				</div>
 			</div>
 			<div class="contact">
-				<div class="top">
-					<div class="logo"><img src="images/logor.png"></div>
-					<div class="wx">
-						<a href="#">
-							<img src="images/humacar.png">
-							<span>CAR</span>
-						</a>
+					<div class="top">
+							<div class="logo"><img src="images/logor.png" ></div>
+						<div class="wx">
+							<a>
+								<img src="images/wximg.jpg" >
+								<span>{{$t('champion')}}</span>
+							</a>
+						</div>
+						<div class="phone">
+							<a>
+								<img src="images/phone.png" >
+								<span>{{$t('addressphone')}}</span>
+							</a>
+						</div>
 					</div>
-					<div class="phone">
-						<a href="#">
-							<img src="images/phone.png">
-							<span>+1(888)-888-6518</span>
-						</a>
 					</div>
+				<div class="adress">
+					<ul>
+						<img src="images/address.png" >
+					</ul>
 				</div>
-			</div>
-			<div class="adress">
-				<ul>
-					<a href="#">
-						<li>
-							<span>洛杉矶旗舰店地址</span>
-							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-						</li>
-					</a>
-					<a href="#">
-						<li>
-							<span>洛杉矶旗舰店地址</span>
-							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-						</li>
-					</a>
-					<a href="#">
-						<li>
-							<span>洛杉矶旗舰店地址</span>
-							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-						</li>
-					</a>
-				</ul>
-			</div>
-			<div class="misc">
-				<ul>
-					<a v-for="item in $t('misc')" :href="item.src">
-						<li>{{item.content}}</li>
-					</a>
-				</ul>
-			</div>
-			<div class="copy">
-				<span>
-					Copyright@2016 CHAMPION Inc. Privacy Terms
-				</span>
-			</div>
+				<div class="misc">
+					<ul>
+						<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+					</ul>
+				</div>
+				<div class="copy">
+					<span>
+			    Copyright@2019 CHAMPION Inc. Privacy Terms
+			</span>
+				</div>
+				<Spin size="large" fix v-if="spinShow"></Spin>
 		</div>
 	</body>
 	<script type="text/javascript">
@@ -1473,27 +578,311 @@
 				enshow: "english",
 				loginshow: false,
 				switchlogin: true,
+				compact: false,
+				regist: false,
 				logindata: {
-					phonenum: '',
-					checkcode: ''
+					username: '',
+					password: '',
+					remember: 'y'
 				},
+				registerdata: {
+					username: '',
+					password: ''
+				},
+				spinShow: true,
 			},
 			mounted() {
-				if (locale) {
-					i18n.locale = locale;
-					locale == 'zh-cn' ? this.enshow = 'english' : this.enshow = '中文';
-				} else {
-					(locale = i18n.locale);
-				}
-				var login;
-				 if(localStorage.login){
-					login = JSON.parse(localStorage.login);
-				 }
-				if(login){
-					this.switchlogin = false;
+				var thatvu = this;
+				
+				orifun.initStatu(this);
+				var goodId;
+				if(localStorage.goodId){
+					goodId = localStorage.goodId;
 				}else{
-					this.switchlogin = true;
+					goodId = 2;
 				}
+				function cardetail(lang){
+					thatvu.spinShow = true;
+					data.common('Car/detail',function(d){
+						// console.log(d)
+						var car = d.car;
+						var model = car.model;
+						
+						if(lang == 'en'){
+							that = thatvu.$i18n._vm.messages['en'].detail;
+							
+							// 顶部右侧车辆基础信息
+							that.topinfo.name = ' ' + car.brand.name+ ' ' + car.series.name + ' ';
+							
+							//车辆检测报告
+							if(car.report){
+								let find = function(rm, id, value) {
+									for(var k in rm){
+										// console.log(rm[k][id], value)
+										if (rm[k][id] == value) {
+											return rm[k];
+										}
+										
+									}
+								};
+								// 检测报告四条title
+								var report = car.report;
+								that.reportTime = '' + report.update_time;
+								var rm = report.module;
+								
+								var accident,
+								facecheck,
+								autodevice,
+								dirveSys;
+								for(var k in rm){
+									var f = find(rm, 'detection_module_id', Number(k) + 1);
+									that.reportresult[k].result = '' + f.result;
+									that.reportresult[k].name = '' + f.name;
+								}
+								
+								accidentTime = find(rm, 'detection_module_id', 1).create_time;
+								facecheckTime = find(rm, 'detection_module_id', 2).create_time;
+								autodeviceTime = find(rm, 'detection_module_id', 3).create_time;
+								dirveSysTime = find(rm, 'detection_module_id', 4).create_time;
+								that.accidentTime = accidentTime;
+								that.facecheckTime = facecheckTime;
+								that.autodeviceTime = autodeviceTime;
+								that.dirveSysTime = dirveSysTime;
+								
+								accident = find(rm, 'detection_module_id', 1).position;
+								facecheck = find(rm, 'detection_module_id', 2).position;
+								autodevice = find(rm, 'detection_module_id', 3).position;
+								dirveSys = find(rm, 'detection_module_id', 4).position;
+								
+								// console.log(accident)
+								// 事故排查
+								for(var k in accident){
+									if(k < 14){
+										that.accidentArrone.push(accident[k]);
+									}else if(k >= 14){
+										that.accidentArrtwo.push(accident[k]);
+									}
+									
+								}
+								// 外观内饰
+								var facecheckArr = [
+									{
+										value: find(facecheck, 'name' ,'1')?find(facecheck, 'name' ,'1').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'2')?find(facecheck, 'name' ,'2').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'3')?find(facecheck, 'name' ,'3').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'4')?find(facecheck, 'name' ,'4').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'5')?find(facecheck, 'name' ,'5').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'6')?find(facecheck, 'name' ,'6').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'7')?find(facecheck, 'name' ,'7').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'8')?find(facecheck, 'name' ,'8').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'9')?find(facecheck, 'name' ,'9').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'10')?find(facecheck, 'name' ,'10').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'11')?find(facecheck, 'name' ,'11').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'12')?find(facecheck, 'name' ,'12').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'13')?find(facecheck, 'name' ,'13').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'14')?find(facecheck, 'name' ,'14').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'15')?find(facecheck, 'name' ,'15').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'16')?find(facecheck, 'name' ,'16').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'17')?find(facecheck, 'name' ,'17').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'18')?find(facecheck, 'name' ,'18').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'19')?find(facecheck, 'name' ,'19').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'20')?find(facecheck, 'name' ,'20').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'21')?find(facecheck, 'name' ,'21').item[0].value:'one'
+									}
+								];
+								that.facecheck = facecheckArr;
+								
+								//启动设备检测
+								// console.log(autodevice)
+								that.autodeviceone = find(autodevice, 'name' ,'2')?find(autodevice, 'name' ,'2').item.slice(0, 1): [{value:'normal',desc:'车辆排气正常'}];
+								that.autodevicethree = find(autodevice, 'name' ,'3')?find(autodevice, 'name' ,'3').item.slice(0, 5): [{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警'},{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警 各类灯光调节功能正常'},{value:'normal',desc:'空调系统运转正常'},{value:'normal',desc:'泊车辅助系统工作正常'},{value:'normal',desc:'方向盘自由行程转角小于15度'}];
+								that.autodevicetwo = find(autodevice, 'name' ,'4')?find(autodevice, 'name' ,'4').item.slice(0, 1): [{value:'normal',desc:'脚踏板功能正常'}];
+								that.autodevicefour = find(autodevice, 'name' ,'5')?find(autodevice, 'name' ,'5').item.slice(0, 2): [{value:'normal',desc:'原地打转向时,转向机、转向柱、方向系统正常'},{value:'normal',desc:'变速箱换挡功能正常'}];
+								that.autodevicefive = find(autodevice, 'name' ,'6')?find(autodevice, 'name' ,'6').item.slice(0, 3): [{value:'normal',desc:'怠速运转时发动机运转稳定'},{value:'normal',desc:"空挡提速时发动机运转稳定"},{value:'normal',desc:" 驻车制动器工作正常"}];
+								that.autodevicesix = find(autodevice, 'name' ,'7')?find(autodevice, 'name' ,'7').item.slice(0, 1): [{value:'normal',desc:"车辆启动顺畅"}];
+								
+								//驾驶系统检测
+								// console.log(dirveSys)
+								for(var k in dirveSys){
+									if(dirveSys[k].detection_group_id == 1){
+										that.dirveSysone.push(dirveSys[k].item);
+									}else if(dirveSys[k].detection_group_id == 2){
+										that.dirveSystwo.push(dirveSys[k].item);
+									}else if(dirveSys[k].detection_group_id == 3){
+										that.dirveSysthree.push(dirveSys[k].item);
+									}else if(dirveSys[k].detection_group_id == 4){
+										that.dirveSysfour.push(dirveSys[k].item);
+									}else{
+										that.dirveSysfive.push(dirveSys[k].item);
+									}
+								}
+							}else{
+								that.carreport = 'false';
+							}
+						}else{
+							that = thatvu.$i18n._vm.messages['zh-cn'].detail;
+							
+							// 顶部右侧车辆基础信息
+							that.topinfo.name = ' ' + car.brand.name+ ' ' + car.series.name + ' ';
+							
+							//车辆检测报告
+							if(car.report){
+								let find = function(rm, id, value) {
+									for(var k in rm){
+										// console.log(rm[k][id], value)
+										if (rm[k][id] == value) {
+											return rm[k];
+										}
+										
+									}
+								};
+								// 检测报告四条title
+								var report = car.report;
+								that.reportTime = report.update_time;
+								var rm = report.module;
+								
+								var accident,
+								facecheck,
+								autodevice,
+								dirveSys;
+								for(var k in rm){
+									var f = find(rm, 'detection_module_id', Number(k) + 1);
+									that.reportresult[k].result = '' + f.result;
+									that.reportresult[k].name = '' + f.name;
+								}
+								accidentTime = find(rm, 'detection_module_id', 1).create_time;
+								facecheckTime = find(rm, 'detection_module_id', 2).create_time;
+								autodeviceTime = find(rm, 'detection_module_id', 3).create_time;
+								dirveSysTime = find(rm, 'detection_module_id', 4).create_time;
+								that.accidentTime = accidentTime;
+								that.facecheckTime = facecheckTime;
+								that.autodeviceTime = autodeviceTime;
+								that.dirveSysTime = dirveSysTime;
+								// console.log(find(rm, 'detection_module_id', 1).ceeate_time)
+								
+								accident = find(rm, 'detection_module_id', 1).position;
+								facecheck = find(rm, 'detection_module_id', 2).position;
+								autodevice = find(rm, 'detection_module_id', 3).position;
+								dirveSys = find(rm, 'detection_module_id', 4).position;
+								
+								// console.log(accident)
+								// 事故排查
+								for(var k in accident){
+									if(k < 14){
+										that.accidentArrone.push(accident[k]);
+									}else if(k >= 14){
+										that.accidentArrtwo.push(accident[k]);
+									}
+									
+								}
+								// 外观内饰
+								var facecheckArr = [
+									{
+										value: find(facecheck, 'name' ,'1')?find(facecheck, 'name' ,'1').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'2')?find(facecheck, 'name' ,'2').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'3')?find(facecheck, 'name' ,'3').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'4')?find(facecheck, 'name' ,'4').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'5')?find(facecheck, 'name' ,'5').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'6')?find(facecheck, 'name' ,'6').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'7')?find(facecheck, 'name' ,'7').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'8')?find(facecheck, 'name' ,'8').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'9')?find(facecheck, 'name' ,'9').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'10')?find(facecheck, 'name' ,'10').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'11')?find(facecheck, 'name' ,'11').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'12')?find(facecheck, 'name' ,'12').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'13')?find(facecheck, 'name' ,'13').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'14')?find(facecheck, 'name' ,'14').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'15')?find(facecheck, 'name' ,'15').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'16')?find(facecheck, 'name' ,'16').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'17')?find(facecheck, 'name' ,'17').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'18')?find(facecheck, 'name' ,'18').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'19')?find(facecheck, 'name' ,'19').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'20')?find(facecheck, 'name' ,'20').item[0].value:'one'
+									},{
+										value: find(facecheck, 'name' ,'21')?find(facecheck, 'name' ,'21').item[0].value:'one'
+									}
+								];
+								that.facecheck = facecheckArr;
+								
+								//启动设备检测
+								// console.log(autodevice)
+								that.autodeviceone = find(autodevice, 'name' ,'2')?find(autodevice, 'name' ,'2').item.slice(0, 1): [{value:'normal',desc:'车辆排气正常'}];
+								that.autodevicethree = find(autodevice, 'name' ,'3')?find(autodevice, 'name' ,'3').item.slice(0, 5): [{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警'},{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警 各类灯光调节功能正常'},{value:'normal',desc:'空调系统运转正常'},{value:'normal',desc:'泊车辅助系统工作正常'},{value:'normal',desc:'方向盘自由行程转角小于15度'}];
+								that.autodevicetwo = find(autodevice, 'name' ,'4')?find(autodevice, 'name' ,'4').item.slice(0, 1): [{value:'normal',desc:'脚踏板功能正常'}];
+								that.autodevicefour = find(autodevice, 'name' ,'5')?find(autodevice, 'name' ,'5').item.slice(0, 2): [{value:'normal',desc:'原地打转向时,转向机、转向柱、方向系统正常'},{value:'normal',desc:'变速箱换挡功能正常'}];
+								that.autodevicefive = find(autodevice, 'name' ,'6')?find(autodevice, 'name' ,'6').item.slice(0, 3): [{value:'normal',desc:'怠速运转时发动机运转稳定'},{value:'normal',desc:"空挡提速时发动机运转稳定"},{value:'normal',desc:" 驻车制动器工作正常"}];
+								that.autodevicesix = find(autodevice, 'name' ,'7')?find(autodevice, 'name' ,'7').item.slice(0, 1): [{value:'normal',desc:"车辆启动顺畅"}];
+								
+								//驾驶系统检测
+								// console.log(dirveSys)
+								for(var k in dirveSys){
+									if(dirveSys[k].detection_group_id == 1){
+										that.dirveSysone.push(dirveSys[k].item);
+									}else if(dirveSys[k].detection_group_id == 2){
+										that.dirveSystwo.push(dirveSys[k].item);
+									}else if(dirveSys[k].detection_group_id == 3){
+										that.dirveSysthree.push(dirveSys[k].item);
+									}else if(dirveSys[k].detection_group_id == 4){
+										that.dirveSysfour.push(dirveSys[k].item);
+									}else{
+										that.dirveSysfive.push(dirveSys[k].item);
+									}
+								}
+							}else{
+								that.carreport = 'false';
+							}
+						}
+						// that.collect = car.collected;//保存收藏状态
+						// console.log(car.collected)
+						// 顶部图片切换
+						// console.log(model)
+						thatvu.$nextTick(function(){
+							thatvu.spinShow = false;
+						})
+					},{id:goodId,language:lang})
+				}
+				cardetail('en');
+				cardetail('cn');
+				
 				$('.re-depoly').hide();
 				$('.j-re-list').click(function(){
 					var aimele = $(this).siblings('.re-depoly');
@@ -1503,44 +892,29 @@
 						aimele.hide();
 					}
 				})
+				console.log(thatvu.$i18n._vm.messages['en'].detail)
 			},
 			methods: {
+				navTobuy: function(){
+					orifun.initpostbody();
+				},
+				top:function(){
+					orifun.top(this);
+				},
 				login: function() {
-					if (this.logindata.phonenum == '') {
-						alert("请填写手机号!");
-						return;
-					} else if (this.logindata.checkcode == '') {
-						alert("请填写验证码!");
-						return;
-					}
-					this.switchlogin = !this.switchlogin;
-					this.loginshow = !this.loginshow;
-					alert('登录成功!');
-					localStorage.login = true;
+					orifun.login(this);
 				},
-				change: function() {
-					this.enshow = this.enshow == 'english' ? "中文" : "english";
-					var that = this;
-					setTimeout(function() {
-						if (i18n.locale == 'en') {
-							i18n.locale = 'zh-cn';
-						} else if (i18n.locale == 'zh-cn') {
-							i18n.locale = 'en';
-						}
-						localStorage.locale = i18n.locale;
-					}, 1100)
+				register: function() {
+					orifun.register(this);
 				},
-				top: function() {
-					this.topshow = !this.topshow;
-					$('html,body').animate({
-						scrollTop: '0'
-					}, 700);
+				change :function() {
+					orifun.change(this);
 				},
-				consult: function() {
-					this.botshow = !this.botshow;
-					setTimeout(function() {
-						alert("功能完善中！")
-					}, 700)
+				consult:function(){
+					orifun.consult(this);
+				},
+				lrswitch:function(e){
+					orifun.lrswitch(this,e);
 				}
 			}
 		}).$mount('#about')

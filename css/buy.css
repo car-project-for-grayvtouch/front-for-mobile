@@ -1,5 +1,12 @@
+body{
+	position: absolute;
+	top: 1.5rem;
+	width: 100%;
+}
 #buy{
+	width: 100%;
 	box-sizing: border-box;
+	position: absolute;
 }
 .buy-sel{
 	width: 100%;
@@ -11,12 +18,11 @@
 }
 .buy-sel ul li{
 	width: 100%;
-	height: 0.9rem;
+	height: 1.2rem;
 	font-size: 0.35rem;
 	text-align: center;
 	border-top: 1px solid #DEDEDE;
 	border-bottom: 1px solid #DEDEDE;
-	padding: 0.1rem;
 	color: #969696;
 	display: flex;
 	align-items: center;
@@ -28,6 +34,7 @@
 	width: 100%;
 	display: block;
 	border-right: 1px solid #DEDEDE;
+	padding: 0.1rem 0;
 }
 .buy-sel ul li:nth-last-child(1) span{
 	border-right: none;
@@ -35,7 +42,9 @@
 #buy .order{
 	/* height: 1rem; */
 	background-color: #F4F4F4;
+	padding-bottom: 0.2rem;
 }
+
 #buy .order ul{
 	width: 100%;
 	height: 100%;
@@ -51,7 +60,99 @@
 	box-sizing: border-box;
 	margin-bottom: 0.2rem;
 }
+.order .ivu-btn-small{
+	font-size: 0.3rem;
+}
 #buy .order ul li:nth-child(1){
 	background-color: #DA2515;
 	color: white;
+}
+.car-menu-new .car-item{
+	width: 100%;
+	height: 10rem;
+}
+.car-menu-new .car-name{
+	color: white;
+}
+.car-menu-new .car-price{
+	margin-top: 0.5rem !important;
+	font-size: 0.4rem !important;
+}
+/* .car-menu-new .distance {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+} */
+.car-menu-new .dis-item {
+    padding: 10px 0;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+}
+.car-detail .ivu-row{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.order-right{
+	/* margin-top: 0.2rem; */
+}
+.view{
+	display: flex;
+	padding-top: 0.1rem;
+	padding-left: 0.1rem;
+	align-items: center;
+	border-top: 1px solid white;
+	justify-content: space-between;
+}
+.view .title{
+	font-size: 0.4rem;
+	color: #A2352E;
+}
+.buy-selop{
+	padding: 0.1rem;
+	width: 100%;
+	height:85%;
+	top: 2.7rem;
+	left: 0;
+	position: fixed;
+	overflow: scroll;
+	background-color: white;
+	z-index: 22;
+}
+.buy-selop ul{
+	width: 100%;
+}
+.buy-selop li{
+	border: 1px solid #EFEFEF;
+	display: flex;
+	padding: 0.1rem;
+	box-sizing: border-box;
+	/* justify-content: space-between; */
+	margin-bottom: 0.2rem;
+}
+	
+.buy-selop li .title{
+	font-size: 0.5rem;
+	width: 1rem;
+}
+.buy-selop li .con{
+	font-size: 0.4rem;
+	display: flex;
+	flex-wrap: wrap;
+}
+.buy-selop li .con span{
+	padding: 0.1rem;
+    border: 1px solid #dcdee2;
+    border-radius: 5px;
+	margin-bottom: 0.2rem;
+    color: #555555;
+	margin-right: 0.2rem;
+}
+.buy-selop li .con span:nth-last-child(1){
+	/* margin-bottom: 0; */
+}
+.buy-selop-price .title{
+	width: 100% !important;
 }

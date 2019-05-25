@@ -50,8 +50,8 @@ var orifun = {
 		}
 		data.common('Login/login',function(d){
 			// that.slideArr = d;
-			if(d != 400){
-				// console.log(d)
+			if(d != 400 || d.code!= 400){
+				console.log(d)
 				localStorage.token = d;
 				obj.switchlogin = !obj.switchlogin;
 				obj.loginshow = !obj.loginshow;

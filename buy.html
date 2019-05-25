@@ -478,15 +478,15 @@
 				this.selshow = false;
 			},
 			getvalueprice: function(e) {
-				// console.log(e)
-				this.postbody.price = Number(e);
+				console.log(e == '')
+				this.postbody.price = e;
 				this.topselArr[1] = e;
 				this.carlistdata(this.postbody);
 				this.selshow = false;
 			},
 			getvalueage: function(e) {
 				// console.log(e)
-				this.postbody.age = Number(e);
+				this.postbody.age = e;
 				this.topselArr[2] = e;
 				this.carlistdata(this.postbody);
 				this.selshow = false;

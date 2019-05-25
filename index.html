@@ -417,7 +417,8 @@
 			},
 			logindata: {
 				username:'',
-				password:''
+				password:'',
+				remember: 'y'
 			},
 			registerdata: {
 				username:'',
@@ -440,75 +441,6 @@
 			this.brandd();
 			// 车行推荐默认最新最热数据
 			this.recommonedata(0);
-			
-			// 评论
-			this.commontd();
-		},
-		methods: {
-			recommonedata:function(index) {
-				var that = this;
-				that.spinShow = true;
-				var form = {'type':'luxury'};
-				switch(index){
-					case 0:
-					form = {'type':'newAndHot'};
-					break;
-					case 1:
-					form = {'type':'affordable'};
-					break;
-					case 2:
-					form = {'type':'new'};
-					break;
-					case 3:
-					form = {'type':'luxury'};
-					break;
-					default:
-					form = {};
-				}
-				form.language = 'cn';
-				data.common('Car/listForHome',function(d){
-					// console.log(d)
-					that.$i18n._vm.messages['zh-cn'].explain = d.slice(0,8);
-				},form)
-				form.language = 'en';
-				data.common('Car/listForHome',function(d){
-					// console.log(d)
-					that.$i18n._vm.messages['en'].explain = d.slice(0,8);
-					that.spinShow = false;
-				},form)
-			},
-			commontd: function() {
-				var that = this;
-				function story(){
-					return	new Promise((resolve, reject) => {
-						data.common('Story/listForHome',function(d){
-							// console.log(d)
-							that.$i18n._vm.messages['zh-cn'].comment = d.slice(0, 4);
-						},{language: 'cn'})
-						resolve('step1');
-					})
-				}
-				story().then(() => {
-					data.common('Story/listForHome',function(d){
-						// console.log(d)
-						that.$i18n._vm.messages['en'].comment = d.slice(0, 4);
-					},{language: 'en'})
-
-				}).then(() => {
-					//文章
-					data.common('Article/listForHome',function(d){
-						// console.log(d)
-						that.$i18n._vm.messages['en'].media = d.slice(0, 4);
-					},{language: 'en'})
-
-				}).then(() => {
-					//文章
-					data.common('Article/listForHome',function(d){
-						// console.log(d)
-						that.$i18n._vm.messages['zh-cn'].media = d.slice(0, 4);
-					},{language: 'cn'})
-				
-				})
 			// 评论
 			this.commontd();
 			// 热门搜索

@@ -282,7 +282,7 @@
 					dm: 'Detection models',
 					normal: 'normal',
 					repair: 'Sheet metal repair',
-					update: 'There was a change of cover',
+					update: 'Change of cover',
 					norepair: 'Minor defects, not yet repaired',
 					launch: 'launch',
 					starting: 'starting',
@@ -295,7 +295,12 @@
 					sw: 'Suppose you want to see',
 					guesswant: [],
 					moreparam: 'More detailed parameter configuration',
-					detailReport: 'View the detailed test report'
+					detailReport: 'View the detailed test report',
+					item: ' item',
+					accidentTime: '',
+					facecheckTime: '',
+					autodeviceTime: '',
+					dirveSysTime: ''
 				}
 			},
 		    'zh-cn':{
@@ -580,7 +585,12 @@
 						sw: '猜你想看',
 						guesswant: [],
 						moreparam: '更多详细参数配置',
-						detailReport: '查看详细检测报告'
+						detailReport: '查看详细检测报告',
+						item: '项',
+						accidentTime: '',
+						facecheckTime: '',
+						autodeviceTime: '',
+						dirveSysTime: ''
 					}
 				}
 		}// 设置地区信息

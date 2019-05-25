@@ -22,7 +22,7 @@
 	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="dist/iview.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_hnvxccisg1p.js"></script>
 </head>
 <body>
 	<div id="about" v-cloak>
@@ -196,11 +196,13 @@
 						</div>
 					</div>
 					<div class="price">
-						{{$t("detail.championprice")}}
-						<span>${{$t("detail.topinfo.price")}}</span>
+						<div>
+							{{$t("detail.championprice")}}:
+							<span>${{$t("detail.topinfo.price")}}</span>
+						</div>
+						<button type="button" @click="preorder">{{$t("detail.appointment")}}</button>
 					</div>
 				</div>
-				<button type="button" @click="preorder">{{$t("detail.appointment")}}</button>
 			</div>
 			<div class="to-preorder">
 				<Modal
@@ -398,37 +400,38 @@
 			</div>
 		</div>
 		<div class="contact">
-				<div class="top">
-						<div class="logo"><img src="images/logor.png" ></div>
-					<div class="wx">
-						<a>
-							<img src="images/wximg.jpg" >
-							<span>{{$t('champion')}}</span>
-						</a>
-					</div>
-					<div class="phone">
-						<a>
-							<img src="images/phone.png" >
-							<span>{{$t('addressphone')}}</span>
-						</a>
-					</div>
+			<div class="top">
+					<div class="logo"><img src="images/logor.png" ></div>
+				<div class="wx">
+					<a>
+						<img src="images/wximg.jpg" >
+						<span>{{$t('champion')}}</span>
+					</a>
 				</div>
+				<div class="phone">
+					<a>
+						<img src="images/phone.png" >
+						<span>{{$t('addressphone')}}</span>
+					</a>
 				</div>
-			<div class="adress">
-				<ul>
-					<img src="images/address.png" >
-				</ul>
 			</div>
-			<div class="misc">
-				<ul>
-					<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
-				</ul>
 			</div>
-			<div class="copy">
-				<span>
-		    Copyright@2019 CHAMPION Inc. Privacy Terms
-		</span>
-			</div>
+		<div class="adress">
+			<ul>
+				<img src="images/address.png" >
+			</ul>
+		</div>
+		<div class="misc">
+			<ul>
+				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+			</ul>
+		</div>
+		<div class="copy">
+			<span>
+				Copyright@2019 CHAMPION Inc. Privacy Terms
+			</span>
+		</div>
+		<Spin size="large" fix v-if="spinShow"></Spin>
 	</div>
 </body>
 <script type="text/javascript">
@@ -488,7 +491,7 @@
 			function cardetail(lang){
 				thatvu.spinShow = true;
 				data.common('Car/detail',function(d){
-					console.log(d)
+					// console.log(d)
 					var car = d.car;
 					var model = car.model;
 					
@@ -525,83 +528,6 @@
 							that.config.size = model.size;
 							that.config.seat = '' + model.seat_count;
 							
-							//车辆配置
-							// 配置表格一
-							// console.log(that.reportResult)
-							var datada =[
-								{
-									name: 'vendor：' + model.company,
-									age: 'The engine：' + model.engine + 'horsepower',
-									address: 'Drive way：' + model.driver_type,
-								},{
-									name: 'level：' + model.level,
-									age: 'displacement(L)：' + model.displacement + 'L',
-									address: 'Power type：' + model.assist_type,
-								},{
-									name: 'transmission：' + model.gearbox,
-									age: 'Inlet type：' + model.intake_type,
-									address: 'Front suspension type：' + model.front_suspension_type,
-								},{
-									name: 'The door number：' + model.door_count,
-									age: 'cylinder：' + model.cylinder_count,
-									address: 'Rear suspension type：' + model.back_suspension_type,
-								},{
-									name: 'Length * width * height(inch)：'+ model.size,
-									age: 'Maximum horsepower(Ps)：' + model.maximum_horsepower,
-									address: 'Front brake type：' + model.front_brake_type,
-								},{
-									name: 'The wheelbase(inch)：' + model.wheelbase,
-									age: 'Maximum torque(N*m)：' + model.maximum_torque,
-									address: 'Rear braking type：' + model.back_brake_type,
-								},{
-									name: 'High fuel consumption(GL)：' + model.high_speed_fuel_consumption + 'GL',
-									age: 'Fuel type：' + model.fuel_type,
-									address: 'Tire description：' + model.tire_desc,
-								},{
-									name: 'Urban fuel consumption(GL)：' + model.city_fuel_consumption + 'GL',
-									age: 'Engine anti-theft system：' + model.engine_anti_theft_system,
-									address: '',
-								}
-							];
-							that.datada = datada;
-							// 配置表格二
-							var configone = d.configuration,
-							configtwo = model.configuration;
-							// 添加has属性
-							for(var k in configone){
-								var cd = configone[k].data;
-								for(var s in cd){
-									for(var p in configtwo){
-										if(cd[s].name == configtwo[p].name){
-											configone[k].data[s].has = true;
-										}else{
-											if(configone[k].data[s].has){
-												// 不用再次操作
-											}else{
-												configone[k].data[s].has = false;
-											}
-										}
-										// console.log(configtwo[s])
-									}
-								}
-							}
-							// console.log(configone)
-							// 整理数据结构
-							var datads = [{},{},{},{},{},{},{},{},{},{},];
-							for(var r in configone){
-								var cd = configone[r].data;
-								for(var e in cd){
-									if(r == 0){
-										datads[e].name = cd[e].name + '：' + (cd[e].has?'exist':'without');
-									}else if(r == 1){
-										datads[e].age = cd[e].name + '：' + (cd[e].has?'exist':'without');
-									}else{
-										datads[e].address = cd[e].name + '：' + (cd[e].has?'exist':'without');
-									}
-								}
-							}
-							// console.log(datads)
-							that.datads = datads;
 						}
 						
 						//车辆检测报告
@@ -631,7 +557,7 @@
 							}
 							accident = find(rm, 'detection_module_id', 1).position;
 							facecheck = find(rm, 'detection_module_id', 2).position;
-							console.log(facecheck)
+							// console.log(facecheck)
 							autodevice = find(rm, 'detection_module_id', 3).position;
 							dirveSys = find(rm, 'detection_module_id', 4).position;
 							
@@ -751,83 +677,7 @@
 							that.config.size = model.size;
 							that.config.seat = '' + model.seat_count;
 							
-							//车辆配置
-							// 配置表格一
-							// console.log(that.reportResult)
-							var datada =[
-								{
-									name: '厂商：' + model.company,
-									age: '发动机：' + model.engine + '马力',
-									address: '驱动方式：' + model.driver_type,
-								},{
-									name: '级别：' + model.level,
-									age: '排量(L)：' + model.displacement + 'L',
-									address: '助力类型：' + model.assist_type,
-								},{
-									name: '变速箱：' + model.gearbox,
-									age: '进气类型：' + model.intake_type,
-									address: '前悬挂类型：' + model.front_suspension_type,
-								},{
-									name: '车门数量：' + model.door_count,
-									age: '气缸：' + model.cylinder_count,
-									address: '后悬挂类型：' + model.back_suspension_type,
-								},{
-									name: '长*宽*高(inch)：'+ model.size,
-									age: '最大马力(Ps)：' + model.maximum_horsepower,
-									address: '前制动类型：' + model.front_brake_type,
-								},{
-									name: '轴距(inch)：' + model.wheelbase,
-									age: '最大扭矩(N*m)：' + model.maximum_torque,
-									address: '后制动类型：' + model.back_brake_type,
-								},{
-									name: '高速油耗(GL)：' + model.high_speed_fuel_consumption + 'GL',
-									age: '燃料类型：' + model.fuel_type,
-									address: '轮胎描述：' + model.tire_desc,
-								},{
-									name: '城市油耗(GL)：' + model.city_fuel_consumption + 'GL',
-									age: '发动机防盗系统：' + model.engine_anti_theft_system,
-									address: '',
-								}
-							];
-							that.datada = datada;
-							// 配置表格二
-							var configone = d.configuration,
-							configtwo = model.configuration;
-							// 添加has属性
-							for(var k in configone){
-								var cd = configone[k].data;
-								for(var s in cd){
-									for(var p in configtwo){
-										if(cd[s].name == configtwo[p].name){
-											configone[k].data[s].has = true;
-										}else{
-											if(configone[k].data[s].has){
-												// 不用再次操作
-											}else{
-												configone[k].data[s].has = false;
-											}
-										}
-										// console.log(configtwo[s])
-									}
-								}
-							}
-							// console.log(configone)
-							// 整理数据结构
-							var datads = [{},{},{},{},{},{},{},{},{},{},];
-							for(var r in configone){
-								var cd = configone[r].data;
-								for(var e in cd){
-									if(r == 0){
-										datads[e].name = cd[e].name + '：' + (cd[e].has?'有':'无');
-									}else if(r == 1){
-										datads[e].age = cd[e].name + '：' + (cd[e].has?'有':'无');
-									}else{
-										datads[e].address = cd[e].name + '：' + (cd[e].has?'有':'无');
-									}
-								}
-							}
-							// console.log(datads)
-							that.datads = datads;
+							
 						}
 						
 						//车辆检测报告
@@ -957,7 +807,7 @@
 			}
 			cardetail('en');
 			cardetail('cn');
-			console.log(thatvu.$i18n._vm.messages['en'].detail);
+			// console.log(thatvu.$i18n._vm.messages['en'].detail);
 			// 猜你想看
 			this.guesswantinfo();
 			//获取验证码

@@ -1,5 +1,4 @@
 #about{
-	margin-top: 1.5rem;
 }
 .swiper-container {
 	width: 100%;
@@ -39,12 +38,11 @@
 	margin: 0.4rem;
 }
 .car-info .default{
-	display: flex;
+	/* display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: center; */
 }
 .car-info .default-left{
-	width: 70%;
 }
 .car-info .default-top{
 	display: flex;
@@ -65,6 +63,9 @@
 .car-info .price{
 	font-size: 0.35rem;
 	margin-top: 0.2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .car-info .price span{
 	color: red;
@@ -73,8 +74,8 @@
 .car-info button{
 	color: #fff;
     background: #da2515;
-    width: 30%;
-    height: 1rem;
+    width: 3rem;
+    height: 1.1rem;
     border-radius: 0.5rem;
     border: none;
     outline: none;
@@ -102,6 +103,7 @@
 }
 .car-info .config li:nth-last-child(1){
 	margin-top: 0.4rem;
+	width: 100%;
 }
 .car-info .config .icon{
 	padding: 0.2rem;

@@ -6,6 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>个人中心</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="dist/styles/iview.css">
+    <link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/personalCenter.css">
 	<script type="text/javascript" src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -16,11 +21,7 @@
 	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="dist/iview.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_hnvxccisg1p.js"></script>
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/personalCenter.css">
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_sumr57zqeqa.js"></script>
 </head>
 <body>
 	<div id="personalCenter" v-cloak>
@@ -105,46 +106,77 @@
 					</div>
 				</div>
 			</transition>
+			<transition name="searchfade">
+				<div class="login-page" v-if="loginshow">
+					<div class="loginMask" v-on:click="loginshow = !loginshow">
+					</div>
+					
+					<div class="login" v-if="!regist">
+						<div class="close" v-on:click="loginshow = !loginshow">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-close"></use>
+							</svg>
+						</div>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+						</div>
+						<div class="login-item">
+							<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
+						</div>
+						<div class="login-item">
+							<input type="password" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('log')" @click="login()">
+						</div>
+						<div class="login-tips">
+							<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
+						</div>
+					</div>
+				</div>
+			</transition>
 		</div>
 		<div class="user-info">
 			<div class="head-img">
-				<img src="images/user01.jpg">
+				<img v-if="userinfo.avatar_explain!==''" :src="userinfo.avatar_explain">
+				<img v-else src="images/user01.jpg">
+				<div class="user-num">
+					<div class="un1">
+						{{userinfo.nickname?userinfo.nickname:'xxx'}}
+					</div>
+					<!-- <div class="un2">
+						{{$t('person.hello')}}
+					</div> -->
+					<div class="un2" v-html="userinfo.phone?userinfo.phone:$t('person.toadd')">
+					</div>
+				</div>
 			</div>
-			<div class="user-num">17759500581</div>
-			<button>切换账号</button>
+			<button @click="loginshow = !loginshow">{{$t('person.sa')}}</button>
 		</div>
 		<div class="record-type">
 			<ul>
 				<li>
 					<a href="#">
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-icon_goumaijilunor"></use>
-						</svg>
-						<span>直购记录</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<svg class="icon" aria-hidden="true">
 						    <use xlink:href="#icon-tubiaolunkuo_huaban"></use>
 						</svg>
-						<span>卖车申请</span>
+						<span>{{$t('person.pcinfo')}}</span>
 					</a>
 				</li>
 				<li>
 					<a href="#">
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-yigouxiangmu"></use>
+						    <use xlink:href="#icon-icon_goumaijilunor"></use>
 						</svg>
-						<span>已购车辆</span>
+						<span>{{$t('person.sellapply')}}</span>
 					</a>
 				</li>
 				<li>
-					<a href="collection.html">
+					<a href="#">
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-wodeshoucang"></use>
+						    <use xlink:href="#icon-app_icons--"></use>
 						</svg>
-						<span>我的收藏</span>
+						<span>{{$t('person.updateps')}}</span>
 					</a>
 				</li>
 				<li>
@@ -152,20 +184,36 @@
 						<svg class="icon" aria-hidden="true">
 						    <use xlink:href="#icon-liulanjilu"></use>
 						</svg>
-						<span>浏览记录</span>
+						<span>{{$t('person.barecord')}}</span>
+					</a>
+				</li>
+				<li>
+					<a href="collection.html">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-yigouxiangmu"></use>
+						</svg>
+						<span>{{$t('person.av')}}</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-yijianfankui"></use>
+						</svg>
+						<span>{{$t('person.preorder')}}</span>
 					</a>
 				</li>
 				<li>
 					<a href="feedback.html">
 						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-yijianfankui"></use>
+						    <use xlink:href="#icon-wodeshoucang"></use>
 						</svg>
-						<span>意见反馈</span>
+						<span>{{$t('person.coll')}}</span>
 					</a>
 				</li>
 			</ul>
 		</div>
-		<button type="button" class="sign-out" v-on:click="signout()">退出登录</button>
+		<button type="button" class="sign-out" v-on:click="signout()">{{$t('person.lo')}}</button>
 	</div>
 </body>
 <script type="text/javascript">
@@ -176,31 +224,38 @@
 			show: false,
 			topshow: false,
 			botshow: false,
+			loginshow: false,
+			switchlogin: true,
 			enshow: "english",
 			compact: false,
 			regist: false,
+			userinfo: '',
 			logindata: {
 				username: '',
 				password: '',
 				remember: 'y'
-			},
-			registerdata: {
-				username: '',
-				password: ''
-			},
+			}
 		},
 		mounted() {
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
+			orifun.initStatu(this);
+			this.userInfo();
 		},
 		methods: {
 			signout:function() {
 				localStorage.login = false;
+				localStorage.token = '';
 				window.location.href = "index.html";
+			},
+			userInfo: function() {
+				var that = this;
+				if(!localStorage.token){
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
+					return;
+				}
+				data.common('User/info',function(d){
+					console.log(d)
+					that.userinfo = d;
+				})
 			},
 			navTobuy: function(){
 				orifun.initpostbody();

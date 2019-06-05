@@ -29,9 +29,14 @@
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
 			</div>
-			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
+			<!-- <svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
 			    <use xlink:href="#icon-caidan"></use>
-			</svg>
+			</svg> -->
+			<a  href="javascript:history.back()">
+				<svg class="icon nav-menu-switch back" aria-hidden="true">
+					<use xlink:href="#icon-jiantou"></use>
+				</svg>
+			</a>
 			<div class="person">
 				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 				<a v-else href="personalCenter.html">

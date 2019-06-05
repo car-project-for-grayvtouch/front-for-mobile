@@ -4,8 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>服务协议</title>
+	<title>修改个人信息</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="dist/styles/iview.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/proveInfo.css">
 	<script type="text/javascript" src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -17,14 +23,9 @@
 	<script type="text/javascript" src="dist/iview.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_hnvxccisg1p.js"></script>
-    <link rel="stylesheet" href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/serivceAgreement.css">
 </head>
 <body>
-	<div id="serviceA" v-cloak>
+	<div id="params" v-cloak>
 		<div class="header">
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
@@ -173,9 +174,29 @@
 				</div>
 			</transition>
 		</div>
-		<img class="serviceA-carimg" src="images/index_masthead0cn.jpg" alt="car">
-		<div class="content-sy" v-html="$t('serviceAgreement')">
-            
+		<div class="param">
+			<Spin size="large" fix v-if="spinShow"></Spin>
+			<i-form ref="formValidate" :model="formValidate" :label-width="80" @submit.native.prevent>
+				<Form-Item label="Nickname" prop="nickname">
+					<i-Input v-model="formValidate.nickname" placeholder="Enter your nickname"  size="large"></i-Input >
+				</Form-Item>
+				<Form-Item label="Phone" prop="phone">
+					<i-Input v-model="formValidate.area_code" placeholder="Enter your dialling code" size="large"></i-Input>
+				</Form-Item>
+				<Form-Item label="Gender" prop="gender">
+					<Radio-Group v-model="formValidate.sex"  size="large">
+						<Radio label="male">Male</Radio>
+						<Radio label="female">Female</Radio>
+					</Radio-Group>
+				</Form-Item>
+				<Form-Item label="Birthday" prop="birthday">
+					<Date-Picker style="width: 100%;" type="date" size="large" placeholder="Select date" format = "yyyy-MM-dd" v-model="formValidate.birthday" @on-change="getdate"></Date-Picker>
+				</Form-Item>
+				<Form-Item class="two-space">
+					<i-Button type="primary" size="large" @click="handleSubmit">Submit</i-Button>
+					<i-Button size="large" @click="handleReset('formValidate')" style="margin-left: 8px">Reset</i-Button>
+				</Form-Item>
+			</i-form>
 		</div>
 		<div class="contact">
 				<div class="top">
@@ -209,6 +230,7 @@
 		    Copyright@2019 CHAMPION Inc. Privacy Terms
 		</span>
 			</div>
+			<Spin size="large" fix v-if="spinShow"></Spin>
 	</div>
 </body>
 <script type="text/javascript">
@@ -233,25 +255,60 @@
 				username: '',
 				password: ''
 			},
+			formValidate: {
+				nickname: '',
+				area_code: '',
+				sex: '',
+				birthday: '',
+			},
+			spinShow: false,
 		},
 		mounted() {
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
-			}
+			var thatvu = this;
+			
+			orifun.initStatu(this);
+			
 		},
 		methods: {
+			getdate (e) {
+				this.formValidate.birthday = e;
+			},
+			handleSubmit (name) {
+				var that = this;
+				if(!localStorage.token){
+					this.$Message.warning('请先登录!');
+					return;
+				}
+				if(this.formValidate.nickname == ''){
+					this.$Message.warning('Please enter your nickname!');
+					return;
+				}
+				if(this.formValidate.area_code == ''){
+					this.$Message.warning('Please enter your dialling code!');
+					return;
+				}
+				if(this.formValidate.sex == ''){
+					this.$Message.warning('Please select gender!');
+					return;
+				}
+				if(this.formValidate.birthday == ''){
+					this.$Message.warning('Please select birthday!');
+					return;
+				}
+				data.common('User/edit',function(d){
+					console.log(d)
+					if(d == 400 || d.code == 400){
+						that && that.$Message.warning('Fail!');
+					}else{
+						that.$Notice.success({
+							title: 'Success to update!',
+						});
+					}
+				},this.formValidate);
+            },
+            handleReset (name) {
+                this.$refs[name].resetFields();
+            },
 			navTobuy: function(){
 				orifun.initpostbody();
 			},
@@ -274,7 +331,7 @@
 				orifun.lrswitch(this,e);
 			}
 		}
-	}).$mount('#serviceA')
+	}).$mount('#params')
 	// 现在应用程序已经准备好了！
 </script>
 </html>

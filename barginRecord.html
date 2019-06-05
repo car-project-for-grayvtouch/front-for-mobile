@@ -4,8 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>服务协议</title>
+	<title>卖车申请记录</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="dist/styles/iview.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/proveInfo.css">
 	<script type="text/javascript" src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -17,14 +23,9 @@
 	<script type="text/javascript" src="dist/iview.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_hnvxccisg1p.js"></script>
-    <link rel="stylesheet" href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/serivceAgreement.css">
 </head>
 <body>
-	<div id="serviceA" v-cloak>
+	<div id="params" v-cloak>
 		<div class="header">
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
@@ -173,42 +174,43 @@
 				</div>
 			</transition>
 		</div>
-		<img class="serviceA-carimg" src="images/index_masthead0cn.jpg" alt="car">
-		<div class="content-sy" v-html="$t('serviceAgreement')">
-            
+		<div class="param">
+			<Spin size="large" fix v-if="spinShow"></Spin>
+			<i-Table width="100%" border highlight-row ref="currentRowTable" size="large" :columns="columns3" :data="$t('barginRecord.data')"></i-Table>
+			<!-- <i-Button @click="handleClearCurrentRow" size="large">Clear</i-Button> -->
 		</div>
 		<div class="contact">
-				<div class="top">
-						<div class="logo"><img src="images/logor.png" ></div>
-					<div class="wx">
-						<a>
-							<img src="images/wximg.jpg" >
-							<span>{{$t('champion')}}</span>
-						</a>
-					</div>
-					<div class="phone">
-						<a>
-							<img src="images/phone.png" >
-							<span>{{$t('addressphone')}}</span>
-						</a>
-					</div>
+			<div class="top">
+				<div class="logo"><img src="images/logor.png" ></div>
+				<div class="wx">
+					<a>
+						<img src="images/wximg.jpg" >
+						<span>{{$t('champion')}}</span>
+					</a>
 				</div>
+				<div class="phone">
+					<a>
+						<img src="images/phone.png" >
+						<span>{{$t('addressphone')}}</span>
+					</a>
 				</div>
-			<div class="adress">
-				<ul>
-					<img src="images/address.png" >
-				</ul>
 			</div>
-			<div class="misc">
-				<ul>
-					<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
-				</ul>
-			</div>
-			<div class="copy">
-				<span>
-		    Copyright@2019 CHAMPION Inc. Privacy Terms
-		</span>
-			</div>
+		</div>
+		<div class="adress">
+			<ul>
+				<img src="images/address.png" >
+			</ul>
+		</div>
+		<div class="misc">
+			<ul>
+				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+			</ul>
+		</div>
+		<div class="copy">
+			<span>
+				Copyright@2019 CHAMPION Inc. Privacy Terms
+			</span>
+		</div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -233,25 +235,79 @@
 				username: '',
 				password: ''
 			},
+			form: {
+				page: 1,
+				limit: 100
+			},
+			columns3: [
+				{
+					type: 'index',
+					width: 60,
+					align: 'center',
+					fixed: 'left'
+				},
+				{
+					title: 'Name',
+					key: 'name',
+					width: 100,
+				},
+				{
+					title: 'Phone',
+					key: 'phone',
+					width: 125,
+				},{
+					title: 'Price',
+					key: 'price',
+					width: 125,
+				},{
+					title: 'Leave word',
+					key: 'remark',
+					width: 125,
+				},
+				{
+					title: 'Mileage',
+					key: 'mileage',
+					width: 100,
+				},{
+					title: 'WECHAT',
+					key: 'weixin',
+					width: 100,
+				},{
+					title: 'Status',
+					key: 'status',
+					width: 80,					
+					fixed: 'right'
+				},
+			],
+			data1: [],
+			spinShow: false,
 		},
 		mounted() {
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
-			}
+			var thatvu = this;
+			
+			orifun.initStatu(this);
+			this.spinShow = true;
+			this.getApplyRecord();
 		},
 		methods: {
+			handleClearCurrentRow () {
+                this.$refs.currentRowTable.clearCurrentRow();
+            },
+			getApplyRecord() {
+				var that = this;
+				this.form.language = 'cn';
+				data.common('CarWithAuth/recommendationApplicationList',function(d){
+					console.log(d)
+					that.$i18n._vm.messages['zh-cn'].barginRecord.data = d.data;
+				},this.form);
+				
+				this.form.language = 'en';
+				data.common('CarWithAuth/recommendationApplicationList',function(d){
+					console.log(d)
+					that.$i18n._vm.messages['en'].barginRecord.data = d.data;
+					that.spinShow = false;
+				},this.form);
+            },
 			navTobuy: function(){
 				orifun.initpostbody();
 			},
@@ -274,7 +330,7 @@
 				orifun.lrswitch(this,e);
 			}
 		}
-	}).$mount('#serviceA')
+	}).$mount('#params')
 	// 现在应用程序已经准备好了！
 </script>
 </html>

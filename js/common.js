@@ -50,7 +50,9 @@ var orifun = {
 		}
 		data.common('Login/login',function(d){
 			// that.slideArr = d;
-			if(d != 400 || d.code!= 400){
+			if(d == 400 || d.code== 400){
+				obj.$Message.warning(orifun.getInfo('Login failed, please check whether the user name or password is correct!','登录失败,请检查用户名或密码是否正确!'));
+			}else{
 				console.log(d)
 				localStorage.token = d;
 				obj.switchlogin = !obj.switchlogin;
@@ -59,8 +61,6 @@ var orifun = {
 					title: orifun.getInfo('Login successful!','登录成功! '),
 				});
 				localStorage.login = true;
-			}else{
-				obj.$Message.warning(orifun.getInfo('Login failed, please check whether the user name or password is correct!','登录失败,请检查用户名或密码是否正确!'));
 			}
 		},obj.logindata)
 	},

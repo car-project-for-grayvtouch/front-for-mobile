@@ -312,253 +312,263 @@
 					email: 'Email',
 				},
 				privat: "<h3>User privacy policy</h3>\
-			<p class='content-sy-b'>\
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dear users, your trust is very important for CHAMPION platform. CHAMPION platform is well aware of the importance of personal information for you. CHAMPION platform will take corresponding security protection measures according to laws and regulations, and try its best to protect your personal information in a safe and controllable way.As a result, Beijing CHAMPION old motor vehicle brokerage co., LTD and its affiliates (hereinafter referred to as the 'CHAMPION'), the CHAMPION website (www.championcargroup.com) and the application of APP, etc. (hereinafter referred to as 'CHAMPION platform') formulated the user privacy policy (hereinafter referred to as 'the policy') and remind you to:：<br>\
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This policy applies to all products or services of CHAMPION company and CHAMPION platform.CHAMPION. If no independent privacy policy exists for the products or services provided by CHAMPION, this policy applies to such products or services as well.<br>\
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Before you use the products or services of CHAMPION platform, please be sure to read and fully understand this policy. Once you start to use the products or services of CHAMPION platform, you have fully understood and agreed to this policy.\
-			</p>\
-			<h4 class='content-sy-b'>1. 【The collection scope of personal information】</h4>\
-			<p>\
-				CHAMPION platform is authorized to collect the following personal information of you：<br>\
-				1）Personal information: when you select the CHAMPION platform to provide related services, according to you to choose the type of service may need to submit to the CHAMPION platform or voluntarily by the CHAMPION platform for personal id card, phone number, address, email, financial vehicles, vehicle information application, the power of attorney, credit registries, driving license, and bank CARDS, pay information, bank water, third-party payment of social security system records, trading records and related information.<br>\
-				2）Your password, password prompts, and other security information that can be used to verify and access your account.<br>\
-				3）When CHAMPION platform customer service team, staff and partners to contact you or you with CHAMPION platform customer service team, staff, partners contact, CHAMPION platform will call recording and manually to record both sides of the phone information and your opinions or Suggestions, you provide the name and contact information, so that the CHAMPION platform to provide better service for you, handling disputes, solve a problem or to feedback the result to you.If you refuse to collect such information on the CHAMPION platform, you may be unable to use the core business functions of the CHAMPION platform.<br>\
-				4）When you use CHAMPION platform service, the server will automatically record some information, including but not limited to, usage, IP address, the type of access service URL, browser, access the vehicle location, access to information, such as access to the date and time log, in order to improve the function, improve the user experience, to provide you with better service.<br>\
-				5）Some products and/or services contain unique application Numbers.This number is sent to the CHAMPION platform along with installation-related information, such as operating system type and application version number, when you install, activate, update, uninstall, or when these services communicate with the CHAMPION platform on a regular basis (such as software updates).When you use CHAMPION platform services with location capabilities, the system automatically processes location information about the device so that you don't have to manually enter your own geographic coordinates to get the service.In order to provide better service and improve user experience, CHAMPION platform may record information such as hardware model, operating system version number, international mobile device identity code (IMEI), network device hardware address (MAC), etc.<br>\
-				6）To achieve the personalized requirements of your online experience, so that you have a more relaxed access experience.CHAMPION platform sends one or more small data files called Cookies on your computer or mobile device. The Cookies assigned to you are unique and can only be read by Web servers that publish Cookies to your domain.CHAMPION platform sends Cookies to you in order to simplify the steps of your repeated login, store data such as your preference of car selection, and then provide you with the preference setting of car selection, help you optimize the selection and interaction of advertisements, and help you judge your login status and account or data security.CHAMPION platform does not use Cookies for any purpose other than those described in this privacy policy.You may manage or delete Cookies according to your preferences.You can clear all Cookies saved on the computer. Most web browsers automatically accept Cookies, but you can usually change the Settings of the browser to reject Cookies according to your own needs.In addition, you can clear all Cookies saved in the browser, and the mobile terminal can clear all Cookies after logging out.However, if you do this, you may need to personally change the user Settings every time you visit the CHAMPION platform website, and the corresponding information you previously recorded will be deleted and may have an impact on the security of the services you use. <br>\
-				7）Other personal information collected according to the needs of specific products and services of CHAMPION platform, including but not limited to your opinions and Suggestions on CHAMPION platform and products or services of CHAMPION platform.\
-			</p>\
-			<h4 class='content-sy-b'>2. 【Personal information collection methods】</h4>\
-			<p>\
-				You authorize the CHAMPION platform to collect your personal information in the following ways：<br>\
-				1）CHAMPION platform will collect and store information that you proactively provide to CHAMPION platform when browsing, accessing, and/or using products or services of CHAMPION platform；<br>\
-				2）CHAMPION platform will collect and store information relevant to you that is recorded by CHAMPION platform in providing products or services of CHAMPION platform to you；<br>\
-				3）CHAMPION platform will collect and store information that you voluntarily submit or provide feedback through CHAMPION platform's customer service staff, staff, partners and/or other channels；<br>\
-				4）CHAMPION platform will collect and store legally obtained information about you from affiliates, business partners and independent third party sources；<br>\
-				5）CHAMPION platform will inquire your relevant credit information from the credit investigation institution established according to law, including but not limited to any credit score, credit report, etc.\
-			</p>\
-			<h4 class='content-sy-b'>3.【Use of personal information】</h4>\
-			<p>\
-				You authorize the CHAMPION platform to use your personal information for the following purposes：<br>\
-				1）We will provide you with the products and services of CHAMPION platform and manage and optimize the relevant websites and apps of CHAMPION platform；<br>\
-				2）CHAMPION platform promotes and improves the functionality and quality of existing products and services, including but not limited to the customization and updating of products and services；<br>\
-				3）CHAMPION carries out marketing activities related to products and services of the CHAMPION platform to push the latest information of marketing activities and preferential schemes to you；<br>\
-				4）Design, develop and promote new products and services；<br>\
-				5）CHAMPION platform product and service security, including but not limited to authentication, user services, security precautions, fraud monitoring, archiving and backup；<br>\
-				6）To assist administrative organs, judicial organs and other competent organs in carrying out investigations, and to abide by applicable laws and regulations and other obligations committed to competent organs；<br>\
-				7）The purpose for which you are notified at the time the information is collected and other purposes related to any of the above purposes；<br>\
-				8）Subject to applicable laws and regulations, CHAMPION may anonymize, summarize, desensitize and encrypt your personal information to form a statistical information or user portrait (but the portrait cannot identify any individual user) to display and push relevant services, products or functions for you.<br>\
-				9）In addition, the CHAMPION platform may send you information and notifications relevant to the above purposes，This includes, but is not limited to, captchas required to ensure the completion of the service, push notifications necessary to use the product or service, news about CHAMPION platform products or services, and marketing activities and promotional information.\
-			</p>\
-				<h4 class='content-sy-b'>4.【Sharing of personal information】</h4>\
-			<p>\
-				CHAMPION platform is obliged to keep your personal information confidential, but you authorize CHAMPION platform to share your information with a third party if：<br>\
-				1）In order to improve the quality of products and services of CHAMPION platform or provide you with brand new products and services, CHAMPION platform will share your relevant information within affiliated companies, and may also provide the information collected by CHAMPION platform to a third party for analysis and statistics；<br>\
-				2）If certain products and services that you use through the CHAMPION platform are provided by or in conjunction with a partner, partner or supplier of the CHAMPION platform, the CHAMPION platform will share with you the information necessary to provide you with the products and services；<br>\
-				3）CHAMPION platform may provide aggregated information, anonymized information or other information that would not identify you to third party advertisers, application developers, open platforms or other partners for joint promotional activities with third parties；<br>\
-				4）In order to protect the legitimate rights and interests of you and the parties to the transaction, CHAMPION platform will provide the information necessary for the settlement of the transaction dispute or dispute to the other party or a third party with an interest when assisting in the settlement of the transaction dispute or dispute related to you；<br>\
-				5）Champiplatform may provide you with information that would be subject to audit or due diligence by investors, third parties, in accordance with applicable laws and regulations and business practices；<br>\
-				6）CHAMPION platform will provide you with relevant information in accordance with the provisions of laws and regulations or the requirements of competent authorities such as administrative authorities and judicial organs；<br>\
-				7）CHAMPION's related services may share your personal information with CHAMPION's vendors, service providers, consultants, or agents to provide better customer service and user experience.For example, if you participate in the lucky draw, we need to provide your personal information to the logistics service provider in order to send prizes；<br>\
-				8）Other circumstances in which your personal information can be provided to a third party with your consent or authorization。<br>\
-				You agree to release the receiving and/or using party of the above personal information from all claims, liabilities and losses arising out of or likely to result from the disclosure and use of such information in accordance with the circumstances set forth in this policy.\
-			</p>\
-			<h4 class='content-sy-b'>5.【Exceptions to the collection, use and provision of personal information】</h4>\
-			<p>\
-				You fully understand and accept that CHAMPION platform collects, USES and provides your personal information to others without your authorization and consent if：<br>\
-				1）Relating to national security and national defence security；<br>\
-				2）Relating to public safety, public health or major public interests；<br>\
-				3）Related to criminal investigation, prosecution, trial and execution of judgment, or requested by public security, procuratorate, court, market supervision, commerce and other authorities；<br>\
-				4）In order to protect the main body of personal information or other personal life, property and other major legitimate rights and interests but it is difficult to get my consent；<br>\
-				5）The personal information collected is disclosed to the public by the subject of personal information；<br>\
-				6）The personal information collected is disclosed to The public by The subject of personal information；<br>\
-				7）It is necessary to sign the contract according to your requirement；<br>\
-				8）Necessary to maintain the safe and stable operation of the provided services and/or products, such as the discovery and disposition of failures of the services and/or products；<br>\
-				9）Necessary for legitimate news reporting；<br>\
-				10）When it is necessary for an academic research institution to carry out statistics or academic research on the basis of public interest, and provide the results of academic research or description to the public, it shall de-label the personal information contained in the results；<br>\
-				11）Other circumstances prescribed by laws and regulations。\
-			</p>\
-			<h4 class='content-sy-b'> 6.【Personal information security measures】</h4>\
-			<p>\
-				1）CHAMPION platform and its affiliates will safeguard, store, transmit and encrypt your personal information using a rigorous security regime and industry-accepted security techniques and procedures to ensure that your personal information is not lost, compromised or misused.<br>\
-				2）CHAMPION stores your personal information only for such period of time as is necessary for the purposes of this privacy policy and as may be required by applicable laws and regulations.<br>\
-				3）如CHAMPION will cease operations and we will promptly cease any further efforts to collect your personal information, notify you of such cessation of operations in the form of individual notices or announcements, and remove or anonymize our stored personal information.<br>\
-			</p>\
-			<h4 class='content-sy-b'> 7.【Inquiry, correction and deletion of personal information】</h4>\
-			<p>\
-				You can query and correct your personal information on the CHAMPION website.CHAMPION reserves the right to require CHAMPION to delete your personal information if：<br>\
-				1）We have collected your personal information without your express consent.<br>\
-				2）We handled your personal information in violation of laws and regulations.<br>\
-				3）We have violated our agreement with you to use and process your personal information.<br>\
-				4）You have logged out, uninstalled or are no longer using our products or services.<br>\
-				5）We cease to serve you.<br>\
-				After receiving your notice to delete your personal information, we will reply within 15 working days.When we delete your personal information from the server, we may not immediately delete the data from the backup system, but we will delete the information when the backup is updated.<br>\
-				You can log on to the website and submit an application to log out of your account.Please note that if you choose to log out of your account, your account will not be available and the relevant account information will be deleted. You will not be able to log in to your account and use the functions that you must log in to use (but will not affect the services and functions that you can use without having to log in to your account)）.<br>\
-				When you log out of the account, we will stop providing relevant products (or services) to you and delete or anonymize your personal information within 15 working days, except for the circumstances where laws and regulations require us to keep relevant information.\
-			</p>\
-			<h4 class='content-sy-b'> 8.【Information protection for minors】</h4>\
-			<p>\
-				Minors are not allowed to create their own user accounts without the consent of their parents or guardians.If you are a minor, you are advised to ask your parents or guardians to read this privacy policy carefully and to use the services of CHAMPION platform or provide information to CHAMPION platform with the consent of your parents or guardians.<br>\
-				In cases where personal information of minors is collected through the use of CHAMPION platform's products or services with the consent of the parents or guardians, CHAMPION platform will only use, share, transfer or disclose such information if permitted by laws and regulations, with the explicit consent of the parents or guardians or necessary to protect the minors.\
-			</p>\
-			<h4 class='content-sy-b'>9.【Privacy disclaimer】</h4>\
-			<p>Your trade each other, you access to a third party web site operator, you are using a third party service providers and through our access to your personal information of a third party, might have their own privacy policies and methods and measures for your personal information, the third party's right of privacy, access to personal information protection policies and measures will not under our control.Although we will sign the confidentiality agreement with our partners and other third parties who may have access to your personal information and make reasonable efforts to urge them to fulfill the confidentiality obligation, we cannot guarantee that the third party will take confidentiality measures as required by us, and we will not assume any responsibility for the behavior and consequences of the third party.</p>\
-			<h4 class='content-sy-b'>10.【update】</h4>\
-			<p> CHAMPION platform does not restrict your rights under this policy without your express consent.The content of this policy may be updated from time to time as CHAMPION platform services continue to improve.The updated policy effectively replaces the original privacy policy once it is officially implemented on the CHAMPION platform.</p>\
-			<h4 class='content-sy-b'>11.【contact】</h4>\
-			<p>\
-				You can contact CHAMPION platform through the following ways, and CHAMPION platform will reply to your request as soon as possible：<br>\
-				1）If you have any questions, comments or Suggestions on the content of this policy, you can call the customer service hotline at 617-481-7697 and contact CHAMPION platform；<br>\
-				2）If you find that your personal information may be leaked or need to correct your personal information or cancel your personal account, you can handle it by calling 617-481-7697；<br>\
-				3）If you are not satisfied with the response of CHAMPION platform, especially if you believe that the personal information processing behavior of CHAMPION platform has damaged your legitimate rights and interests, you may also seek a solution by filing a lawsuit to the court with jurisdiction in the place where the defendant resides。\
-			</p>",
-			serviceAgreement: "<h3>CHAMPION platform user service agreement</h3>\
-			<div class='content-sy-f'>\
-				<p>Effective date：&nbsp;&nbsp;April 5, 2019</p>\
-				<p>The version number：&nbsp;&nbsp;V 2.0</p>\
-			</div>\
-			<p class='content-sy-b'>\
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Respect of customer, visit, browse or use the CHAMPION in you website (http://www.championcargroup.com), the APP application (hereinafter generally referred to as the 'CHAMPION platform') and related services, show that you have carefully read and fully understand all the terms and conditions under this agreement and agree to be bound by this agreement, to ensure compliance with all applicable laws and regulations.<br>\
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHAMPION platform may amend or update this agreement and its relevant supplements and annexes, platform rules, individual service rules and other documents as required.You should visit this page frequently to understand the current terms. If you do not accept the relevant amendments and updates, please immediately stop using the services provided by CHAMPION platform.If you continue to use the services provided by CHAMPION platform, you have fully accepted the revision or update.\
-			</p>\
-			<h4 class='content-sy-b'>1. Confirmation and acceptance of terms of service</h4>\
-			<p>\
-				1.1 This agreement is a user service agreement between CHAMPION co., LTD. (hereinafter referred to as 'CHAMPION') of North America and you, which stipulates that CHAMPION shall provide relevant services based on the CHAMPION platform and the terms of the agreement to be observed by both parties.If the subordinate websites of CHAMPION platform are increased, the increased websites as part of the network services provided by CHAMPION platform will still apply the provisions of this agreement.The contents and services of the CHAMPION platform are provided by the CHAMPION company, its affiliates, its partners and partners.<br>\
-				1.2 You confirm that, prior to your registration, logging in and browsing CHAMPION platform, you shall have the civil capacity in accordance with the laws of the People's Republic of China and be qualified to conduct relevant transactions.If you do not have the aforementioned civil capacity corresponding to your behavior, you and your guardian shall bear all the consequences caused thereby according to the law.In addition, you need to ensure that you are not subject to restrictions, sanctions or other legal or regulatory restrictions imposed by any country, international organization or territory, otherwise you may not be able to properly register and log on to CHAMPION platform and use the services provided by CHAMPION platform.\
-			</p>\
-			<h4 class='content-sy-b'>2. Account registration and use</h4>\
-			<h5>2.1【Account for】</h5>\
-			<p>\
-				2.1.1After you fill in the information as indicated on the registration page, read and agree to this agreement and complete the registration process, you can get the CHAMPION platform account and become a CHAMPION platform user.<br>\
-				2.1.2You once registered CHAMPION platform account, unless the child channel requires separate open access, you have the right to use the account to use each channel single CHAMPION platform service, when you use each single CHAMPION platform service, your usage behavior as its terms of service as well as the CHAMPION of the single service platform in the single service of all kinds of the consent of the announcement.\
-			</p>\
-			<h5>2.2【Account use】</h5>\
-			<p>\
-				2.2.1You have the right to set and change your account password and log in with your username and password.<br>\
-				2.2.2As your CHAMPION platform account is associated with your personal information and business information of CHAMPION platform, your CHAMPION platform account is only for your own use.Without the consent of CHAMPION platform, you directly or indirectly authorize a third party to use your CHAMPION platform account or obtain information under your account.\
-			</p>\
-			<h5>2.3【Account security】</h5>\
-			<p>\
-				2.3.1CHAMPION platform does not require you to provide your account password at any time.Therefore, it is recommended that you keep your account safe.<br>\
-				2.3.2CHAMPION platform shall not be liable for any loss or consequence caused by your voluntary disclosure of the account or any attack or fraud on your behalf. You shall recover such loss or consequence from the tortsmen through judicial and administrative remedies.Except for the fault of CHAMPION platform, you shall be responsible for all results of actions under your account, including but not limited to signing various agreements, releasing information, proposing transaction demands and disclosing information, etc.<br>\
-				2.3.3If you find any unauthorized use of your account on CHAMPION platform or other circumstances that may lead to the theft or loss of your account, you are advised to notify CHAMPION platform immediately.You understand that any action taken by the CHAMPION platform on any of your requests will take reasonable time and that actions taken by the CHAMPION platform on your request may not prevent or prevent the consequences of the infringement from forming or expanding.\
-			</p>\
-			<h5>2.4【Account cancellation】</h5>\
-			<p>\
-				If you no longer need to register an account, you can call 617-481-7691 or apply for account cancellation according to the prompts on the website. CHAMPION platform will handle account cancellation for you in time after receiving your application.After the account is cancelled, all the information in your account will be cleared.Please keep relevant information before you apply for account cancellation.\
-			</p>\
-			<h4 class='content-sy-b'>3.Information management</h4>\
-			<p>\
-				3.1 【Information is true】When using the services of CHAMPION platform, you shall provide your information and trade-related information (including but not limited to your name, contact information, vehicle information, etc.) accurately and completely as required and prompted by CHAMPION platform, so that CHAMPION platform can contact you and provide relevant services.You understand and agree that you are obligated to guarantee the authenticity and validity of all information you provide and that you shall be solely responsible for any adverse consequences arising out of inaccurate or false information you provide. CHAMPION platform is irrelevant.\
-			</p>\
-			<h5>3.2 【Authorization information】</h5>\
-			<p>\
-				3.2.1In order to ensure the transaction security and provide better service to you, you understand and agree to be irrevocably authorized CHAMPION platform for your information to a third party certification, CHAMPION platform, query service providers and their designated third party access, query, retained, sorting and processing your certification information, but the authentication information only for the trading through the CHAMPION platform and related services.<br>\
-				3.2.2For you to provide, release and formed in the CHAMPION platform service in addition to the personal information of text, images, video, audio and other non-personal information, during the term of the protection of the law you free awarded the CHAMPION platform, CHAMPION, the company and its affiliates worldwide exclusive licensing rights and license to other third party to use and can own name infringement evidence and filed a lawsuit against a third party's rights.You agree that CHAMPION platform and its affiliates store, use, copy, modify, edit, publish, display, translate, distribute or make derivative works of your non-personal information and incorporate such information into other works in the form, media or technology known or developed in the future.<br>\
-				3.2.3Use for the convenience of your CHAMPION platform and other related services, you authorize CHAMPION platform would you register account and use the CHAMPION platform service providing, in the process of information transfer to CHAMPION platform and other related services provider, or from the CHAMPION platform and other related services provider for you provide during registration, using the related service, the formation of the information.\
-			</p>\
-			<p>\
-				3.3 【Violation information processing】Any information you submit such information may not appear in the illegal information, confirmed by the CHAMPION platform, such as the existence of the above, CHAMPION platform shall have the right to unilaterally without further notice to deadline to correct, stop using, the cancellation of registration, suspend/terminate the service, back your account, to contain illegal information, such as links to the content of the shielding or disconnected measures.The approval of all information submitted by CHAMPION platform does not mean any approval, license, authorization, consent, support or commitment from CHAMPION platform, and you shall be liable for such approval.\
-			</p>\
-			<p>3.4 【Information correct】You have the obligation to verify the authenticity and accuracy of the information you provide.When browsing and using the CHAMPION platform, if you find that the information published on the CHAMPION platform is inconsistent with the information you provide or other information related to you, you shall contact the CHAMPION company in time for correction, and the CHAMPION platform shall not exempt you from the obligation and responsibility of providing true information due to the error in information presentation.</p>\
-			<h4 class='content-sy-b'>4. The service content</h4>\
-			<p>\
-				4.1 CHAMPION platform provides services to you in accordance with the published agreements or rules, the services you participate in and any agreements or terms entered into between you and the CHAMPION company (and/or its affiliates, partners and partners).<br>\
-				4.2 Unless otherwise expressly provided in this service agreement, new products, new functions and new services launched by CHAMPION platform shall be governed by this agreement.<br>\
-				4.3In view of the particularity of the network services, you agree that CHAMPION platform has the right to change, interrupt or terminate part or all of the network services at any time without prior notice.CHAMPION platform does not guarantee the timeliness, security, accuracy and non-interruption of network services.<br>\
-			</p>\
-			<h4 class='content-sy-b'>5. User information acquisition and protection</h4>\
-			<p>\
-				5.1CHAMPION platform attaches great importance to the protection of your personal information. When you use the services provided by CHAMPION platform, you agree that CHAMPION platform shall collect, store, use, share, disclose and protect your personal information in accordance with the published user privacy policy.<br>\
-				5.2Warranty and authorization of non-personal information<br>\
-				5.2.1【Dissemination of information】You represent and warrant that you have appropriate and lawful rights to the information you publish on the website.Otherwise, CHAMPION platform may delete or block your information in accordance with the law or this agreement.<br>\
-				5.2.2【Prohibited information】You should ensure that the information you publish does not include the following：<br>\
-				<span>\
-				1）Violating the prohibitive provisions of state laws and regulations；<br>\
-				2）Political propaganda, feudal superstition, obscenity, pornography, gambling, violence, terror or abetting a crime；<br>\
-				3）Fraudulent, false, inaccurate or misleading；<br>\
-				4）Infringing intellectual property rights of others or involving trade secrets and other proprietary rights of third parties；<br>\
-				5）Insulting, slandering, intimidating, or infringing upon the lawful rights and interests of others, such as privacy；<br>\
-				6）There are viruses, trojans, crawlers and other malicious software and program codes that may damage, tamper with, delete or affect the normal operation of any system of CHAMPION platform or secretly obtain data and personal data of CHAMPION platform and other users without authorization；<br>\
-				7）Other provisions that violate social public interests or public morality or are not suitable for publication on the CHAMPION platform in accordance with relevant agreements and rules of the CHAMPION platform.\
-				</span>\
-			</p>\
-			<h4 class='content-sy-b'>6. 【Limitation of liability】</h4>\
-			<p>\
-				1.CHAMPION platform shall not be liable for any disruption of network services within a reasonable period of time arising from any of the following circumstances：<br>\
-				1)	CHAMPION platform reserves the right to suspend any part of the service without prior notice for maintenance, upgrade or other purposes if the platform or related equipment providing network services needs to be overhauled or maintained regularly or irregularly. <br>\
-				2)	Force majeure such as typhoon, earthquake, flood, lightning or terrorist attack； <br>\
-				3)	Failure of the user's computer software or hardware, communication lines or power supply lines； <br>\
-				4)	Due to viruses, trojans, malicious program attacks, network congestion, system instability, system or equipment failure, communication failure, power failure, banking reasons, third-party service defects or government behavior and other reasons.\
-			</p>\
-			<p>\
-				2.You understand and accept that CHAMPION shall not be liable for any defects in the quality of any of the following products or services provided to you and any losses (if any) arising therefrom:  <br>\
-				1)	CHAMPION platform provides you with products or services free of charge； <br>\
-				2)	CHAMPION platform presents any product or service to you。\
-			</p>\
-			<p>\
-				3.CHAMPION the information contained in the platform, including but not limited to, text, images, data, opinions, web pages or links, while trying to accurate and detailed, but the CHAMPION, the company does not contain the information and content of accurate and complete, fully and reliability do any commitment, also not the content of these information and liable for errors or omissions, or the information and content to make any express or implied, including but not limited to, without infringing on lawful rights and interests of a third party.\
-			</p>\
-			<h4 class='content-sy-b'>7. notice</h4>\
-			<h5>7.1Your valid contact information includes：</h5>\
-			<p>\
-				1）When you register as a user of CHAMPION platform and accept the services of CHAMPION platform, you shall provide real and effective contact information (including your email address, phone number, contact address, etc.) to CHAMPION platform. In case of any change of contact information, you are obliged to update relevant information in time and keep the state that can be contacted.<br>\
-				2）The user account (including sub-accounts) that you created when you registered the CHAMPION platform user for logging on to the CHAMPION platform to receive system notifications or other instant messages also serves as your effective contact information.<br>\
-				3）CHAMPION platform will serve you with one or more of the above communications on notices of any kind that may materially or adversely affect your rights and obligations.\
-			</p>\
-			<h5>7.2 Service of notice</h5>\
-			<p>\
-				1）CHAMPION platform through the notice sent to your contact information, including a written notice in the form of electronic, including but not limited to notice the CHAMPION platform, provide you with the contact phone number to send SMS, provide you with email addresses to send e-mails, send your account system messages, be deemed to have been served after send success;A written notice sent by a paper carrier shall be deemed to have been delivered on the fifth natural day after it is mailed to the address provided.<br>\
-				2）In the event of any dispute arising from the CHAMPION's trading activities on the CHAMPION platform, you agree that the judicial and administrative authorities may serve you with relevant legal documents through SMS, email or other modern means of communication or by mail.The mobile phone number, E-mail address or CHAMPION platform account and other contact information designated by you to receive the legal documents shall be the mobile phone number, E-mail address and other contact information provided by you when you register and update the CHAMPION platform. Any legal document sent to such contact information by judicial or administrative authorities shall be deemed to have been served.The mailing address you specify is your legal contact address or the valid contact address you provide.<br>\
-				3）You agree that the judicial or administrative authority may serve legal documents to you in one or more of the above ways, and the judicial or administrative authority may serve legal documents to you in various ways, and the time of service shall be whichever is the first.<br>\
-				4）You agree that the above service method applies to all stages of administrative and judicial proceedings.<br>\
-				5）You should ensure that the contact information provided is accurate, valid and updated in real time.If the contact information provided is not accurate, or you do not timely inform the changed contact information, so that the legal documents can not be served or not served in time, you may bear the legal consequences arising therefrom.\
-			</p>\
-			<h4 class='content-sy-b'>8. Termination of agreement</h4>\
-			<p>\
-				8.1【User-initiated termination】You have the right to terminate this agreement in any of the following ways：<br>\
-				<span>\
-				1）You can log out of your account through the prompts function of the website；<br>\
-				2）You cease to use and expressly refuse to accept the change before the change takes effect；<br>\
-				3）You expressly disapprove of continuing to use the services of CHAMPION platform and you are eligible for termination of CHAMPION platform.\
-				</span>\
-			</p>\
-			<p>\
-				8.2【CHAMPION platform initiated termination】CHAMPION platform may notify you of the termination of this agreement in the manner set forth in section 6 of this agreement if：<br>\
-				<span>\
-				1）CHAMPION platform terminates this agreement under the terms of breach if you breach this agreement；<br>\
-				2）CHAMPION platform seals up your account in accordance with the rules of CHAMPION platform for misappropriating others' accounts, releasing false and untrue information, prohibited information, swindling others' property, selling fake products, disrupting the market order, and taking improper measures for profits；<br>\
-				3）Your account was reclaimed by the CHAMPION platform under this agreement；<br>\
-				4）CHAMPION platform where you have committed fraud, infringed upon the legitimate rights and interests of others or committed other serious violations；<br>\
-				5）Other circumstances under which the service shall be terminated.\
-				</span>\
-			</p>\
-			<p>\
-				8.3  Treatment after termination of the agreement<br>\
-				8.3.1【User information disclosure】Upon termination of this agreement, CHAMPION platform shall not be obligated to disclose any information in your account to you or any third party designated by you, except as expressly provided by law.<br>\
-				8.3.2 【Rights reserved】Upon termination of this agreement, CHAMPION platform shall still enjoy the following rights：<br>\
-				<span>\
-				1）CHAMPION platform continues to retain all information you retain under section 5 of this agreement；<br>\
-				2）CHAMPION platform may still pursue you for breach of contract in accordance with this agreement.\
-				</span>\
-			</p>\
-			<h4 class='content-sy-b'>9. Application of law, jurisdiction and others</h4>\
-			<p>9.1【The applicable law】The conclusion, effectiveness, interpretation, amendment, supplement, termination, execution and dispute resolution of this agreement shall be governed by the laws of mainland China.Refer to business practices and/or industry practices in the absence of relevant legal provisions.</p>\
-			<p>9.2【Under the jurisdiction of】Any dispute arising from the use of the service of CHAMPION platform and related to the service of CHAMPION platform shall be settled by the CHAMPION platform through negotiation with you.If no agreement can be reached through negotiation, either party may bring a lawsuit to the people's court that has jurisdiction over the place where the CHAMPION company is located.</p>\
-			<p>9.3【separability】Any provision of this agreement shall be deemed void, invalid or unenforceable and shall be deemed divisible without prejudice to the validity and enforceability of the remaining provisions of this agreement.</p>",
-			person: {
-				hello: 'hello',
-				toadd: '<span>No phone num information, to add ></span>',
-				sa: 'Switch account',
-				lo: 'Log out',
-				pcinfo: 'Improve personal information',
-				sellapply: 'To apply for to sell cars',
-				updateps: 'Change the password',
-				barecord: 'Value and purchasing records',
-				av: 'Already bought the vehicle',
-				preorder: 'Reserve a vehicle',
-				coll: 'My collection'
-			}
+				<p class='content-sy-b'>\
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dear users, your trust is very important for CHAMPION platform. CHAMPION platform is well aware of the importance of personal information for you. CHAMPION platform will take corresponding security protection measures according to laws and regulations, and try its best to protect your personal information in a safe and controllable way.As a result, Beijing CHAMPION old motor vehicle brokerage co., LTD and its affiliates (hereinafter referred to as the 'CHAMPION'), the CHAMPION website (www.championcargroup.com) and the application of APP, etc. (hereinafter referred to as 'CHAMPION platform') formulated the user privacy policy (hereinafter referred to as 'the policy') and remind you to:：<br>\
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This policy applies to all products or services of CHAMPION company and CHAMPION platform.CHAMPION. If no independent privacy policy exists for the products or services provided by CHAMPION, this policy applies to such products or services as well.<br>\
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Before you use the products or services of CHAMPION platform, please be sure to read and fully understand this policy. Once you start to use the products or services of CHAMPION platform, you have fully understood and agreed to this policy.\
+				</p>\
+				<h4 class='content-sy-b'>1. 【The collection scope of personal information】</h4>\
+				<p>\
+					CHAMPION platform is authorized to collect the following personal information of you：<br>\
+					1）Personal information: when you select the CHAMPION platform to provide related services, according to you to choose the type of service may need to submit to the CHAMPION platform or voluntarily by the CHAMPION platform for personal id card, phone number, address, email, financial vehicles, vehicle information application, the power of attorney, credit registries, driving license, and bank CARDS, pay information, bank water, third-party payment of social security system records, trading records and related information.<br>\
+					2）Your password, password prompts, and other security information that can be used to verify and access your account.<br>\
+					3）When CHAMPION platform customer service team, staff and partners to contact you or you with CHAMPION platform customer service team, staff, partners contact, CHAMPION platform will call recording and manually to record both sides of the phone information and your opinions or Suggestions, you provide the name and contact information, so that the CHAMPION platform to provide better service for you, handling disputes, solve a problem or to feedback the result to you.If you refuse to collect such information on the CHAMPION platform, you may be unable to use the core business functions of the CHAMPION platform.<br>\
+					4）When you use CHAMPION platform service, the server will automatically record some information, including but not limited to, usage, IP address, the type of access service URL, browser, access the vehicle location, access to information, such as access to the date and time log, in order to improve the function, improve the user experience, to provide you with better service.<br>\
+					5）Some products and/or services contain unique application Numbers.This number is sent to the CHAMPION platform along with installation-related information, such as operating system type and application version number, when you install, activate, update, uninstall, or when these services communicate with the CHAMPION platform on a regular basis (such as software updates).When you use CHAMPION platform services with location capabilities, the system automatically processes location information about the device so that you don't have to manually enter your own geographic coordinates to get the service.In order to provide better service and improve user experience, CHAMPION platform may record information such as hardware model, operating system version number, international mobile device identity code (IMEI), network device hardware address (MAC), etc.<br>\
+					6）To achieve the personalized requirements of your online experience, so that you have a more relaxed access experience.CHAMPION platform sends one or more small data files called Cookies on your computer or mobile device. The Cookies assigned to you are unique and can only be read by Web servers that publish Cookies to your domain.CHAMPION platform sends Cookies to you in order to simplify the steps of your repeated login, store data such as your preference of car selection, and then provide you with the preference setting of car selection, help you optimize the selection and interaction of advertisements, and help you judge your login status and account or data security.CHAMPION platform does not use Cookies for any purpose other than those described in this privacy policy.You may manage or delete Cookies according to your preferences.You can clear all Cookies saved on the computer. Most web browsers automatically accept Cookies, but you can usually change the Settings of the browser to reject Cookies according to your own needs.In addition, you can clear all Cookies saved in the browser, and the mobile terminal can clear all Cookies after logging out.However, if you do this, you may need to personally change the user Settings every time you visit the CHAMPION platform website, and the corresponding information you previously recorded will be deleted and may have an impact on the security of the services you use. <br>\
+					7）Other personal information collected according to the needs of specific products and services of CHAMPION platform, including but not limited to your opinions and Suggestions on CHAMPION platform and products or services of CHAMPION platform.\
+				</p>\
+				<h4 class='content-sy-b'>2. 【Personal information collection methods】</h4>\
+				<p>\
+					You authorize the CHAMPION platform to collect your personal information in the following ways：<br>\
+					1）CHAMPION platform will collect and store information that you proactively provide to CHAMPION platform when browsing, accessing, and/or using products or services of CHAMPION platform；<br>\
+					2）CHAMPION platform will collect and store information relevant to you that is recorded by CHAMPION platform in providing products or services of CHAMPION platform to you；<br>\
+					3）CHAMPION platform will collect and store information that you voluntarily submit or provide feedback through CHAMPION platform's customer service staff, staff, partners and/or other channels；<br>\
+					4）CHAMPION platform will collect and store legally obtained information about you from affiliates, business partners and independent third party sources；<br>\
+					5）CHAMPION platform will inquire your relevant credit information from the credit investigation institution established according to law, including but not limited to any credit score, credit report, etc.\
+				</p>\
+				<h4 class='content-sy-b'>3.【Use of personal information】</h4>\
+				<p>\
+					You authorize the CHAMPION platform to use your personal information for the following purposes：<br>\
+					1）We will provide you with the products and services of CHAMPION platform and manage and optimize the relevant websites and apps of CHAMPION platform；<br>\
+					2）CHAMPION platform promotes and improves the functionality and quality of existing products and services, including but not limited to the customization and updating of products and services；<br>\
+					3）CHAMPION carries out marketing activities related to products and services of the CHAMPION platform to push the latest information of marketing activities and preferential schemes to you；<br>\
+					4）Design, develop and promote new products and services；<br>\
+					5）CHAMPION platform product and service security, including but not limited to authentication, user services, security precautions, fraud monitoring, archiving and backup；<br>\
+					6）To assist administrative organs, judicial organs and other competent organs in carrying out investigations, and to abide by applicable laws and regulations and other obligations committed to competent organs；<br>\
+					7）The purpose for which you are notified at the time the information is collected and other purposes related to any of the above purposes；<br>\
+					8）Subject to applicable laws and regulations, CHAMPION may anonymize, summarize, desensitize and encrypt your personal information to form a statistical information or user portrait (but the portrait cannot identify any individual user) to display and push relevant services, products or functions for you.<br>\
+					9）In addition, the CHAMPION platform may send you information and notifications relevant to the above purposes，This includes, but is not limited to, captchas required to ensure the completion of the service, push notifications necessary to use the product or service, news about CHAMPION platform products or services, and marketing activities and promotional information.\
+				</p>\
+					<h4 class='content-sy-b'>4.【Sharing of personal information】</h4>\
+				<p>\
+					CHAMPION platform is obliged to keep your personal information confidential, but you authorize CHAMPION platform to share your information with a third party if：<br>\
+					1）In order to improve the quality of products and services of CHAMPION platform or provide you with brand new products and services, CHAMPION platform will share your relevant information within affiliated companies, and may also provide the information collected by CHAMPION platform to a third party for analysis and statistics；<br>\
+					2）If certain products and services that you use through the CHAMPION platform are provided by or in conjunction with a partner, partner or supplier of the CHAMPION platform, the CHAMPION platform will share with you the information necessary to provide you with the products and services；<br>\
+					3）CHAMPION platform may provide aggregated information, anonymized information or other information that would not identify you to third party advertisers, application developers, open platforms or other partners for joint promotional activities with third parties；<br>\
+					4）In order to protect the legitimate rights and interests of you and the parties to the transaction, CHAMPION platform will provide the information necessary for the settlement of the transaction dispute or dispute to the other party or a third party with an interest when assisting in the settlement of the transaction dispute or dispute related to you；<br>\
+					5）Champiplatform may provide you with information that would be subject to audit or due diligence by investors, third parties, in accordance with applicable laws and regulations and business practices；<br>\
+					6）CHAMPION platform will provide you with relevant information in accordance with the provisions of laws and regulations or the requirements of competent authorities such as administrative authorities and judicial organs；<br>\
+					7）CHAMPION's related services may share your personal information with CHAMPION's vendors, service providers, consultants, or agents to provide better customer service and user experience.For example, if you participate in the lucky draw, we need to provide your personal information to the logistics service provider in order to send prizes；<br>\
+					8）Other circumstances in which your personal information can be provided to a third party with your consent or authorization。<br>\
+					You agree to release the receiving and/or using party of the above personal information from all claims, liabilities and losses arising out of or likely to result from the disclosure and use of such information in accordance with the circumstances set forth in this policy.\
+				</p>\
+				<h4 class='content-sy-b'>5.【Exceptions to the collection, use and provision of personal information】</h4>\
+				<p>\
+					You fully understand and accept that CHAMPION platform collects, USES and provides your personal information to others without your authorization and consent if：<br>\
+					1）Relating to national security and national defence security；<br>\
+					2）Relating to public safety, public health or major public interests；<br>\
+					3）Related to criminal investigation, prosecution, trial and execution of judgment, or requested by public security, procuratorate, court, market supervision, commerce and other authorities；<br>\
+					4）In order to protect the main body of personal information or other personal life, property and other major legitimate rights and interests but it is difficult to get my consent；<br>\
+					5）The personal information collected is disclosed to the public by the subject of personal information；<br>\
+					6）The personal information collected is disclosed to The public by The subject of personal information；<br>\
+					7）It is necessary to sign the contract according to your requirement；<br>\
+					8）Necessary to maintain the safe and stable operation of the provided services and/or products, such as the discovery and disposition of failures of the services and/or products；<br>\
+					9）Necessary for legitimate news reporting；<br>\
+					10）When it is necessary for an academic research institution to carry out statistics or academic research on the basis of public interest, and provide the results of academic research or description to the public, it shall de-label the personal information contained in the results；<br>\
+					11）Other circumstances prescribed by laws and regulations。\
+				</p>\
+				<h4 class='content-sy-b'> 6.【Personal information security measures】</h4>\
+				<p>\
+					1）CHAMPION platform and its affiliates will safeguard, store, transmit and encrypt your personal information using a rigorous security regime and industry-accepted security techniques and procedures to ensure that your personal information is not lost, compromised or misused.<br>\
+					2）CHAMPION stores your personal information only for such period of time as is necessary for the purposes of this privacy policy and as may be required by applicable laws and regulations.<br>\
+					3）如CHAMPION will cease operations and we will promptly cease any further efforts to collect your personal information, notify you of such cessation of operations in the form of individual notices or announcements, and remove or anonymize our stored personal information.<br>\
+				</p>\
+				<h4 class='content-sy-b'> 7.【Inquiry, correction and deletion of personal information】</h4>\
+				<p>\
+					You can query and correct your personal information on the CHAMPION website.CHAMPION reserves the right to require CHAMPION to delete your personal information if：<br>\
+					1）We have collected your personal information without your express consent.<br>\
+					2）We handled your personal information in violation of laws and regulations.<br>\
+					3）We have violated our agreement with you to use and process your personal information.<br>\
+					4）You have logged out, uninstalled or are no longer using our products or services.<br>\
+					5）We cease to serve you.<br>\
+					After receiving your notice to delete your personal information, we will reply within 15 working days.When we delete your personal information from the server, we may not immediately delete the data from the backup system, but we will delete the information when the backup is updated.<br>\
+					You can log on to the website and submit an application to log out of your account.Please note that if you choose to log out of your account, your account will not be available and the relevant account information will be deleted. You will not be able to log in to your account and use the functions that you must log in to use (but will not affect the services and functions that you can use without having to log in to your account)）.<br>\
+					When you log out of the account, we will stop providing relevant products (or services) to you and delete or anonymize your personal information within 15 working days, except for the circumstances where laws and regulations require us to keep relevant information.\
+				</p>\
+				<h4 class='content-sy-b'> 8.【Information protection for minors】</h4>\
+				<p>\
+					Minors are not allowed to create their own user accounts without the consent of their parents or guardians.If you are a minor, you are advised to ask your parents or guardians to read this privacy policy carefully and to use the services of CHAMPION platform or provide information to CHAMPION platform with the consent of your parents or guardians.<br>\
+					In cases where personal information of minors is collected through the use of CHAMPION platform's products or services with the consent of the parents or guardians, CHAMPION platform will only use, share, transfer or disclose such information if permitted by laws and regulations, with the explicit consent of the parents or guardians or necessary to protect the minors.\
+				</p>\
+				<h4 class='content-sy-b'>9.【Privacy disclaimer】</h4>\
+				<p>Your trade each other, you access to a third party web site operator, you are using a third party service providers and through our access to your personal information of a third party, might have their own privacy policies and methods and measures for your personal information, the third party's right of privacy, access to personal information protection policies and measures will not under our control.Although we will sign the confidentiality agreement with our partners and other third parties who may have access to your personal information and make reasonable efforts to urge them to fulfill the confidentiality obligation, we cannot guarantee that the third party will take confidentiality measures as required by us, and we will not assume any responsibility for the behavior and consequences of the third party.</p>\
+				<h4 class='content-sy-b'>10.【update】</h4>\
+				<p> CHAMPION platform does not restrict your rights under this policy without your express consent.The content of this policy may be updated from time to time as CHAMPION platform services continue to improve.The updated policy effectively replaces the original privacy policy once it is officially implemented on the CHAMPION platform.</p>\
+				<h4 class='content-sy-b'>11.【contact】</h4>\
+				<p>\
+					You can contact CHAMPION platform through the following ways, and CHAMPION platform will reply to your request as soon as possible：<br>\
+					1）If you have any questions, comments or Suggestions on the content of this policy, you can call the customer service hotline at 617-481-7697 and contact CHAMPION platform；<br>\
+					2）If you find that your personal information may be leaked or need to correct your personal information or cancel your personal account, you can handle it by calling 617-481-7697；<br>\
+					3）If you are not satisfied with the response of CHAMPION platform, especially if you believe that the personal information processing behavior of CHAMPION platform has damaged your legitimate rights and interests, you may also seek a solution by filing a lawsuit to the court with jurisdiction in the place where the defendant resides。\
+				</p>",
+				serviceAgreement: "<h3>CHAMPION platform user service agreement</h3>\
+				<div class='content-sy-f'>\
+					<p>Effective date：&nbsp;&nbsp;April 5, 2019</p>\
+					<p>The version number：&nbsp;&nbsp;V 2.0</p>\
+				</div>\
+				<p class='content-sy-b'>\
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Respect of customer, visit, browse or use the CHAMPION in you website (http://www.championcargroup.com), the APP application (hereinafter generally referred to as the 'CHAMPION platform') and related services, show that you have carefully read and fully understand all the terms and conditions under this agreement and agree to be bound by this agreement, to ensure compliance with all applicable laws and regulations.<br>\
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHAMPION platform may amend or update this agreement and its relevant supplements and annexes, platform rules, individual service rules and other documents as required.You should visit this page frequently to understand the current terms. If you do not accept the relevant amendments and updates, please immediately stop using the services provided by CHAMPION platform.If you continue to use the services provided by CHAMPION platform, you have fully accepted the revision or update.\
+				</p>\
+				<h4 class='content-sy-b'>1. Confirmation and acceptance of terms of service</h4>\
+				<p>\
+					1.1 This agreement is a user service agreement between CHAMPION co., LTD. (hereinafter referred to as 'CHAMPION') of North America and you, which stipulates that CHAMPION shall provide relevant services based on the CHAMPION platform and the terms of the agreement to be observed by both parties.If the subordinate websites of CHAMPION platform are increased, the increased websites as part of the network services provided by CHAMPION platform will still apply the provisions of this agreement.The contents and services of the CHAMPION platform are provided by the CHAMPION company, its affiliates, its partners and partners.<br>\
+					1.2 You confirm that, prior to your registration, logging in and browsing CHAMPION platform, you shall have the civil capacity in accordance with the laws of the People's Republic of China and be qualified to conduct relevant transactions.If you do not have the aforementioned civil capacity corresponding to your behavior, you and your guardian shall bear all the consequences caused thereby according to the law.In addition, you need to ensure that you are not subject to restrictions, sanctions or other legal or regulatory restrictions imposed by any country, international organization or territory, otherwise you may not be able to properly register and log on to CHAMPION platform and use the services provided by CHAMPION platform.\
+				</p>\
+				<h4 class='content-sy-b'>2. Account registration and use</h4>\
+				<h5>2.1【Account for】</h5>\
+				<p>\
+					2.1.1After you fill in the information as indicated on the registration page, read and agree to this agreement and complete the registration process, you can get the CHAMPION platform account and become a CHAMPION platform user.<br>\
+					2.1.2You once registered CHAMPION platform account, unless the child channel requires separate open access, you have the right to use the account to use each channel single CHAMPION platform service, when you use each single CHAMPION platform service, your usage behavior as its terms of service as well as the CHAMPION of the single service platform in the single service of all kinds of the consent of the announcement.\
+				</p>\
+				<h5>2.2【Account use】</h5>\
+				<p>\
+					2.2.1You have the right to set and change your account password and log in with your username and password.<br>\
+					2.2.2As your CHAMPION platform account is associated with your personal information and business information of CHAMPION platform, your CHAMPION platform account is only for your own use.Without the consent of CHAMPION platform, you directly or indirectly authorize a third party to use your CHAMPION platform account or obtain information under your account.\
+				</p>\
+				<h5>2.3【Account security】</h5>\
+				<p>\
+					2.3.1CHAMPION platform does not require you to provide your account password at any time.Therefore, it is recommended that you keep your account safe.<br>\
+					2.3.2CHAMPION platform shall not be liable for any loss or consequence caused by your voluntary disclosure of the account or any attack or fraud on your behalf. You shall recover such loss or consequence from the tortsmen through judicial and administrative remedies.Except for the fault of CHAMPION platform, you shall be responsible for all results of actions under your account, including but not limited to signing various agreements, releasing information, proposing transaction demands and disclosing information, etc.<br>\
+					2.3.3If you find any unauthorized use of your account on CHAMPION platform or other circumstances that may lead to the theft or loss of your account, you are advised to notify CHAMPION platform immediately.You understand that any action taken by the CHAMPION platform on any of your requests will take reasonable time and that actions taken by the CHAMPION platform on your request may not prevent or prevent the consequences of the infringement from forming or expanding.\
+				</p>\
+				<h5>2.4【Account cancellation】</h5>\
+				<p>\
+					If you no longer need to register an account, you can call 617-481-7691 or apply for account cancellation according to the prompts on the website. CHAMPION platform will handle account cancellation for you in time after receiving your application.After the account is cancelled, all the information in your account will be cleared.Please keep relevant information before you apply for account cancellation.\
+				</p>\
+				<h4 class='content-sy-b'>3.Information management</h4>\
+				<p>\
+					3.1 【Information is true】When using the services of CHAMPION platform, you shall provide your information and trade-related information (including but not limited to your name, contact information, vehicle information, etc.) accurately and completely as required and prompted by CHAMPION platform, so that CHAMPION platform can contact you and provide relevant services.You understand and agree that you are obligated to guarantee the authenticity and validity of all information you provide and that you shall be solely responsible for any adverse consequences arising out of inaccurate or false information you provide. CHAMPION platform is irrelevant.\
+				</p>\
+				<h5>3.2 【Authorization information】</h5>\
+				<p>\
+					3.2.1In order to ensure the transaction security and provide better service to you, you understand and agree to be irrevocably authorized CHAMPION platform for your information to a third party certification, CHAMPION platform, query service providers and their designated third party access, query, retained, sorting and processing your certification information, but the authentication information only for the trading through the CHAMPION platform and related services.<br>\
+					3.2.2For you to provide, release and formed in the CHAMPION platform service in addition to the personal information of text, images, video, audio and other non-personal information, during the term of the protection of the law you free awarded the CHAMPION platform, CHAMPION, the company and its affiliates worldwide exclusive licensing rights and license to other third party to use and can own name infringement evidence and filed a lawsuit against a third party's rights.You agree that CHAMPION platform and its affiliates store, use, copy, modify, edit, publish, display, translate, distribute or make derivative works of your non-personal information and incorporate such information into other works in the form, media or technology known or developed in the future.<br>\
+					3.2.3Use for the convenience of your CHAMPION platform and other related services, you authorize CHAMPION platform would you register account and use the CHAMPION platform service providing, in the process of information transfer to CHAMPION platform and other related services provider, or from the CHAMPION platform and other related services provider for you provide during registration, using the related service, the formation of the information.\
+				</p>\
+				<p>\
+					3.3 【Violation information processing】Any information you submit such information may not appear in the illegal information, confirmed by the CHAMPION platform, such as the existence of the above, CHAMPION platform shall have the right to unilaterally without further notice to deadline to correct, stop using, the cancellation of registration, suspend/terminate the service, back your account, to contain illegal information, such as links to the content of the shielding or disconnected measures.The approval of all information submitted by CHAMPION platform does not mean any approval, license, authorization, consent, support or commitment from CHAMPION platform, and you shall be liable for such approval.\
+				</p>\
+				<p>3.4 【Information correct】You have the obligation to verify the authenticity and accuracy of the information you provide.When browsing and using the CHAMPION platform, if you find that the information published on the CHAMPION platform is inconsistent with the information you provide or other information related to you, you shall contact the CHAMPION company in time for correction, and the CHAMPION platform shall not exempt you from the obligation and responsibility of providing true information due to the error in information presentation.</p>\
+				<h4 class='content-sy-b'>4. The service content</h4>\
+				<p>\
+					4.1 CHAMPION platform provides services to you in accordance with the published agreements or rules, the services you participate in and any agreements or terms entered into between you and the CHAMPION company (and/or its affiliates, partners and partners).<br>\
+					4.2 Unless otherwise expressly provided in this service agreement, new products, new functions and new services launched by CHAMPION platform shall be governed by this agreement.<br>\
+					4.3In view of the particularity of the network services, you agree that CHAMPION platform has the right to change, interrupt or terminate part or all of the network services at any time without prior notice.CHAMPION platform does not guarantee the timeliness, security, accuracy and non-interruption of network services.<br>\
+				</p>\
+				<h4 class='content-sy-b'>5. User information acquisition and protection</h4>\
+				<p>\
+					5.1CHAMPION platform attaches great importance to the protection of your personal information. When you use the services provided by CHAMPION platform, you agree that CHAMPION platform shall collect, store, use, share, disclose and protect your personal information in accordance with the published user privacy policy.<br>\
+					5.2Warranty and authorization of non-personal information<br>\
+					5.2.1【Dissemination of information】You represent and warrant that you have appropriate and lawful rights to the information you publish on the website.Otherwise, CHAMPION platform may delete or block your information in accordance with the law or this agreement.<br>\
+					5.2.2【Prohibited information】You should ensure that the information you publish does not include the following：<br>\
+					<span>\
+					1）Violating the prohibitive provisions of state laws and regulations；<br>\
+					2）Political propaganda, feudal superstition, obscenity, pornography, gambling, violence, terror or abetting a crime；<br>\
+					3）Fraudulent, false, inaccurate or misleading；<br>\
+					4）Infringing intellectual property rights of others or involving trade secrets and other proprietary rights of third parties；<br>\
+					5）Insulting, slandering, intimidating, or infringing upon the lawful rights and interests of others, such as privacy；<br>\
+					6）There are viruses, trojans, crawlers and other malicious software and program codes that may damage, tamper with, delete or affect the normal operation of any system of CHAMPION platform or secretly obtain data and personal data of CHAMPION platform and other users without authorization；<br>\
+					7）Other provisions that violate social public interests or public morality or are not suitable for publication on the CHAMPION platform in accordance with relevant agreements and rules of the CHAMPION platform.\
+					</span>\
+				</p>\
+				<h4 class='content-sy-b'>6. 【Limitation of liability】</h4>\
+				<p>\
+					1.CHAMPION platform shall not be liable for any disruption of network services within a reasonable period of time arising from any of the following circumstances：<br>\
+					1)	CHAMPION platform reserves the right to suspend any part of the service without prior notice for maintenance, upgrade or other purposes if the platform or related equipment providing network services needs to be overhauled or maintained regularly or irregularly. <br>\
+					2)	Force majeure such as typhoon, earthquake, flood, lightning or terrorist attack； <br>\
+					3)	Failure of the user's computer software or hardware, communication lines or power supply lines； <br>\
+					4)	Due to viruses, trojans, malicious program attacks, network congestion, system instability, system or equipment failure, communication failure, power failure, banking reasons, third-party service defects or government behavior and other reasons.\
+				</p>\
+				<p>\
+					2.You understand and accept that CHAMPION shall not be liable for any defects in the quality of any of the following products or services provided to you and any losses (if any) arising therefrom:  <br>\
+					1)	CHAMPION platform provides you with products or services free of charge； <br>\
+					2)	CHAMPION platform presents any product or service to you。\
+				</p>\
+				<p>\
+					3.CHAMPION the information contained in the platform, including but not limited to, text, images, data, opinions, web pages or links, while trying to accurate and detailed, but the CHAMPION, the company does not contain the information and content of accurate and complete, fully and reliability do any commitment, also not the content of these information and liable for errors or omissions, or the information and content to make any express or implied, including but not limited to, without infringing on lawful rights and interests of a third party.\
+				</p>\
+				<h4 class='content-sy-b'>7. notice</h4>\
+				<h5>7.1Your valid contact information includes：</h5>\
+				<p>\
+					1）When you register as a user of CHAMPION platform and accept the services of CHAMPION platform, you shall provide real and effective contact information (including your email address, phone number, contact address, etc.) to CHAMPION platform. In case of any change of contact information, you are obliged to update relevant information in time and keep the state that can be contacted.<br>\
+					2）The user account (including sub-accounts) that you created when you registered the CHAMPION platform user for logging on to the CHAMPION platform to receive system notifications or other instant messages also serves as your effective contact information.<br>\
+					3）CHAMPION platform will serve you with one or more of the above communications on notices of any kind that may materially or adversely affect your rights and obligations.\
+				</p>\
+				<h5>7.2 Service of notice</h5>\
+				<p>\
+					1）CHAMPION platform through the notice sent to your contact information, including a written notice in the form of electronic, including but not limited to notice the CHAMPION platform, provide you with the contact phone number to send SMS, provide you with email addresses to send e-mails, send your account system messages, be deemed to have been served after send success;A written notice sent by a paper carrier shall be deemed to have been delivered on the fifth natural day after it is mailed to the address provided.<br>\
+					2）In the event of any dispute arising from the CHAMPION's trading activities on the CHAMPION platform, you agree that the judicial and administrative authorities may serve you with relevant legal documents through SMS, email or other modern means of communication or by mail.The mobile phone number, E-mail address or CHAMPION platform account and other contact information designated by you to receive the legal documents shall be the mobile phone number, E-mail address and other contact information provided by you when you register and update the CHAMPION platform. Any legal document sent to such contact information by judicial or administrative authorities shall be deemed to have been served.The mailing address you specify is your legal contact address or the valid contact address you provide.<br>\
+					3）You agree that the judicial or administrative authority may serve legal documents to you in one or more of the above ways, and the judicial or administrative authority may serve legal documents to you in various ways, and the time of service shall be whichever is the first.<br>\
+					4）You agree that the above service method applies to all stages of administrative and judicial proceedings.<br>\
+					5）You should ensure that the contact information provided is accurate, valid and updated in real time.If the contact information provided is not accurate, or you do not timely inform the changed contact information, so that the legal documents can not be served or not served in time, you may bear the legal consequences arising therefrom.\
+				</p>\
+				<h4 class='content-sy-b'>8. Termination of agreement</h4>\
+				<p>\
+					8.1【User-initiated termination】You have the right to terminate this agreement in any of the following ways：<br>\
+					<span>\
+					1）You can log out of your account through the prompts function of the website；<br>\
+					2）You cease to use and expressly refuse to accept the change before the change takes effect；<br>\
+					3）You expressly disapprove of continuing to use the services of CHAMPION platform and you are eligible for termination of CHAMPION platform.\
+					</span>\
+				</p>\
+				<p>\
+					8.2【CHAMPION platform initiated termination】CHAMPION platform may notify you of the termination of this agreement in the manner set forth in section 6 of this agreement if：<br>\
+					<span>\
+					1）CHAMPION platform terminates this agreement under the terms of breach if you breach this agreement；<br>\
+					2）CHAMPION platform seals up your account in accordance with the rules of CHAMPION platform for misappropriating others' accounts, releasing false and untrue information, prohibited information, swindling others' property, selling fake products, disrupting the market order, and taking improper measures for profits；<br>\
+					3）Your account was reclaimed by the CHAMPION platform under this agreement；<br>\
+					4）CHAMPION platform where you have committed fraud, infringed upon the legitimate rights and interests of others or committed other serious violations；<br>\
+					5）Other circumstances under which the service shall be terminated.\
+					</span>\
+				</p>\
+				<p>\
+					8.3  Treatment after termination of the agreement<br>\
+					8.3.1【User information disclosure】Upon termination of this agreement, CHAMPION platform shall not be obligated to disclose any information in your account to you or any third party designated by you, except as expressly provided by law.<br>\
+					8.3.2 【Rights reserved】Upon termination of this agreement, CHAMPION platform shall still enjoy the following rights：<br>\
+					<span>\
+					1）CHAMPION platform continues to retain all information you retain under section 5 of this agreement；<br>\
+					2）CHAMPION platform may still pursue you for breach of contract in accordance with this agreement.\
+					</span>\
+				</p>\
+				<h4 class='content-sy-b'>9. Application of law, jurisdiction and others</h4>\
+				<p>9.1【The applicable law】The conclusion, effectiveness, interpretation, amendment, supplement, termination, execution and dispute resolution of this agreement shall be governed by the laws of mainland China.Refer to business practices and/or industry practices in the absence of relevant legal provisions.</p>\
+				<p>9.2【Under the jurisdiction of】Any dispute arising from the use of the service of CHAMPION platform and related to the service of CHAMPION platform shall be settled by the CHAMPION platform through negotiation with you.If no agreement can be reached through negotiation, either party may bring a lawsuit to the people's court that has jurisdiction over the place where the CHAMPION company is located.</p>\
+				<p>9.3【separability】Any provision of this agreement shall be deemed void, invalid or unenforceable and shall be deemed divisible without prejudice to the validity and enforceability of the remaining provisions of this agreement.</p>",
+				person: {
+					hello: 'hello',
+					toadd: '<span>No phone num information, to add ></span>',
+					sa: 'Switch account',
+					lo: 'Sign out',
+					pcinfo: 'Improve personal information',
+					sellapply: 'To apply for to sell cars',
+					updateps: 'Change the password',
+					barecord: 'Value and purchasing records',
+					av: 'Installment application',
+					preorder: 'Reserve a vehicle',
+					coll: 'My collection'
+				},
+				sellApply: {
+					data: []
+				},
+				barginRecord: {
+					data: []
+				},
+				installmentRecord: {
+					data: []
+				},
+				collectionList: []
 			},
 		    'zh-cn':{
 					header: {
@@ -1102,10 +1112,20 @@
 						sellapply: '卖车申请',
 						updateps: '修改密码',
 						barecord: '值购记录',
-						av: '已购车辆',
+						av: '分期申请',
 						preorder: '预约车辆',
 						coll: '我的收藏'
-					}
+					},
+					sellApply: {
+						data: []
+					},
+					barginRecord: {
+						data: []
+					},
+					installmentRecord: {
+						data: []
+					},
+					collectionList: []
 			}
 			
 		}// 设置地区信息

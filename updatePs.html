@@ -4,8 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>服务协议</title>
+	<title>修改登录密码</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="dist/styles/iview.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/proveInfo.css">
 	<script type="text/javascript" src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -17,14 +23,9 @@
 	<script type="text/javascript" src="dist/iview.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_hnvxccisg1p.js"></script>
-    <link rel="stylesheet" href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/serivceAgreement.css">
 </head>
 <body>
-	<div id="serviceA" v-cloak>
+	<div id="params" v-cloak>
 		<div class="header">
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
@@ -173,13 +174,32 @@
 				</div>
 			</transition>
 		</div>
-		<img class="serviceA-carimg" src="images/index_masthead0cn.jpg" alt="car">
-		<div class="content-sy" v-html="$t('serviceAgreement')">
-            
+		<div class="param">
+			<Spin size="large" fix v-if="spinShow"></Spin>
+			<i-Form ref="formInline" :model="formInline" :rules="ruleIn" inline @submit.native.prevent>
+				<Form-Item style="display: block;" label="old password" prop="o_password">
+					<i-Input type="password" v-model="formInline.o_password" size="large" placeholder="Please enter the old password">
+						<Icon type="ios-lock-outline" slot="prepend"></Icon>
+					</i-Input>
+				</Form-Item>
+				<Form-Item style="display: block;" label="new password" prop="password">
+					<i-Input type="password" v-model="formInline.password" size="large" placeholder="Please enter the new password">
+						<Icon type="ios-lock-outline" slot="prepend"></Icon>
+					</i-Input>
+				</Form-Item>
+				<Form-Item style="display: block;" label="new password" prop="confirm_password">
+					<i-Input type="password" v-model="formInline.confirm_password" size="large" placeholder="Please enter the new password again">
+						<Icon type="ios-lock-outline" slot="prepend"></Icon>
+					</i-Input>
+				</Form-Item>
+				<Form-Item style="display: block;">
+					<i-Button style="width: 100%;" type="primary" @click="handleSubmitP('formInline')" size="large">update</i-Button>
+				</FormItem>
+			</i-Form>
 		</div>
 		<div class="contact">
 				<div class="top">
-						<div class="logo"><img src="images/logor.png" ></div>
+					<div class="logo"><img src="images/logor.png" ></div>
 					<div class="wx">
 						<a>
 							<img src="images/wximg.jpg" >
@@ -209,6 +229,7 @@
 		    Copyright@2019 CHAMPION Inc. Privacy Terms
 		</span>
 			</div>
+			<Spin size="large" fix v-if="spinShow"></Spin>
 	</div>
 </body>
 <script type="text/javascript">
@@ -233,25 +254,64 @@
 				username: '',
 				password: ''
 			},
+			formValidate: {
+				nickname: '',
+				area_code: '',
+				sex: '',
+				birthday: '',
+			},
+			formInline: {
+				o_password: '',
+				password: '',
+				confirm_password: ''
+			},
+			ruleIn: {
+				o_password: [
+					{ required: true, message: 'Please fill in the old password', trigger: 'blur' },
+					{ type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+				],
+				password: [
+					{ required: true, message: 'Please fill in the new password.', trigger: 'blur' },
+					{ type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+				],
+				confirm_password: [
+					{ required: true, message: 'Please fill in the new password again.', trigger: 'blur' },
+					{ type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+				],
+			},
+			spinShow: false,
 		},
 		mounted() {
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
-			}
+			var thatvu = this;
+			
+			orifun.initStatu(this);
+			
 		},
 		methods: {
+			handleSubmitP(name) {
+				var that = this;
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+						data.common('User/updatePassword',function(d){
+							console.log(d)
+							if(d == 400 || d.code == 400){
+								var notice;
+								for(var k in d.data){
+									notice += d.data[k];
+								}
+								that && that.$Message.warning(notice);
+							}else{
+								that.$Notice.success({
+									title: 'Success to update!',
+									duration: 0
+								});
+							}
+						},this.formInline);
+                    } else {
+                        this.$Message.error('Fail!');
+                    }
+                })
+            },
 			navTobuy: function(){
 				orifun.initpostbody();
 			},
@@ -274,7 +334,7 @@
 				orifun.lrswitch(this,e);
 			}
 		}
-	}).$mount('#serviceA')
+	}).$mount('#params')
 	// 现在应用程序已经准备好了！
 </script>
 </html>

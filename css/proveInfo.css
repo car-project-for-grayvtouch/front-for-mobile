@@ -1,0 +1,11 @@
+#params{
+	background-color: white;
+}
+.about-carimg{
+	width: 100%;
+}
+.param{
+	font-size: 0.35rem;
+	margin: 0.4rem;
+	position: relative;
+}

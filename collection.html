@@ -4,35 +4,42 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>我的收藏</title>
+	<title>分期申请记录</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
-	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
-	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
+	<link rel="stylesheet" href="dist/styles/iview.css">
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/collection.css">
+	<link rel="stylesheet" href="css/proveInfo.css">
+	<script type="text/javascript" src="js/flexible.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/screeningCondition.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_hnvxccisg1p.js"></script>
 </head>
 <body>
-	<div id="private" v-cloak>
+	<div id="params" v-cloak>
 		<div class="header">
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
 			</div>
-			<a href="javascript:history.back()">
-				<svg class="icon back" aria-hidden="true">
-					<use xlink:href="#icon-fanhui"></use>
+			<!-- <svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
+			    <use xlink:href="#icon-caidan"></use>
+			</svg> -->
+			<a  href="javascript:history.back()">
+				<svg class="icon nav-menu-switch back" aria-hidden="true">
+					<use xlink:href="#icon-jiantou"></use>
 				</svg>
 			</a>
 			<div class="person">
-				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 				<a v-else href="personalCenter.html">
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-yidenglu"></use>
@@ -48,165 +55,180 @@
 			<transition name="fadeo" mode="out-in">
 					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
 			</transition>
+			<transition name="slide-fade">
+				<div v-if="show">
+					<div class="mask" v-on:click="show = !show">
+					</div>
+					<div class="nav-menu">
+						<ul>
+							<li>
+								<a href="index.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-xiazai45"></use>
+									</svg>
+									<span>{{ $t("header.home") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="buy.html" @click="navTobuy">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-car"></use>
+									</svg>
+									<span>{{ $t("header.buy") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="sale.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-maiche"></use>
+									</svg>
+									<span>{{ $t("header.sale") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="bargain.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-cart"></use>
+									</svg>
+									<span>{{ $t("header.bargain") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="installment.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-huankuanri"></use>
+									</svg>
+									<span>{{ $t("header.hire") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="about.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-chehangBmen"></use>
+									</svg>
+									<span>{{ $t("header.about") }}</span>
+								</a>
+							</li>
+							<li>
+								
+							</li>
+							<li>
+								<a href="">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</transition>
 			<transition name="searchfade">
 				<div class="login-page" v-if="loginshow">
 					<div class="loginMask" v-on:click="loginshow = !loginshow">
 					</div>
-					<div class="login">
+					
+					<div class="login" v-if="!regist">
 						<div class="close" v-on:click="loginshow = !loginshow">
 							<svg class="icon" aria-hidden="true">
 								<use xlink:href="#icon-close"></use>
 							</svg>
 						</div>
-						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
 						</div>
 						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
-							<input type="button" class="getcode" value="获取验证码" />
+							<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 						</div>
 						<div class="login-item">
-							<input type="button" class="btn-login" value="登录" v-on:click="login()">
+							<input type="password" class="defa getcodeinp" v-model="logindata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 						</div>
 						<div class="login-tips">
-							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+							<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
+						</div>
+					</div>
+					<div class="login" v-else>
+						<div class="close" v-on:click="loginshow = !loginshow">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-close"></use>
+							</svg>
+						</div>
+						<div class="l-switch">
+							<span :class="regist==false?'on':''" data-type = "1" @click="lrswitch($event)">{{$t('log')}}</span>
+							<span :class="regist==true?'on':''" data-type = "2" @click="lrswitch($event)">{{$t('register')}}</span>
+						</div>
+						<div class="login-item">
+							<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
+						</div>
+						<div class="login-item">
+							<input type="password" class="defa getcodeinp" v-model="registerdata.password" :placeholder="$t('ppass')"/>
+						</div>
+						<div class="login-item">
+							<input type="button" class="btn-login" :value="$t('register')" @click="register()">
+						</div>
+						<div class="login-tips">
+							<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 						</div>
 					</div>
 				</div>
 			</transition>
 		</div>
-		<div class="navigation">
-		   	<div class="menu">
-		    	<span class="goods_col select">商品收藏</span>
-		    	<span class="art_col">文章收藏</span>
-		    </div>
-		</div>
-		<div class="all_content">
-			<ul class="goods">
-				<a class="goods_d" href="cc.html">
-					<li>
-						<img src="images/car-1.jpg">
-						<div class="li_right">
-							<span class="good_detail">FX86FE8750-火陨版（i7-8750、8G、256GSSD+1T、、GTX1050ti 4G、IPS）15.6英寸</span>
-							<div class="price">￥<span>7499.00</span></div>
-							<div class="btn_cancel">取消收藏</div>
-						</div>
-					</li>
-				</a>
-				<a class="goods_art" href="cc.html">
-					<li>
-						<img src="images/car-1.jpg">
-						<div class="li_right">
-							<span class="good_detail">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</span>
-							<div class="time"><span>03-18 14 : 00</span></div>
-							<div class="btns">
-								<button type="button">新品</button>
-								<button type="button">活动</button>
-								<button type="button">促销</button>
+		<div class="param">
+			<div class="recommoned">
+				<div class="car-detail">
+					<Spin size="large" fix v-if="spinShow"></Spin>
+					<div class="car-item" v-for="(item, index) in $t('collectionList')" :key='item.id'>
+						<a href="carDetail.html" :data-id = "item.id" @click = "navigatorToDetail(item.id)" >
+							<img class="bg" :src="item.car?item.car.thumb:''">
+							<!-- <img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="collection(index, item.id)">
+							<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="collection(index, item.id)"> -->
+							<div class="car-explain">
+								<div class="explain-t">
+									<div class="car-name">
+										{{ item.car.model?item.car.model.year + '&nbsp':''}}
+										{{item.car.series?item.car.series.name + '&nbsp':''}}
+										{{item.car.model?item.car.model.displacement + 'L':''}}
+									</div>
+									<div class="car-price">
+										{{'$' + item.car.price}}
+									</div>
+								</div>
+								<div class="distance">
+									{{item.car.mileage + $t('miles')}}
+									{{item.car.model?'·' + item.car.model.door_count + $t('door'):''}}
+									{{item.car.model?'·' + item.car.model.driver_type:''}}
+									{{item.car.model?'·' + item.car.model.cylinder_count + $t('cylinder'):''}}
+									{{item.car.model?'·' + item.car.model.displacement + 'L':''}}
+									{{item.car.model?'·' + item.car.model.intake_type:''}}
+									{{item.car.model?'·' + item.car.model.gearbox:''}}
+								</div>
 							</div>
-						</div>
-					</li>
-				</a>
-				<a class="goods_art" href="cc.html">
-					<li>
-						<img src="images/car-1.jpg">
-						<div class="li_right">
-							<span class="good_detail">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</span>
-							<div class="time"><span>03-18 14 : 00</span></div>
-							<div class="btns">
-								<button type="button">新品</button>
-								<button type="button">活动</button>
-								<button type="button">促销</button>
-							</div>
-						</div>
-					</li>
-				</a>
-				<a class="goods_art" href="cc.html">
-					<li>
-						<img src="images/car-1.jpg">
-						<div class="li_right">
-							<span class="good_detail">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</span>
-							<div class="time"><span>03-18 14 : 00</span></div>
-							<div class="btns">
-								<button type="button">新品</button>
-								<button type="button">活动</button>
-								<button type="button">促销</button>
-							</div>
-						</div>
-					</li>
-				</a>
-				<a class="goods_art" href="cc.html">
-					<li>
-						<img src="images/car-1.jpg">
-						<div class="li_right">
-							<span class="good_detail">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</span>
-							<div class="time"><span>03-18 14 : 00</span></div>
-							<div class="btns">
-								<button type="button">新品</button>
-								<button type="button">活动</button>
-								<button type="button">促销</button>
-							</div>
-						</div>
-					</li>
-				</a>
-				<a class="goods_art" href="cc.html">
-					<li>
-						<img src="images/car-1.jpg">
-						<div class="li_right">
-							<span class="good_detail">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</span>
-							<div class="time"><span>03-18 14 : 00</span></div>
-							<div class="btns">
-								<button type="button">新品</button>
-								<button type="button">活动</button>
-								<button type="button">促销</button>
-							</div>
-						</div>
-					</li>
-				</a>
-				<div class="dropload-down">
-					<div class="dropload-refresh">↑上拉加载更多</div>
-					<div class="dropload-load"><span class="loading"></span>加载中...</div>
-					<div class="dropload-noData">我是有底线的</div>
+						</a>
+					</div>
 				</div>
-			</ul>
+			</div>
 		</div>
 		<div class="contact">
 			<div class="top">
-					<div class="logo"><img src="images/logor.png" ></div>
+				<div class="logo"><img src="images/logor.png" ></div>
 				<div class="wx">
-					<a href="#">
-						<img src="images/humacar.png" >
-						<span>CAR</span>
+					<a>
+						<img src="images/wximg.jpg" >
+						<span>{{$t('champion')}}</span>
 					</a>
 				</div>
 				<div class="phone">
-					<a href="#">
+					<a>
 						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
+						<span>{{$t('addressphone')}}</span>
 					</a>
 				</div>
 			</div>
-			</div>
+		</div>
 		<div class="adress">
 			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
+				<img src="images/address.png" >
 			</ul>
 		</div>
 		<div class="misc">
@@ -216,8 +238,8 @@
 		</div>
 		<div class="copy">
 			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
+				Copyright@2019 CHAMPION Inc. Privacy Terms
+			</span>
 		</div>
 	</div>
 </body>
@@ -232,89 +254,104 @@
 			enshow: "english",
 			loginshow: false,
 			switchlogin: true,
+			compact: false,
+			regist: false,
 			logindata: {
-				phonenum:'',
-				checkcode:''
+				username: '',
+				password: '',
+				remember: 'y'
 			},
+			registerdata: {
+				username: '',
+				password: ''
+			},
+			form: {
+				page: 1,
+				limit: 100
+			},
+			columns3: [
+				{
+					type: 'index',
+					width: 60,
+					align: 'center',
+					fixed: 'left'
+				},
+				{
+					title: 'Phone',
+					key: 'phone',
+					width: 125,
+				},{
+					title: 'Profession',
+					key: 'profession',
+					width: 125,
+				},{
+					title: 'SSN',
+					key: 'ssn',
+					width: 125,
+				},
+				{
+					title: 'WECHAT',
+					key: 'weixin',
+					width: 100,
+				},{
+					title: 'Status',
+					key: 'status',
+					width: 80,					
+					fixed: 'right'
+				},
+			],
+			data1: [],
+			spinShow: false,
 		},
 		mounted() {
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
-			}
+			var thatvu = this;
 			
-			$(".menu span").each(function(i){
-				$(this).click(function(){
-					
-					$(this).addClass("select").siblings().removeClass("select");
-					var classs = $(this).attr('class').split(' ')[0];
-					
-					if(classs == "goods_col"){
-						$(".goods_d").show().siblings().not('.goods_d').not('.dropload-down').hide();
-					}else if(classs == "art_col"){
-						$(".goods_art").show().siblings().not('.goods_art').not('.dropload-down').hide();
-					}
-				});
-			})
-			$('.goods li').click(function(){
-				console.log('fuss');
-			})
-			$('.btn_cancel').click(function(e){
-				e.preventDefault();
-				e.stopPropagation();
-				console.log('ss');
-			})
+			orifun.initStatu(this);
+			this.spinShow = true;
+			this.getApplyRecord();
 		},
 		methods: {
-			login: function() {
-				if(this.logindata.phonenum == ''){
-					alert("请填写手机号!");
-					return;
-				}
-				else if(this.logindata.checkcode == ''){
-					alert("请填写验证码!");
-					return;
-				}
-				this.switchlogin = !this.switchlogin;
-				this.loginshow = !this.loginshow;
-				alert('登录成功!');
-				localStorage.login = true;
-			},
-			change :function() {
-			    this.enshow = this.enshow == 'english' ? "中文" : "english";
-			    var that = this;
-			    setTimeout(function(){
-					if(i18n.locale == 'en'){
-						i18n.locale = 'zh-cn';
-					}else if(i18n.locale == 'zh-cn'){
-						i18n.locale = 'en';
-					}
-					localStorage.locale = i18n.locale;
-			    },1100)
+			handleClearCurrentRow () {
+                this.$refs.currentRowTable.clearCurrentRow();
+            },
+			getApplyRecord() {
+				var that = this;
+				this.form.language = 'cn';
+				data.common('CarWithAuth/collectionForCar',function(d){
+					console.log(d)
+					that.$i18n._vm.messages['zh-cn'].collectionList = d.data;
+				},this.form);
+				
+				this.form.language = 'en';
+				data.common('CarWithAuth/collectionForCar',function(d){
+					console.log(d)
+					that.$i18n._vm.messages['en'].collectionList = d.data;
+					that.spinShow = false;
+				},this.form);
+            },
+			navTobuy: function(){
+				orifun.initpostbody();
 			},
 			top:function(){
-				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 700);
+				orifun.top(this);
+			},
+			login: function() {
+				orifun.login(this);
+			},
+			register: function() {
+				orifun.register(this);
+			},
+			change :function() {
+				orifun.change(this);
 			},
 			consult:function(){
-				this.botshow = !this.botshow;
-				setTimeout(function(){
-					alert("功能完善中！")
-				},700)
+				orifun.consult(this);
+			},
+			lrswitch:function(e){
+				orifun.lrswitch(this,e);
 			}
 		}
-	}).$mount('#private')
+	}).$mount('#params')
 	// 现在应用程序已经准备好了！
 </script>
 </html>

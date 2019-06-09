@@ -22,7 +22,7 @@ var orifun = {
 		if(locale){
 			i18n.locale = locale;
 			
-			locale == 'zh-cn'?obj.enshow = 'english':obj.enshow = '中文';
+			locale == 'zh-cn'?obj.enshow = 'ENGLISH':obj.enshow = '中文';
 		}else{
 			localStorage.locale = locale = i18n.locale;
 		}
@@ -94,7 +94,7 @@ var orifun = {
 		},700)
 	},
 	change :function(obj) {
-		obj.enshow = obj.enshow == 'english' ? "中文" : "english";
+		obj.enshow = obj.enshow == 'ENGLISH' ? "中文" : "ENGLISH";
 		setTimeout(function(){
 			if(i18n.locale == 'en'){
 				i18n.locale = 'zh-cn';

@@ -177,23 +177,23 @@
 		<div class="param">
 			<Spin size="large" fix v-if="spinShow"></Spin>
 			<i-Form ref="formInline" :model="formInline" :rules="ruleIn" inline @submit.native.prevent>
-				<Form-Item style="display: block;" label="old password" prop="o_password">
-					<i-Input type="password" v-model="formInline.o_password" size="large" placeholder="Please enter the old password">
+				<Form-Item style="display: block;" :label="$t('updatePs.op')" prop="o_password">
+					<i-Input type="password" v-model="formInline.o_password" size="large" :placeholder="$t('updatePs.opc')">
 						<Icon type="ios-lock-outline" slot="prepend"></Icon>
 					</i-Input>
 				</Form-Item>
-				<Form-Item style="display: block;" label="new password" prop="password">
-					<i-Input type="password" v-model="formInline.password" size="large" placeholder="Please enter the new password">
+				<Form-Item style="display: block;" :label="$t('updatePs.np')" prop="password">
+					<i-Input type="password" v-model="formInline.password" size="large" :placeholder="$t('updatePs.npc')">
 						<Icon type="ios-lock-outline" slot="prepend"></Icon>
 					</i-Input>
 				</Form-Item>
-				<Form-Item style="display: block;" label="new password" prop="confirm_password">
-					<i-Input type="password" v-model="formInline.confirm_password" size="large" placeholder="Please enter the new password again">
+				<Form-Item style="display: block;" :label="$t('updatePs.np')" prop="confirm_password">
+					<i-Input type="password" v-model="formInline.confirm_password" size="large" :placeholder="$t('updatePs.npcc')">
 						<Icon type="ios-lock-outline" slot="prepend"></Icon>
 					</i-Input>
 				</Form-Item>
 				<Form-Item style="display: block;">
-					<i-Button style="width: 100%;" type="primary" @click="handleSubmitP('formInline')" size="large">update</i-Button>
+					<i-Button style="width: 100%;" type="primary" @click="handleSubmitP('formInline')" size="large">{{$t('updatePs.update')}}</i-Button>
 				</FormItem>
 			</i-Form>
 		</div>

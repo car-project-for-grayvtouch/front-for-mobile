@@ -32,12 +32,12 @@
 				seltype: ['Latest-hot','ECO','Prospective','luxury'],
 				recom: 'CHAMPION Recommoned',
 				explain: [],
-				extip: 'remind',
+				extip: 'Remind',
 				extipc: 'No comment, please inform customer service',
 				// 媒体声音
 				mediaVoice: 'Media voice',
 				media: [],
-				metip: 'remind',
+				metip: 'Remind',
 				metipc: 'No articles, notice customer service on the new',
 				tipsArr:['Free transfer','A variety of financial loan services','Within a year the national road rescue service','Multiple payment channels (POS machine, WeChat, alipay, etc.)','There is no 100% commission'],
 				wantBuy: 'Search',
@@ -559,16 +559,39 @@
 					preorder: 'Reserve a vehicle',
 					coll: 'My collection'
 				},
+				proveInfo: {
+					nick: 'Nickname',
+					nickc: 'Enter your nickname',
+					phone: 'Phone',
+					phonec: 'Enter your dialling code',
+					gender: 'Gender',
+					male: 'Male',
+					female: 'Female',
+					birthday: 'Birthday',
+					birthdayc: 'Select date',
+					submit: 'Submit',
+					reset: 'Reset'
+				},
 				sellApply: {
 					data: []
 				},
 				barginRecord: {
 					data: []
 				},
+				updatePs: {
+					op: 'old password',
+					opc: 'Please enter the old password',
+					np: 'new password',
+					npc: 'Please enter the new password',
+					npcc: 'Please enter the new password again',
+					update: 'Update'
+				},
 				installmentRecord: {
 					data: []
 				},
-				collectionList: []
+				collectionList: [],
+				collectionRe: 'Remind',
+				collectionRec: 'You have not collected vehicles'
 			},
 		    'zh-cn':{
 					header: {
@@ -1116,16 +1139,39 @@
 						preorder: '预约车辆',
 						coll: '我的收藏'
 					},
+					proveInfo: {
+						nick: '昵称',
+						nickc: '输入您的昵称',
+						phone: '手机号',
+						phonec: '输入手机区号，例如+86',
+						gender: '性别',
+						male: '男',
+						female: '女',
+						birthday: '生日',
+						birthdayc: '选择日期',
+						submit: '提交',
+						reset: '重置'
+					},
 					sellApply: {
 						data: []
 					},
 					barginRecord: {
 						data: []
 					},
+					updatePs: {
+						op: '旧密码',
+						opc: '请输入旧密码',
+						np: '新密码',
+						npc: '请输入新密码',
+						npcc: '请再次输入新密码',
+						update: '更新'
+					},
 					installmentRecord: {
 						data: []
 					},
-					collectionList: []
+					collectionList: [],
+					collectionRe: '提示',
+					collectionRec: '您尚未收藏车辆'
 			}
 			
 		}// 设置地区信息

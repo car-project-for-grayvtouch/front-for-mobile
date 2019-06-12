@@ -178,8 +178,13 @@
 			<div class="recommoned">
 				<div class="car-detail">
 					<Spin size="large" fix v-if="spinShow"></Spin>
-					<div class="car-item" v-for="(item, index) in $t('collectionList')" :key='item.id'>
-						<a href="carDetail.html" :data-id = "item.id" @click = "navigatorToDetail(item.id)" >
+					<Alert style="margin-top: 10px;width: 100%;" show-icon v-if="$t('collectionList').length == 0">
+						{{ $t("collectionRe") }}
+						<Icon type="ios-bulb-outline" slot="icon"></Icon>
+						<template slot="desc">{{ $t("collectionRec") }}</template>
+					</Alert>
+					<div class="car-item" v-else v-for="(item, index) in $t('collectionList')" :key='item.id'>
+						<a :data-id = "item.id" @click = "navigatorToDetail(item.car_id)" >
 							<img class="bg" :src="item.car?item.car.thumb:''">
 							<!-- <img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="collection(index, item.id)">
 							<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="collection(index, item.id)"> -->
@@ -329,6 +334,10 @@
 					that.spinShow = false;
 				},this.form);
             },
+			navigatorToDetail: function(e) {
+				window.location.href= "carDetail.html";
+				localStorage.goodId = e;
+			},
 			navTobuy: function(){
 				orifun.initpostbody();
 			},

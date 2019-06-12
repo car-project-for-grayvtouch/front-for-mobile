@@ -177,24 +177,24 @@
 		<div class="param">
 			<Spin size="large" fix v-if="spinShow"></Spin>
 			<i-form ref="formValidate" :model="formValidate" :label-width="80" @submit.native.prevent>
-				<Form-Item label="Nickname" prop="nickname">
-					<i-Input v-model="formValidate.nickname" placeholder="Enter your nickname"  size="large"></i-Input >
+				<Form-Item :label="$t('proveInfo.nick')" prop="nickname">
+					<i-Input v-model="formValidate.nickname" :placeholder="$t('proveInfo.nickc')"  size="large"></i-Input >
 				</Form-Item>
-				<Form-Item label="Phone" prop="phone">
-					<i-Input v-model="formValidate.area_code" placeholder="Enter your dialling code" size="large"></i-Input>
+				<Form-Item :label="$t('proveInfo.phone')" prop="phone">
+					<i-Input v-model="formValidate.area_code" :placeholder="$t('proveInfo.phonec')" size="large"></i-Input>
 				</Form-Item>
-				<Form-Item label="Gender" prop="gender">
+				<Form-Item :label="$t('proveInfo.gender')" prop="gender">
 					<Radio-Group v-model="formValidate.sex"  size="large">
-						<Radio label="male">Male</Radio>
-						<Radio label="female">Female</Radio>
+						<Radio label="male">{{$t('proveInfo.male')}}</Radio>
+						<Radio label="female">{{$t('proveInfo.female')}}</Radio>
 					</Radio-Group>
 				</Form-Item>
-				<Form-Item label="Birthday" prop="birthday">
-					<Date-Picker style="width: 100%;" type="date" size="large" placeholder="Select date" format = "yyyy-MM-dd" v-model="formValidate.birthday" @on-change="getdate"></Date-Picker>
+				<Form-Item :label="$t('proveInfo.birthday')" prop="birthday">
+					<Date-Picker style="width: 100%;" type="date" size="large" :placeholder="$t('proveInfo.birthdayc')" format = "yyyy-MM-dd" v-model="formValidate.birthday" @on-change="getdate"></Date-Picker>
 				</Form-Item>
 				<Form-Item class="two-space">
-					<i-Button type="primary" size="large" @click="handleSubmit">Submit</i-Button>
-					<i-Button size="large" @click="handleReset('formValidate')" style="margin-left: 8px">Reset</i-Button>
+					<i-Button type="primary" size="large" @click="handleSubmit">{{$t('proveInfo.submit')}}</i-Button>
+					<i-Button size="large" @click="handleReset('formValidate')" style="margin-left: 8px">{{$t('proveInfo.reset')}}</i-Button>
 				</Form-Item>
 			</i-form>
 		</div>
@@ -276,32 +276,32 @@
 			handleSubmit (name) {
 				var that = this;
 				if(!localStorage.token){
-					this.$Message.warning('请先登录!');
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
 					return;
 				}
 				if(this.formValidate.nickname == ''){
-					this.$Message.warning('Please enter your nickname!');
+					this.$Message.warning(orifun.getInfo('Please enter your nickname!','请输入你的昵称!'));
 					return;
 				}
 				if(this.formValidate.area_code == ''){
-					this.$Message.warning('Please enter your dialling code!');
+					this.$Message.warning(orifun.getInfo('Please enter your dialling code,for example: +86- China!','请输入手机区号，例如：+86-中国!'));
 					return;
 				}
 				if(this.formValidate.sex == ''){
-					this.$Message.warning('Please select gender!');
+					this.$Message.warning(orifun.getInfo('Please select gender!','请选择性别!'));
 					return;
 				}
 				if(this.formValidate.birthday == ''){
-					this.$Message.warning('Please select birthday!');
+					this.$Message.warning(orifun.getInfo('Please select birthday!','请选择生日!'));
 					return;
 				}
 				data.common('User/edit',function(d){
 					console.log(d)
 					if(d == 400 || d.code == 400){
-						that && that.$Message.warning('Fail!');
+						that && that.$Message.warning(orifun.getInfo('Fail!','更新失败!'));
 					}else{
 						that.$Notice.success({
-							title: 'Success to update!',
+							title: orifun.getInfo('Success to update!','更新成功!'),
 						});
 					}
 				},this.formValidate);

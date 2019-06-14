@@ -107,7 +107,7 @@ var orifun = {
 		obj.botshow = !obj.botshow;
 		setTimeout(function(){
 			obj.$Notice.info({
-				title: orifun.getInfo('Fully functional!','功能完善中!'),
+				title: orifun.getInfo('Please log on PC to contact customer service!','请登录pc端联系客服!'),
 			});
 		},700)
 	},

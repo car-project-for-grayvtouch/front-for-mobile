@@ -302,9 +302,9 @@
 					autodeviceTime: '',
 					dirveSysTime: '',
 				},
-				about: {'Championa what kind of company is that？':'CHIMPON in North America is a integration of offline quality resources O2O auto service platform, we provide the user with car rental, student driver, purchases, loans, localization services such as maintenance of one-stop Chinese car platform, let each user, save money at ease purchase good car.',
-				'What is the process of buying a car？':'1. Call the car number/make an appointment online.<br>2. The consultant calls to confirm and pick you up to see the car.<br>3. Selected vehicles, after 300 tests.<br>4. Select your car and help you with all the formalities.<br>',
-				'What materials are needed to sell a car？':'You only need to fill in the complete information in the online car sales department, and our staff will contact you and arrange a comprehensive test for your car offline.'},
+				about: {'What kind of company is CHAMPION?': 'CHAMPION is an O2O vehicle service platform integrating with offline high-quality resources in North America. We provide customers with one stop Chinese car rental, learning, purchasing, loan, maintenance and other localized services. The goal is to ensure each customer saves money and secure a good car.',
+				"what's the car buying process like?": "2. The staff will give you the information of the selected vehicle.(e.g. CARFAX report, vehicle information report) .<br>",
+				"What materials do you need to prepare for selling a car?":" you only need to fill in the complete information at the online car sales office, and our staff will contact you and arrange for a full test of your car offline. "},
 				contactUs: {
 					title: 'Contact us',
 					phone: '7x24 Chinese customer service phone number',
@@ -883,8 +883,8 @@
 						dirveSysTime: ''
 					},
 					about: {'CHAMPION是一家怎样的公司呢？':'CHIMPON是北美一家整合线下优质资源的O2O汽车服务平台，我们为用户提供租车、学车、购车、贷款、维修保养等本地化服务的一站式中文汽车平台，让每一个用户，省钱安心购好车。',
-					'购车流程是怎样的？':'1. 拨打看车电话/在线预约<br>2. 顾问电话确认并接你看车<br>3. 严选车辆，经过 300 项检测<br>4. 选定爱车，帮你代办一切手续<br>',
-					'卖车需要准备什么材料？':'您只需在线上卖车处填写完整的信息，我们的工作人员会联系您并安排线下给您的爱车做全面的检测'},
+					'购车流程是怎样的？':'1. 拨打看车电话/在线预约<br> 2. 工作人员将给予您选定车辆的信息。（例如：CARFAX报告、车辆信息报告）<br>3. 选定爱车，帮你代办一切手续<br>',
+					'卖车需要准备什么材料？':'您只需在线上卖车处填写完整的信息，我们的工作人员会联系您并安排线下给您的爱车做全面的检测',},
 					contactUs: {
 						title: '联系我们',
 						phone: '7x24小时中文客服电话',

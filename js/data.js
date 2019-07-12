@@ -1,5 +1,5 @@
 var data = {
-	domain: 'http://admin.championcargroup.com/api/mobile/',
+	domain: 'http://m.api.championcargroup.com/',
 	common: function(url,fun,form){
 		var thatdata = this;
 		if(!localStorage.token){
